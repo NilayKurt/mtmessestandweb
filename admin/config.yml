@@ -1,10 +1,7 @@
 backend:
-  name: github
-  repo: NilayKurt/mtmessestandweb
+  name: git-gateway
   branch: master
-  base_url: https://nilaykurt.github.io/mtmessestandweb
-  auth_endpoint: https://github.com/login/oauth/authorize
-  client_id: Ov23lis8Tc4RDzLT8fK6
+  site_domain: mellow-souffle-1db250.netlify.app
 
 media_folder: "assets/img/uploads"
 public_folder: "/assets/img/uploads"
