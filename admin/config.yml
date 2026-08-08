@@ -2,6 +2,9 @@ backend:
   name: github
   repo: NilayKurt/mtmessestandweb
   branch: master
+  base_url: https://nilaykurt.github.io/mtmessestandweb
+  auth_endpoint: https://github.com/login/oauth/authorize
+  client_id: Ov23lis8Tc4RDzLT8fK6
 
 media_folder: "assets/img/uploads"
 public_folder: "/assets/img/uploads"
