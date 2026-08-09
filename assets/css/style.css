@@ -85,7 +85,7 @@ a:hover { color: var(--accent-hover); }
   position: absolute; inset: 0;
   background: rgba(10,15,26,0.7);
 }
-#hero h1 { font-size: 3.5rem; line-height: 1.2; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+#hero h1 { font-size: 3.5rem; line-height: 1.2; text-shadow: 0 2px 8px rgba(0,0,0,0.6); color: #fff; }
 #hero .lead { font-size: 1.25rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
 .hero-stats .stat { text-align: center; }
 .hero-stats .stat strong { font-size: 2rem; color: var(--accent); }
