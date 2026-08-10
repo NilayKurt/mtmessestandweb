@@ -41,8 +41,9 @@ $content_clean = strip_tags($content_raw, $allowed_tags);
 // Clean layout artifacts from migrated content
 $cut_at = strpos($content_clean, '<!-- ===== AUTHOR ===== -->');
 if ($cut_at !== false) $content_clean = substr($content_clean, 0, $cut_at);
-// Strip related-posts navigation blocks
-$content_clean = preg_replace('/<div class="related-posts">.*?<\/div>\s*<\/div>\s*<\/div>\s*<\/div>\s*<\/div>/s', '', $content_clean);
+// Strip navigation/layout blocks that use non-allowed tags
+$content_clean = preg_replace('/<div[^>]*>.*?<a href="[^"]*" class="btn[^"]*">[^<]*→<\/a>.*?<\/div>/s', '', $content_clean);
+$content_clean = preg_replace('/<div[^>]*>.*?<a href="[^"]*" class="btn[^"]*">Coming Soon[^<]*<\/a>.*?<\/div>/s', '', $content_clean);
 $content_clean = trim($content_clean);
 
 $data = [

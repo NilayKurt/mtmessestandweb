@@ -30,8 +30,15 @@ foreach ($langs as $lang) {
         preg_match('/<span>([A-Z][a-z]+ \d+, \d{4})<\/span>/', $html, $date_span);
         preg_match('/<meta name="description" content="([^"]+)"/', $html, $meta_desc);
 
-        // Extract content between article-intro and author-box
-        preg_match('/<div class="article-intro">(.*?)<div class="author-box">/s', $html, $content_match);
+        // Extract content: everything after h1+lead until author-box or footer
+        $content = '';
+        if (preg_match('/<div class="article-intro">(.*?)<div class="author-box">/s', $html, $cm)) {
+            $content = trim($cm[1]);
+        } elseif (preg_match('/<p class="lead">[^<]*<\/p>\s*(.*?)<div class="author-box">/s', $html, $cm)) {
+            $content = trim($cm[1]);
+        } elseif (preg_match('/<h1>[^<]*<\/h1>\s*<p class="lead">[^<]*<\/p>\s*(.*?)<footer/s', $html, $cm)) {
+            $content = trim($cm[1]);
+        }
 
         $data = [
             'title' => $title[1] ?? basename($html_file),
@@ -39,7 +46,7 @@ foreach ($langs as $lang) {
             'summary' => $lead[1] ?? '',
             'image' => isset($og_img[1]) ? parse_url($og_img[1], PHP_URL_PATH) : '',
             'slug' => $slug,
-            'content' => trim($content_match[1] ?? ''),
+            'content' => trim($content),
             'meta_desc' => $meta_desc[1] ?? $lead[1] ?? '',
         ];
 
