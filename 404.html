@@ -4,35 +4,116 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page Not Found | MT Messe Stand</title>
-  <link rel="icon" href="assets/img/favicon.webp">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="assets/img/favicon.webp">
+  <link href="assets/vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/style.min.css" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d1523; color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 20px; }
-    .container { max-width: 600px; }
-    .code { font-size: 6rem; font-weight: 800; color: #f4b400; line-height: 1; }
-    h1 { font-size: 1.8rem; margin: 1rem 0 0.5rem; }
-    p { color: #8899aa; font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem; }
-    a { display: inline-block; padding: 12px 32px; background: #f4b400; color: #0d1523; text-decoration: none; border-radius: 8px; font-weight: 600; }
-    a:hover { background: #e5a800; }
+    .error-section { padding: 180px 0 60px; min-height: 60vh; display: flex; align-items: center; }
+    .error-code { font-size: 7rem; font-weight: 800; color: #cc0000; line-height: 1; opacity: 0.2; }
+    .error-section h1 { font-size: 2rem; font-weight: 700; }
+    .error-section .lead { color: #666; font-size: 1.1rem; }
+    .suggestions .card { transition: transform 0.2s; height: 100%; }
+    .suggestions .card:hover { transform: translateY(-4px); }
   </style>
-  <script>
-    // Detect language from URL and redirect
-    var path = window.location.pathname;
-    var langMatch = path.match(/^\/(en|tr|de|fr|ar|zh)\//);
-    if (langMatch) {
-      var lang = langMatch[1];
-      window.location.href = '/' + lang + '/404.html';
-    } else {
-      // Default to EN 404
-      window.location.href = '/en/404.html';
-    }
-  </script>
 </head>
 <body>
-  <div class="container">
-    <div class="code">404</div>
-    <h1>Redirecting...</h1>
-    <p><a href="/en/">Go to Homepage</a></p>
+<div id="navbar-placeholder"></div>
+
+<section class="error-section">
+  <div class="container text-center">
+    <div class="error-code">404</div>
+    <h1>Page Not Found</h1>
+    <p class="lead mb-5">The page you are looking for doesn't exist or has been moved.</p>
+    <div class="d-flex justify-content-center gap-3">
+      <a href="/en/" class="btn btn-accent btn-lg">Go to Homepage</a>
+      <a href="/en/blog/" class="btn btn-outline-primary btn-lg">Browse Blog</a>
+    </div>
   </div>
+</section>
+
+<section class="suggestions section bg-light">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Popular Guides</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card service-card">
+          <small class="text-muted">Germany</small>
+          <h4><a href="/en/blog/germany-hidden-costs.html" class="text-decoration-none">Hidden Costs of Building an Exhibition Stand in Germany</a></h4>
+          <p>Comprehensive guide covering B1 fire certificates, TÜV inspections, Brandwache, and more — all costs your initial quote won't show.</p>
+          <a href="/en/blog/germany-hidden-costs.html" class="btn btn-sm btn-outline-primary mt-2">Read More →</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card service-card">
+          <small class="text-muted">Guide</small>
+          <h4><a href="/en/blog/first-time-exhibitor-guide.html" class="text-decoration-none">First-Time Exhibitor Guide: Checklist & Preparation Timeline</a></h4>
+          <p>6-month preparation timeline, 40-point checklist, 10 common mistakes — backed by 300+ stands across 15 countries.</p>
+          <a href="/en/blog/first-time-exhibitor-guide.html" class="btn btn-sm btn-outline-primary mt-2">Read More →</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card service-card">
+          <small class="text-muted">Dubai</small>
+          <h4><a href="/en/blog/dubai-hidden-costs.html" class="text-decoration-none">Dubai Exhibition Stand Operational Cost Guide</a></h4>
+          <p>DWTC and ADNEC technical guidelines, cooling costs, Ramadan scheduling — your complete Dubai exhibitor manual.</p>
+          <a href="/en/blog/dubai-hidden-costs.html" class="btn btn-sm btn-outline-primary mt-2">Read More →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <img src="assets/img/logo.webp" alt="MT Messe Stand — Exhibition Stand Builder" width="186" height="36" class="mb-3">
+        <p>Your trusted exhibition stand builder in Turkiye. Custom stands, modular systems, and full exhibitor services worldwide.</p>
+        <div class="social-links mt-3">
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4">
+        <h5>Services</h5>
+        <ul class="list-unstyled">
+          <li><a href="/en/#services">Wooden Stands</a></li>
+          <li><a href="/en/#services">Maxima Stands</a></li>
+          <li><a href="/en/#services">Package Stands</a></li>
+          <li><a href="/en/#services">Pavilion Solutions</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-4">
+        <h5>Company</h5>
+        <ul class="list-unstyled">
+          <li><a href="/en/about.html">About</a></li>
+          <li><a href="/en/blog/">Blog</a></li>
+          <li><a href="/en/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h5>Language</h5>
+        <div class="d-flex gap-2 flex-wrap">
+          <a href="/en/" class="badge bg-accent text-white text-decoration-none px-2 py-1">EN</a>
+          <a href="/tr/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">TR</a>
+          <a href="/de/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">DE</a>
+          <a href="/fr/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">FR</a>
+          <a href="/es/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">ES</a>
+          <a href="/ar/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">AR</a>
+          <a href="/zh/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">ZH</a>
+        </div>
+      </div>
+    </div>
+    <hr class="mt-4 mb-3">
+    <div class="text-center"><small>&copy; 2026 MT Messe Stand. All Rights Reserved.</small></div>
+  </div>
+</footer>
+
+<script src="assets/vendor/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.min.js"></script>
+<script src="assets/js/navbar.js"></script>
 </body>
 </html>
