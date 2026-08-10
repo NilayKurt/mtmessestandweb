@@ -2,6 +2,36 @@
 require_once __DIR__ . '/config.php';
 session_start();
 
+// ── Error handling ──
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
+ini_set('log_errors', '0'); // We handle logging ourselves
+
+function log_error(string $message): void {
+    $log_dir = __DIR__ . '/logs';
+    if (!is_dir($log_dir)) @mkdir($log_dir, 0755, true);
+    $timestamp = date('Y-m-d H:i:s');
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'cli';
+    $line = "[$timestamp] [$ip] ERROR: $message\n";
+    @file_put_contents("$log_dir/error.log", $line, FILE_APPEND | LOCK_EX);
+}
+
+function log_action(string $action, string $result, array $details = []): void {
+    $log_dir = __DIR__ . '/logs';
+    if (!is_dir($log_dir)) @mkdir($log_dir, 0755, true);
+    $timestamp = date('Y-m-d H:i:s');
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'cli';
+    $detail_str = $details ? ' ' . json_encode($details, JSON_UNESCAPED_UNICODE) : '';
+    $line = "[$timestamp] [$ip] $action: $result$detail_str\n";
+    @file_put_contents("$log_dir/audit.log", $line, FILE_APPEND | LOCK_EX);
+}
+
+set_exception_handler(function (Throwable $e) {
+    log_error($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
+    http_response_code(500);
+    die('Internal server error. Check logs.');
+});
+
 function is_logged_in(): bool {
     return isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
 }
