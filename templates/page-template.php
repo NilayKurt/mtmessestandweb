@@ -60,27 +60,30 @@ function render_page(array $meta, string $content_html, string $lang, string $pa
     <div class="row g-4">
       <div class="col-lg-4">
         <img src="{$asset_prefix}img/logo.webp" alt="MT Messe Stand" width="186" height="36" class="mb-3">
-        <p>Your trusted exhibition stand builder in Turkiye. Custom stands, modular systems, and full exhibitor services worldwide.</p>
+        <p>MT MesseStand &mdash; Your trade fair partner across three continents. Custom stands, modular systems, and full exhibitor services worldwide.</p>
+        <p class="small">Built to international trade fair standards. <a href="https://www.auma.de/en" target="_blank" rel="noopener">AUMA</a> · <a href="https://www.dguv.de" target="_blank" rel="noopener">DGUV</a></p>
         <div class="social-links mt-3">
-          <a href="#"><i class="bi bi-linkedin"></i></a>
-          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/mt-messe-stand" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.instagram.com/mtmessestand" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
           <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
       <div class="col-lg-2 col-md-4">
         <h5>Services</h5>
         <ul class="list-unstyled">
-          <li><a href="index.html#services">Wooden Stands</a></li>
-          <li><a href="index.html#services">Maxima Stands</a></li>
-          <li><a href="index.html#services">Package Stands</a></li>
-          <li><a href="index.html#services">Pavilion Solutions</a></li>
+          <li><a href="index.html#services">Custom Wooden</a></li>
+          <li><a href="index.html#services">Maxima Modular</a></li>
+          <li><a href="index.html#services">Package Upgrade</a></li>
+          <li><a href="index.html#services">Country Pavilions</a></li>
+          <li><a href="index.html#services">Exhibitor Services</a></li>
+          <li><a href="index.html#services">Organizer Services</a></li>
         </ul>
       </div>
       <div class="col-lg-2 col-md-4">
         <h5>Company</h5>
         <ul class="list-unstyled">
           <li><a href="about.html">About</a></li>
-          <li><a href="blog/">Blog</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
