@@ -48,11 +48,6 @@ $content = <<<HTML
   <a href="editor-blog.php" class="btn btn-accent">+ Yeni Blog</a>
 </div>
 <div class="row">$cards</div>
-<div class="mt-4 pt-3 border-top d-flex gap-2">
-  <a href="editor-page.php?page=about" class="btn btn-outline-secondary">📄 About</a>
-  <a href="editor-page.php?page=contact" class="btn btn-outline-secondary">📄 Contact</a>
-  <a href="media.php" class="btn btn-outline-secondary">🖼️ Medya</a>
-</div>
 HTML;
 
 render_admin_layout('Dashboard — MT Messe Admin', $content, 'blog');
