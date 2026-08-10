@@ -32,7 +32,6 @@ $d_attr = htmlspecialchars($data['date'] ?? '');
 $s_attr = htmlspecialchars($data['slug'] ?? '');
 $sum_attr = htmlspecialchars($data['summary'] ?? '');
 $img_attr = htmlspecialchars($data['image'] ?? '');
-$toast = $saved ? '<div class="toast show align-items-center text-bg-success border-0 position-fixed top-0 end-0 m-3" role="alert"><div class="d-flex"><div class="toast-body">✓ Kaydedildi</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div>' : '';
 
 $content = <<<HTML
 $toast

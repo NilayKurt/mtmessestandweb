@@ -117,7 +117,7 @@ function render_blog(array $meta, string $content_html, string $lang): string {
       <p class="meta"><span>MT Messe Stand Editor</span> &middot; <span>$date_esc</span></p>
       <h1>$title_esc</h1>
       <p class="lead">$summary_esc</p>
-      <img src="$image_esc" alt="$title_esc" width="1200" height="1600" class="img-fluid rounded shadow-sm mb-4" loading="eager">
+      $image_esc ? "<img src=\"$image_esc\" alt=\"$title_esc\" width=\"1200\" height=\"1600\" class=\"img-fluid rounded shadow-sm mb-4\" loading=\"eager\">" : ""
       <div class="article-intro">$content_html</div>
       <div class="author-box">
         <img src="{$asset_prefix}img/logo.webp" alt="MT Messe Stand" width="56" height="56" loading="lazy">

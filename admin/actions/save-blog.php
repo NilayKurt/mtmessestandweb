@@ -38,6 +38,13 @@ $slug = trim($slug, '-');
 $allowed_tags = '<h2><h3><h4><p><ul><ol><li><blockquote><strong><em><a><img><br><details><summary>';
 $content_clean = strip_tags($content_raw, $allowed_tags);
 
+// Clean layout artifacts from migrated content
+$cut_at = strpos($content_clean, '<!-- ===== AUTHOR ===== -->');
+if ($cut_at !== false) $content_clean = substr($content_clean, 0, $cut_at);
+// Strip related-posts navigation blocks
+$content_clean = preg_replace('/<div class="related-posts">.*?<\/div>\s*<\/div>\s*<\/div>\s*<\/div>\s*<\/div>/s', '', $content_clean);
+$content_clean = trim($content_clean);
+
 $data = [
     'title' => $title,
     'date' => $date,
