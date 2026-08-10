@@ -86,11 +86,13 @@
       <div class="col-lg-8">
         <div class="service-card p-4 p-lg-5">
           <h3 class="h4 mb-4 text-center">Mesaj Gönderin</h3>
-<form class="contact-form" name="contact" method="POST" data-netlify="true" netlify>
+<form class="contact-form" action="/contact.php" method="POST">
+<input type="hidden" name="lang" value="tr">
+<div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
 <div class="row g-3">
-<div class="col-md-6"><input type="text" class="form-control" placeholder="Adınız" required></div>
-<div class="col-md-6"><input type="email" class="form-control" placeholder="E-posta Adresiniz" required></div>
-<div class="col-12"><textarea class="form-control" rows="5" placeholder="Projeniz hakkında bilgi verin..."></textarea></div>
+<div class="col-md-6"><input type="text" class="form-control" name="name" placeholder="Adınız" required></div>
+<div class="col-md-6"><input type="email" class="form-control" name="email" placeholder="E-posta Adresiniz" required></div>
+<div class="col-12"><textarea class="form-control" name="message" rows="5" placeholder="Projeniz hakkında bilgi verin..." required></textarea></div>
 <div class="col-12 text-center"><button type="submit" class="btn btn-primary btn-lg">Mesaj Gönder</button></div>
 </div></form>
         </div>
