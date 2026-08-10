@@ -22,6 +22,11 @@ $token = csrf_token();
 $lang_name = LANGUAGES[$lang] ?? $lang;
 $page_title = $data['title'] ? htmlspecialchars($data['title']) : 'Yeni Yazı';
 $c_raw = $data['content'] ?? '';
+$t_attr = htmlspecialchars($data['title'] ?? '');
+$d_attr = htmlspecialchars($data['date'] ?? '');
+$s_attr = htmlspecialchars($data['slug'] ?? '');
+$sum_attr = htmlspecialchars($data['summary'] ?? '');
+$img_attr = htmlspecialchars($data['image'] ?? '');
 $toast = $saved ? '<div class="toast show align-items-center text-bg-success border-0 position-fixed top-0 end-0 m-3" role="alert"><div class="d-flex"><div class="toast-body">✓ Kaydedildi</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div>' : '';
 
 $content = <<<HTML
@@ -33,25 +38,25 @@ $toast
   <div class="row mb-3">
     <div class="col-md-7">
       <label class="form-label">Başlık</label>
-      <input type="text" name="title" id="title-input" class="form-control" value="{$data['title']}" required>
+      <input type="text" name="title" id="title-input" class="form-control" value="$t_attr" required>
     </div>
     <div class="col-md-2">
       <label class="form-label">Tarih</label>
-      <input type="date" name="date" class="form-control" value="{$data['date']}">
+      <input type="date" name="date" class="form-control" value="$d_attr">
     </div>
     <div class="col-md-3">
       <label class="form-label">Slug (URL)</label>
-      <input type="text" name="slug" id="slug-input" class="form-control" value="{$data['slug']}" placeholder="auto" pattern="[a-z0-9-]+">
+      <input type="text" name="slug" id="slug-input" class="form-control" value="$s_attr" placeholder="auto" pattern="[a-z0-9-]+">
     </div>
   </div>
   <div class="mb-3">
     <label class="form-label">Özet (SEO + kartlar)</label>
-    <input type="text" name="summary" class="form-control" value="{$data['summary']}">
+    <input type="text" name="summary" class="form-control" value="$sum_attr">
   </div>
   <div class="mb-3">
     <label class="form-label">Görsel</label>
     <div class="input-group">
-      <input type="text" name="image" id="image-input" class="form-control" value="{$data['image']}" placeholder="/assets/img/blog/hero.webp">
+      <input type="text" name="image" id="image-input" class="form-control" value="$img_attr" placeholder="/assets/img/blog/hero.webp">
       <button type="button" class="btn btn-outline-secondary" onclick="window.open('media.php?picker=1','media-picker','width=800,height=500')">🖼️ Seç</button>
     </div>
   </div>
@@ -71,11 +76,6 @@ var quill = new Quill('#editor', {
 });
 document.getElementById('blog-form').onsubmit = function() {
   document.getElementById('content-hidden').value = quill.root.innerHTML;
-  var slug = document.getElementById('slug-input');
-  if (!slug.value) {
-    var t = document.getElementById('title-input').value;
-    slug.value = t.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-  }
 };
 </script>
 HTML;

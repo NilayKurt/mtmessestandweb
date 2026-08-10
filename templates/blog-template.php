@@ -161,7 +161,13 @@ function render_blog(array $meta, string $content_html, string $lang): string {
       <div class="col-lg-3 col-md-6">
         <h5>Language</h5>
         <div class="d-flex gap-2 flex-wrap">
-          <a href="/$lang/blog/$slug_esc/" class="badge bg-accent text-white text-decoration-none px-2 py-1"><?= strtoupper($lang) ?></a>
+HTML;
+    $footer_langs = '';
+    foreach (LANGUAGES as $code => $name) {
+        $active = $code === $lang ? ' bg-accent' : ' bg-secondary';
+        $footer_langs .= "          <a href=\"/$code/blog/\" class=\"badge{$active} text-white text-decoration-none px-2 py-1\">" . strtoupper($code) . "</a>\n";
+    }
+    $footer_html = $footer_langs . <<<HTML
         </div>
       </div>
     </div>

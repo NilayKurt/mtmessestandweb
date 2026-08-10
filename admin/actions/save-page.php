@@ -10,7 +10,11 @@ $page = $_POST['page'] ?? 'about';
 $title = trim($_POST['title'] ?? '');
 $content_raw = $_POST['content'] ?? '';
 
-if (empty($title)) die('Title required');
+if (empty($title)) {
+    ob_end_clean();
+    header('Location: ../editor-page.php?page=' . urlencode($page) . '&error=' . urlencode('Başlık zorunlu'));
+    exit;
+}
 
 $allowed_tags = '<h2><h3><h4><p><ul><ol><li><blockquote><strong><em><a><br>';
 $content_clean = strip_tags($content_raw, $allowed_tags);
@@ -39,7 +43,8 @@ try {
     log_error('save_page: ' . $e->getMessage());
     @unlink("$json_path.tmp");
     ob_end_clean();
-    die('Render failed. Check logs.');
+    header('Location: ../editor-page.php?page=' . urlencode($page) . '&error=' . urlencode("Render başarısız"));
+    exit;
 }
 
 if (file_exists(__DIR__ . '/../../build.php')) {

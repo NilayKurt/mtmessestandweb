@@ -87,7 +87,14 @@ function render_page(array $meta, string $content_html, string $lang, string $pa
       <div class="col-lg-3 col-md-6">
         <h5>Language</h5>
         <div class="d-flex gap-2 flex-wrap">
-          <a href="/$lang/" class="badge bg-accent text-white text-decoration-none px-2 py-1"><?= strtoupper($lang) ?></a>
+HTML;
+    $footer_langs = '';
+    foreach (LANGUAGES as $code => $name) {
+        $active = $code === $lang ? ' bg-accent' : ' bg-secondary';
+        $page_href = ($page_type === 'about') ? "/$code/about/" : "/$code/contact/";
+        $footer_langs .= "          <a href=\"$page_href\" class=\"badge{$active} text-white text-decoration-none px-2 py-1\">" . strtoupper($code) . "</a>\n";
+    }
+    $footer_html = $footer_langs . <<<HTML
         </div>
       </div>
     </div>

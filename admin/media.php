@@ -14,29 +14,48 @@ if (is_dir($img_dir)) {
     }
 }
 
-// Build usage map: scan all blog JSONs for image references
+// Build usage map: scan all blog JSONs, keyed by filename
 $usage = [];
-foreach (glob(__DIR__ . "/../data/*/blog/*.json") as $jf) {
+$data_base = __DIR__ . '/../data/';
+foreach (glob("$data_base/*/blog/*.json") as $jf) {
     $d = json_decode(file_get_contents($jf), true);
-    $img = $d['image'] ?? '';
-    if ($img && !isset($usage[$img])) {
-        $usage[$img] = ['slug' => $d['slug'] ?? '', 'title' => $d['title'] ?? '', 'lang' => explode('/', dirname($jf))[2] ?? ''];
-    }
+    if (!$d) continue;
+    $img_path = $d['image'] ?? '';
+    if (!$img_path) continue;
+    $fn = basename($img_path); // normalize to just filename
+    $rel = str_replace($data_base, '', $jf);
+    $parts = explode('/', $rel);
+    $blog_lang = strtoupper($parts[0] ?? '');
+    if (!isset($usage[$fn])) $usage[$fn] = [];
+    $usage[$fn][] = ['slug' => $d['slug'] ?? '', 'title' => $d['title'] ?? '', 'lang' => $blog_lang];
 }
 
 $img_html = '';
 foreach ($images as $img) {
     $i = htmlspecialchars($img);
-    $info = $usage[$img] ?? null;
+    $fn = basename($img); // normalize lookup key
+    $entries = $usage[$fn] ?? [];
     $usage_html = '';
-    if ($info) {
-        $t = htmlspecialchars($info['title']);
-        $s = htmlspecialchars($info['slug']);
-        $l = htmlspecialchars($info['lang']);
-        $usage_html = "<div class='mt-2'><small class='text-muted'>📝 <a href='editor-blog.php?slug=$s' style='font-size:.8rem'>$t</a> ($l)</small></div>";
+    if ($entries) {
+        $links = [];
+        foreach ($entries as $e) {
+            $t = htmlspecialchars($e['title']);
+            $s = htmlspecialchars($e['slug']);
+            $l = htmlspecialchars($e['lang']);
+            $links[] = "<a href='editor-blog.php?slug=$s'>$t</a> ($l)";
+        }
+        $usage_html = "<div class='mt-2'><small class='text-muted'>📝 " . implode(', ', $links) . "</small></div>";
     } else {
         $usage_html = "<div class='mt-2'><small class='text-warning'>⚠ Kullanılmıyor</small></div>";
     }
+    $in_use = !empty($entries);
+    $del_btn = !$in_use
+        ? "<form method=\"post\" action=\"actions/delete-media.php\" onsubmit=\"return confirm('Bu görseli silmek istediğine emin misin?')\" class=\"mt-1\">
+        <input type=\"hidden\" name=\"csrf_token\" value=\"$token\">
+        <input type=\"hidden\" name=\"file\" value=\"$i\">
+        <button class=\"btn btn-sm btn-outline-danger w-100\" style=\"font-size:.7rem\">🗑️ Sil</button>
+      </form>"
+        : "<div class='mt-1'><small class='text-muted' style='font-size:.65rem'>Kullanımda — silinemez</small></div>";
     $img_html .= <<<CARD
 <div class="col-md-3 col-sm-4 mb-3">
   <div class="card h-100">
@@ -44,11 +63,13 @@ foreach ($images as $img) {
     <div class="card-body p-2">
       <small class="text-muted d-block text-truncate">$i</small>
       $usage_html
-      <form method="post" action="actions/delete-media.php" onsubmit="return confirm('Bu görseli silmek istediğine emin misin?')" class="mt-1">
+      <form method="post" action="actions/upload.php" enctype="multipart/form-data" class="mt-1">
         <input type="hidden" name="csrf_token" value="$token">
-        <input type="hidden" name="file" value="$i">
-        <button class="btn btn-sm btn-outline-danger w-100" style="font-size:.7rem">🗑️ Sil</button>
+        <input type="hidden" name="replace" value="$i">
+        <input type="file" name="image" class="form-control form-control-sm mb-1" accept=".webp,.jpg,.jpeg,.png" style="font-size:.7rem" onchange="this.form.submit()">
+        <button type="submit" class="btn btn-sm btn-outline-primary w-100" style="font-size:.7rem">🔄 Değiştir</button>
       </form>
+      $del_btn
     </div>
   </div>
 </div>
@@ -82,5 +103,4 @@ $toast
 $picker_js
 HTML;
 
-$lang_name = LANGUAGES[$lang] ?? $lang;
 render_admin_layout('Media — MT Messe Admin', $content, 'media');

@@ -12,22 +12,28 @@ $title = trim($_POST['title'] ?? '');
 $date = $_POST['date'] ?? date('Y-m-d');
 $summary = trim($_POST['summary'] ?? '');
 $image = trim($_POST['image'] ?? '');
+// Only accept paths under /assets/img/blog/
+if ($image && strpos($image, '/assets/img/blog/') !== 0) {
+    $image = '';
+}
 $content_raw = $_POST['content'] ?? '';
 
-if (empty($title)) die('Title required');
-
-if (empty($slug)) {
-    // Slug with Turkish character support
-    $slug = $title;
-    $slug = str_replace(
-        ['ı','İ','ş','Ş','ğ','Ğ','ü','Ü','ö','Ö','ç','Ç','I'],
-        ['i','i','s','s','g','g','u','u','o','o','c','c','i'],
-        $slug
-    );
-    $slug = strtolower($slug);
-    $slug = preg_replace('/[^a-z0-9]+/', '-', $slug);
-    $slug = trim($slug, '-');
+if (empty($title)) {
+    ob_end_clean();
+    header('Location: ../editor-blog.php?error=' . urlencode('Başlık zorunlu'));
+    exit;
 }
+
+// Always regenerate slug from title (ignore JS/empty input)
+$slug_raw = $slug ?: $title;
+$slug = str_replace(
+    ['ı','İ','ş','Ş','ğ','Ğ','ü','Ü','ö','Ö','ç','Ç','I'],
+    ['i','i','s','s','g','g','u','u','o','o','c','c','i'],
+    $slug_raw
+);
+$slug = strtolower($slug);
+$slug = preg_replace('/[^a-z0-9]+/', '-', $slug);
+$slug = trim($slug, '-');
 
 $allowed_tags = '<h2><h3><h4><p><ul><ol><li><blockquote><strong><em><a><img><br><details><summary>';
 $content_clean = strip_tags($content_raw, $allowed_tags);
@@ -67,7 +73,8 @@ try {
     log_error('save_blog: ' . $e->getMessage());
     @unlink("$json_path.tmp");
     ob_end_clean();
-    die('Render failed. Check logs.');
+    header('Location: ../editor-blog.php?slug=' . urlencode($slug) . '&error=' . urlencode('Render başarısız. Log\'ları kontrol edin.'));
+    exit;
 }
 
 if (file_exists(__DIR__ . '/../../build.php')) {

@@ -36,13 +36,26 @@ $filename = $safe_name . '.' . $ext;
 $upload_dir = __DIR__ . '/../../assets/img/blog';
 if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
 
-// Reject if same name exists
-if (file_exists("$upload_dir/$filename")) {
-    header('Location: ../media.php?error=' . urlencode("'$filename' zaten var. Farklı bir isim verin."));
-    exit;
+// Replace mode: overwrite existing image (same filename)
+$replace_path = $_POST['replace'] ?? '';
+if ($replace_path && strpos($replace_path, '/assets/img/blog/') === 0 && strpos($replace_path, '..') === false) {
+    $existing = __DIR__ . '/../../' . ltrim($replace_path, '/');
+    if (file_exists($existing)) unlink($existing);
+    $filename = basename($replace_path);
+    $target = "$upload_dir/$filename";
+} else {
+    $safe_name = preg_replace('/[^a-zA-Z0-9_-]+/', '-', pathinfo($file['name'], PATHINFO_FILENAME));
+    $safe_name = trim($safe_name, '-') ?: 'image';
+    $filename = $safe_name . '.' . $ext;
+    $target = "$upload_dir/$filename";
+    // Reject if same name exists
+    if (file_exists($target)) {
+        header('Location: ../media.php?error=' . urlencode("'$filename' zaten var. Farklı bir isim verin."));
+        exit;
+    }
 }
 
-if (move_uploaded_file($file['tmp_name'], "$upload_dir/$filename")) {
+if (move_uploaded_file($file['tmp_name'], $target)) {
     log_action('upload', 'success', ['file' => $filename]);
     header('Location: ../media.php?uploaded=1');
 } else {

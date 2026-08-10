@@ -54,7 +54,10 @@ function render_admin_layout(string $title, string $content, string $current_pag
 </div>
 <div class="topbar">
   <span class="text-muted small me-2">İçerik dili:</span>
-  <select class="form-select form-select-sm" onchange="fetch('actions/set-lang.php?lang='+this.value).then(()=>location='dashboard.php')" style="max-width:140px">$lang_options</select>
+  <form method="post" action="actions/set-lang.php" style="display:inline">
+    <input type="hidden" name="csrf_token" value="' . csrf_token() . '">
+    <select class="form-select form-select-sm" name="lang" onchange="this.form.submit()" style="max-width:140px">$lang_options</select>
+  </form>
   <span class="badge bg-accent ms-2">$lang_name</span>
   <div class="ms-auto text-muted small">Admin</div>
   <a href="logout.php" class="btn btn-sm btn-outline-secondary">Çıkış</a>

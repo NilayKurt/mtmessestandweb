@@ -129,30 +129,6 @@ function inject($index_rel, $blog_html) {
     return true;
 }
 
-/**
- * Sync footer language badges with $LANGS
- */
-function sync_footer_badges($index_rel, $current_lang) {
-    global $BASE, $LANGS;
-    $path = $BASE . '/' . $index_rel . 'index.html';
-    if (!file_exists($path)) return;
-    $html = file_get_contents($path);
-
-    $badges = '';
-    foreach (array_keys($LANGS) as $lang_dir) {
-        $code = rtrim($lang_dir, '/');
-        $cls = $code === $current_lang ? 'bg-accent' : 'bg-dark';
-        $badges .= '          <a href="/' . $code . '/" class="badge ' . $cls . ' text-white text-decoration-none px-2 py-1">' . strtoupper($code) . "</a>\n";
-    }
-
-    $pattern = '/<h5>Language<\/h5>.*?<div class="d-flex gap-2 flex-wrap">.*?<\/div>\s*<\/div>/s';
-    if (preg_match($pattern, $html)) {
-        $replacement = "<h5>Language</h5>\n        <div class=\"d-flex gap-2 flex-wrap\">\n$badges        </div>\n      </div>";
-        $html = preg_replace($pattern, $replacement, $html);
-        file_put_contents($path, $html);
-    }
-}
-
 // === MAIN ===
 echo "[build.php] " . date('Y-m-d H:i:s') . " — Multi-language blog check\n";
 
@@ -170,7 +146,6 @@ foreach ($LANGS as $index_rel => $blog_dir) {
         echo "  [$lang_code] FAILED\n";
         $all_ok = false;
     }
-    sync_footer_badges($index_rel, $lang_code);
 }
 
 echo "[build.php] " . ($all_ok ? "✓ All languages updated" : "✗ Some languages failed") . "\n";

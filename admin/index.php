@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $error = 'Wrong password';
         log_action('login', 'failed');
-    } catch (Exception $e) {
+    } catch (Throwable $e) {
         $error = 'System error. Please try again.';
         log_error('Login error: ' . $e->getMessage());
     }

@@ -33,7 +33,7 @@
     { name: 'TR', code: 'tr', available: true },
     { name: 'DE', code: 'de', available: false },
     { name: 'FR', code: 'fr', available: false },
-    { name: 'ES', code: 'es', available: false },
+    { name: 'ES', code: 'es', available: true },
     { name: 'AR', code: 'ar', available: false },
     { name: 'ZH', code: 'zh', available: false }
   ];
