@@ -37,6 +37,8 @@ $slug = trim($slug, '-');
 
 $allowed_tags = '<h2><h3><h4><p><ul><ol><li><blockquote><strong><em><a><img><br><details><summary>';
 $content_clean = strip_tags($content_raw, $allowed_tags);
+// Strip orphaned closing tags (openings removed by strip_tags)
+$content_clean = str_replace('</div>', '', $content_clean);
 
 // Clean layout artifacts from migrated content
 $cut_at = strpos($content_clean, '<!-- ===== AUTHOR ===== -->');
@@ -45,6 +47,10 @@ if ($cut_at !== false) $content_clean = substr($content_clean, 0, $cut_at);
 $content_clean = preg_replace('/<div[^>]*>.*?<a href="[^"]*" class="btn[^"]*">[^<]*→<\/a>.*?<\/div>/s', '', $content_clean);
 $content_clean = preg_replace('/<div[^>]*>.*?<a href="[^"]*" class="btn[^"]*">Coming Soon[^<]*<\/a>.*?<\/div>/s', '', $content_clean);
 $content_clean = trim($content_clean);
+
+// Strip empty/dead RELATED section (layout artifact with no content after strip_tags)
+$cut_at = strpos($content_clean, '<!-- ===== RELATED');
+if ($cut_at !== false) $content_clean = trim(substr($content_clean, 0, $cut_at));
 
 $data = [
     'title' => $title,

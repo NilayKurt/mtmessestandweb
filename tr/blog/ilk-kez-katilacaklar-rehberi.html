@@ -61,10 +61,14 @@
   <link href="../../assets/vendor/bootstrap-icons.css" rel="stylesheet">
   <link href="../../assets/css/style.min.css" rel="stylesheet">
   <style>
-    .blog-article { padding-top: 52px; padding-bottom: 80px; }
+    .blog-main { padding-top: 65px; }
+    .blog-article { padding-bottom: 80px; }
     .blog-article article { max-width: 780px; margin: 0 auto; }
     .blog-article h1 { font-size: 2.2rem; margin-bottom: 0.5rem; text-wrap: balance; }
     .blog-article .meta { color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem; }
+    .blog-article article > img { max-height: 550px; object-fit: contain; display: block; margin-left: auto; margin-right: auto; }
+    .blog-article article > img.hero-float { float: right; max-width: 45%; margin: 0 0 1.5rem 2rem; }
+    .article-intro > p:nth-of-type(2) ~ * { clear: both; }
     .blog-article h2 { font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--primary); text-wrap: balance; }
     .blog-article h3 { font-size: 1.15rem; margin-top: 1.8rem; margin-bottom: 0.5rem; }
     .blog-article p { line-height: 1.85; margin-bottom: 1.2rem; color: #444; }
@@ -74,7 +78,7 @@
     .blog-article .author-box img { width: 56px; height: 56px; border-radius: 50%; }
     .blog-article .faq-section details { margin-bottom: 8px; }
     .blog-article .faq-section summary { font-weight: 600; cursor: pointer; padding: 8px 0; }
-    @media (max-width: 768px) { .blog-article h1 { font-size: 1.6rem; } .blog-article { padding-top: 48px; } }
+    @media (max-width: 768px) { .blog-article h1 { font-size: 1.6rem; } .blog-main { padding-top: 60px; } }
   </style>
 </head>
 <body>
@@ -99,7 +103,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">TR</a>
             <ul class="dropdown-menu">
-<li><a class="dropdown-item" href="/en/blog/ilk-kez-katilacaklar-rehberi.html">EN</a></li>
+<li><a class="dropdown-item" href="/en/blog/first-time-exhibitor-guide.html">EN</a></li>
 <li><a class="dropdown-item text-muted" href="#">DE (soon)</a></li>
 <li><a class="dropdown-item text-muted" href="#">FR (soon)</a></li>
 <li><a class="dropdown-item" href="/es/blog/ilk-kez-katilacaklar-rehberi.html">ES</a></li>
@@ -112,14 +116,14 @@
     </div>
   </nav>
 </header>
-<main>
+<main class="blog-main">
 <section class="blog-article">
   <div class="container">
     <article>
       <p class="meta"><span>MT Messe Stand Editörü</span> &middot; <span>2026-08-10</span></p>
       <h1>İlk Kez Fuar Katılımcısı Olacaklar İçin Rehber: Kontrol Listesi, Hatalar ve Hazırlık Zaman Çizelgesi</h1>
       <p class="lead">İlk kez katılımcı olacakların ihtiyaç duyduğu her şey — 6 aylık hazırlık zaman çizelgesi, 40 maddelik kontrol listesi, sık yapılan 10 hata ve zamanında teslimat yapan bir fuar standı üreticisinin nasıl seçileceği.</p>
-      <img src="/assets/img/blog/exhibition-preparation-checklist.webp" alt="İlk Kez Fuar Katılımcısı Olacaklar İçin Rehber: Kontrol Listesi, Hatalar ve Hazırlık Zaman Çizelgesi" width="1200" height="1600" class="img-fluid rounded shadow-sm mb-4" loading="eager">
+      <img src="/assets/img/blog/exhibition-preparation-checklist.webp" alt="İlk Kez Fuar Katılımcısı Olacaklar İçin Rehber: Kontrol Listesi, Hatalar ve Hazırlık Zaman Çizelgesi" width="1200" height="630" class="img-fluid rounded shadow-sm mb-4 hero-float" loading="eager">
       <div class="article-intro"><p>Bir ticari fuara ilk kez katılmak, yapacağınız en yoğun iş yatırımlarından biridir. 3 ila 5 gün içinde, bir yıllık soğuk aramadan daha fazla nitelikli alıcıyla karşılaşırsınız. Ancak öğrenme eğrisi diktir ve yanlış yapmanın maliyetleri gerçektir.</p>
 
       <p><a href="https://www.auma.de/en" target="_blank" rel="noopener">Alman Fuar Endüstrisi Birliği AUMA, her yıl sadece Almanya'da 180'den fazla uluslararası ticari fuarın düzenlendiğini ve katılımcıların stand inşası ve hizmetler için yıllık 1,5 milyar EUR'yu aşan harcama yaptığını bildirmektedir <a>A(AUMA 2026)</a>. Avrupa, Orta Doğu ve Asya genelinde ticari fuar pazarı büyümeye devam etmekte olup, büyük etkinliklerdeki katılımcıların %20-30'unu ilk kez katılanlar oluşturmaktadır.</a></p>
@@ -378,7 +382,7 @@
         <details><summary>Doğru fuar standı üreticisini nasıl seçerim?</summary><p>Hedef fuar alanınızda deneyimi olan bir üretici arayın — mekana özgü düzenlemeler önemli ölçüde farklılık gösterir. Sektörünüzden ve bütçe aralığınızdan katılımcı referansları isteyin. Bir kontrol listesi isteyin — bir tane sağlayamıyorlarsa, bu bir tehlike işaretidir. Tüm hizmetleri tek bir sözleşme altında toplayan bir üretici arayın. Fuar alanına yakın bir atölyesi olan üretici, nakliyede %15-25 tasarruf sağlar.</p></details>
         <details><summary>Fuar standımda kaç personel bulundurmalıyım?</summary><p>Yoğun saatlerde 20 m² stand alanı başına 2-3 personel planlayın. 30 m²'lik bir stand için genellikle 3-4 kişi görev yapmalıdır. Enerji seviyesini yüksek tutmak için personeli her 3-4 saatte bir rotasyona tabi tutun. Her zaman bir kişi müşteri adayı yakalamakla görevlendirilmelidir — asla tüm personel aynı sohbete dahil olmamalıdır.</p></details>
         <details><summary>İlk fuar standıma ne getirmeliyim?</summary><p>Temel malzemeler: müşteri adayı yakalama sistemi, kartvizitler (tahmininizin 3 katı), ürün numuneleri veya demolar, şarj kabloları ve taşınabilir batarya, temel alet çantası, ilk yardım çantası, yedek rahat ayakkabılar, su ve atıştırmalıklar. İsteğe bağlı: ortam müziği için küçük bir hoparlör, hızlı sosyal medya içeriği için telefon tripodu. Stand acil durum kitinizi ana sevkiyatınızdan ayrı olarak paketleyin.</p></details>
-        <details><summary>İlk fuarımdan sonra ROI'yi nasıl ölçerim?</summary><p>Müşteri adayı sayısını, kalitesini (kaç tanesi nitelikli fırsata dönüştü) ve dönüşümü (kaç tanesi 3-6 ay içinde müşteri oldu) takip edin. 30.000 EUR'luk bir fuar yatırımı için 30 nitelikli müşteri adayı, aday başına 1.000 EUR maliyet demektir. Sözleşme değeri 15.000 EUR olan sadece 3 tanesi kapandığında, 45.000 EUR getiri = %150 ROI elde edersiniz. Formül: (Fuar müşteri adaylarından elde edilen gelir ÷ Toplam fuar maliyeti) × 100. Çoğu katılımcı, gerçek ROI'nin aynı etkinliğin 2-3 edisyonu boyunca ortaya çıktığını görür.</p></details></div>
+        <details><summary>İlk fuarımdan sonra ROI'yi nasıl ölçerim?</summary><p>Müşteri adayı sayısını, kalitesini (kaç tanesi nitelikli fırsata dönüştü) ve dönüşümü (kaç tanesi 3-6 ay içinde müşteri oldu) takip edin. 30.000 EUR'luk bir fuar yatırımı için 30 nitelikli müşteri adayı, aday başına 1.000 EUR maliyet demektir. Sözleşme değeri 15.000 EUR olan sadece 3 tanesi kapandığında, 45.000 EUR getiri = %150 ROI elde edersiniz. Formül: (Fuar müşteri adaylarından elde edilen gelir ÷ Toplam fuar maliyeti) × 100. Çoğu katılımcı, gerçek ROI'nin aynı etkinliğin 2-3 edisyonu boyunca ortaya çıktığını görür.</p></details>
       </div>
       <div class="author-box">
         <img src="../../assets/img/logo.webp" alt="MT Messe Stand" width="56" height="56" loading="lazy">

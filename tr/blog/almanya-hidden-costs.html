@@ -61,10 +61,14 @@
   <link href="../../assets/vendor/bootstrap-icons.css" rel="stylesheet">
   <link href="../../assets/css/style.min.css" rel="stylesheet">
   <style>
-    .blog-article { padding-top: 52px; padding-bottom: 80px; }
+    .blog-main { padding-top: 65px; }
+    .blog-article { padding-bottom: 80px; }
     .blog-article article { max-width: 780px; margin: 0 auto; }
     .blog-article h1 { font-size: 2.2rem; margin-bottom: 0.5rem; text-wrap: balance; }
     .blog-article .meta { color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem; }
+    .blog-article article > img { max-height: 550px; object-fit: contain; display: block; margin-left: auto; margin-right: auto; }
+    .blog-article article > img.hero-float { float: right; max-width: 45%; margin: 0 0 1.5rem 2rem; }
+    .article-intro > p:nth-of-type(2) ~ * { clear: both; }
     .blog-article h2 { font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--primary); text-wrap: balance; }
     .blog-article h3 { font-size: 1.15rem; margin-top: 1.8rem; margin-bottom: 0.5rem; }
     .blog-article p { line-height: 1.85; margin-bottom: 1.2rem; color: #444; }
@@ -74,7 +78,7 @@
     .blog-article .author-box img { width: 56px; height: 56px; border-radius: 50%; }
     .blog-article .faq-section details { margin-bottom: 8px; }
     .blog-article .faq-section summary { font-weight: 600; cursor: pointer; padding: 8px 0; }
-    @media (max-width: 768px) { .blog-article h1 { font-size: 1.6rem; } .blog-article { padding-top: 48px; } }
+    @media (max-width: 768px) { .blog-article h1 { font-size: 1.6rem; } .blog-main { padding-top: 60px; } }
   </style>
 </head>
 <body>
@@ -99,7 +103,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">TR</a>
             <ul class="dropdown-menu">
-<li><a class="dropdown-item" href="/en/blog/almanya-hidden-costs.html">EN</a></li>
+<li><a class="dropdown-item" href="/en/blog/germany-hidden-costs.html">EN</a></li>
 <li><a class="dropdown-item text-muted" href="#">DE (soon)</a></li>
 <li><a class="dropdown-item text-muted" href="#">FR (soon)</a></li>
 <li><a class="dropdown-item" href="/es/blog/almanya-hidden-costs.html">ES</a></li>
@@ -112,14 +116,14 @@
     </div>
   </nav>
 </header>
-<main>
+<main class="blog-main">
 <section class="blog-article">
   <div class="container">
     <article>
-      <p class="meta"><span>MT Messe Stand Editor</span> &middot; <span>2026-08-10</span></p>
+      <p class="meta"><span>MT Messe Stand Editörü</span> &middot; <span>2026-08-10</span></p>
       <h1>Almanya&#039;da Fuar Standı Kurmanın Gizli Maliyetleri</h1>
       <p class="lead">Messe Frankfurt, Hannover, Düsseldorf, Stuttgart, Münih ve Berlin&#039;in teknik kılavuzlarından derlenen ve saha deneyimiyle desteklenen kapsamlı bir rehber.</p>
-      <img src="/assets/img/blog/frankfurt-messe-venue.webp" alt="Almanya&#039;da Fuar Standı Kurmanın Gizli Maliyetleri" width="1200" height="1600" class="img-fluid rounded shadow-sm mb-4" loading="eager">
+      <img src="/assets/img/blog/frankfurt-messe-venue.webp" alt="Almanya&#039;da Fuar Standı Kurmanın Gizli Maliyetleri" width="1200" height="630" class="img-fluid rounded shadow-sm mb-4 hero-float" loading="eager">
       <div class="article-intro"><p>Almanya, Avrupa'nın en büyük fuar pazarıdır. Yılda 180'den fazla uluslararası fuar düzenlenmektedir; yalnızca <a href="https://www.messefrankfurt.com" target="_blank" rel="noopener">Messe Frankfurt</a> 50'den fazla fuar organize etmektedir. 100 metrekarelik bir standın toplam maliyeti, fuara ve şehre bağlı olarak 115.000 EUR ile 205.000 EUR arasında değişmektedir <a href="https://www.auma.de/en" target="_blank" rel="noopener">(AUMA 2026 Katılımcı Maliyet Anketi)</a>.</p>
 
       <p>Ancak bu rakam sadece bir başlangıç noktasıdır. Alan kirasını, stant inşasını ve temel hizmetleri kapsar. Bu rakama dahil olmayan düzinelerce operasyonel maliyet kalemi vardır — çoğu katılımcının ancak fuar alanına vardıklarında öğrendiği kalemler.</p>
@@ -127,9 +131,9 @@
       <blockquote>MT Messe Stand olarak, Hannover'de bir müşterimizin 100 m²'lik bir stant için —yalnızca teknik uygunluk belgeleri ve yangın sertifikaları nedeniyle— 4.200 EUR ek maliyetle karşılaştığını gördük. Bu kalemlerin hiçbiri başlangıç bütçesinde yer almıyordu.</blockquote>
 
       <p>Bu rehberde, altı büyük Alman fuar şehrinin resmi teknik yönergelerini (<strong>Technische Richtlinien</strong>) inceledik ve saha deneyimimizle harmanladık. Her şehir için hangi büyük fuarların düzenlendiğini, hangi özel kuralların geçerli olduğunu ve bunların bütçenizi nasıl etkilediğini bulacaksınız.</p>
-      </div>
+      
 
-      <div class="toc">
+      
         <h2>📋 İçindekiler</h2>
         <ul>
           <li><a href="#genel">Almanya Genelinde Geçerli Teknik Yönetmelikler</a></li>
@@ -141,7 +145,7 @@
           <li><a href="#berlin">Messe Berlin — Atık Ayrıştırma Zorunluluğu</a></li>
           <li><a href="#sss">Sıkça Sorulan Sorular</a></li>
         </ul>
-      </div>
+      
 
       <!-- ===== GENEL ==== -->
       <h2 id="genel">Almanya Genelinde Geçerli Teknik Yönetmelikler</h2>
@@ -308,7 +312,7 @@
 
       <!-- ===== SSS ===== -->
       <h2 id="sss">Sıkça Sorulan Sorular</h2>
-      <div class="faq-section">
+      
       <details><summary>Almanya'da fuar standı kurmanın toplam gizli maliyeti ne kadardır?</summary>
       <p>100 m²'lik bir stand için yukarıdaki kalemlerin toplamı EUR 8.000-18.000 arasında ek maliyet getirebilir. Bu, standın şehre, fuara ve tasarım karmaşıklığına bağlı olarak değişir. En yüksek ek maliyet genellikle Frankfurt'ta (catering tekeli + 2,5m TÜV eşiği) ortaya çıkar.</p>
       </details>
@@ -340,14 +344,9 @@
       <p>Berlin'de Alman Ticari Atık Yönetmeliği (GewAbfV) kapsamında stant kurulumu yapan firmalar 'atık üreticisi' sayılır. Atıklar türüne göre (ahşap, metal, plastik, kağıt, karışık) ayrıştırılmalı ve belgelenmelidir. Ayrıştırma yapılmazsa idari para cezası uygulanır.</p>
       </details>
       </div>
-
-
-      <!-- ===== RELATED ===== -->
-      <div class="related">
-        <h2>Diğer Ülke Rehberleri</h2></div>
       <div class="author-box">
         <img src="../../assets/img/logo.webp" alt="MT Messe Stand" width="56" height="56" loading="lazy">
-        <div><div class="author-name fw-bold">MT Messe Stand Editor</div><p class="m-0 small text-muted">Exhibition stand design and construction since 2010. 300+ stands built across 15 countries.</p></div>
+        <div><div class="author-name fw-bold">MT Messe Stand Editörü</div><p class="m-0 small text-muted">2010'dan beri fuar standı tasarımı ve üretimi. 15 ülkede 300'den fazla stant inşa edildi.</p></div>
       </div>
     </article>
   </div>

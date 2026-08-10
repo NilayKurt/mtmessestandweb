@@ -23,11 +23,32 @@ function render_navbar(string $lang, string $page_type, string $slug = ''): stri
         ['code' => 'zh', 'name' => 'ZH', 'available' => false],
     ];
 
-    // Blog filename map
-    $blogMap = [
-        'germany-hidden-costs' => ['en' => 'germany-hidden-costs', 'tr' => 'almanya-hidden-costs'],
-        'first-time-exhibitor-guide' => ['en' => 'first-time-exhibitor-guide', 'tr' => 'ilk-kez-katilacaklar-rehberi'],
+    // === AUTO-BUILD blog slug map from JSON data files ===
+    $blogMap = [];
+    $dataBase = __DIR__ . '/../data';
+    foreach (['en', 'tr', 'de', 'fr', 'es', 'ar', 'zh'] as $lc) {
+        $blogDir = "$dataBase/$lc/blog";
+        if (!is_dir($blogDir)) continue;
+        foreach (glob("$blogDir/*.json") as $jsonFile) {
+            $bn = basename($jsonFile);
+            if (strpos($bn, '.html-') !== false) continue; // skip translation extracts
+            $d = json_decode(file_get_contents($jsonFile), true);
+            if (!$d || empty($d['slug'])) continue;
+            $sl = $d['slug'];
+            if (!isset($blogMap[$sl])) $blogMap[$sl] = [];
+            $blogMap[$sl][$lc] = $sl;
+        }
+    }
+
+    // Only needed when EN and TR use DIFFERENT slugs for the same blog
+    $slugPairs = [
+        'germany-hidden-costs'       => 'almanya-hidden-costs',
+        'first-time-exhibitor-guide' => 'ilk-kez-katilacaklar-rehberi',
     ];
+    foreach ($slugPairs as $enSlug => $trSlug) {
+        $blogMap[$enSlug] = ($blogMap[$enSlug] ?? []) + ['en' => $enSlug, 'tr' => $trSlug];
+        $blogMap[$trSlug] = ($blogMap[$trSlug] ?? []) + ['en' => $enSlug, 'tr' => $trSlug];
+    }
 
     // Active class helper
     $a = function($t) use ($page_type) {

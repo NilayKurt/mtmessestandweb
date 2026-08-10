@@ -38,7 +38,7 @@ function render_blog(array $meta, string $content_html, string $lang): string {
     $author_descs = ['tr' => '2010\'dan beri fuar standı tasarımı ve üretimi. 15 ülkede 300\'den fazla stant inşa edildi.'];
     $author_desc = $author_descs[$lang] ?? 'Exhibition stand design and construction since 2010. 300+ stands built across 15 countries.';
 
-    $hero_img = $image_esc ? "<img src=\"$image_esc\" alt=\"$title_esc\" width=\"1200\" height=\"1600\" class=\"img-fluid rounded shadow-sm mb-4\" loading=\"eager\">" : '';
+    $hero_img = $image_esc ? "<img src=\"$image_esc\" alt=\"$title_esc\" width=\"1200\" height=\"630\" class=\"img-fluid rounded shadow-sm mb-4 hero-float\" loading=\"eager\">" : '';
     $asset_prefix = '../../assets/';
 
     $html = <<<HTML
@@ -96,10 +96,14 @@ function render_blog(array $meta, string $content_html, string $lang): string {
   <link href="{$asset_prefix}vendor/bootstrap-icons.css" rel="stylesheet">
   <link href="{$asset_prefix}css/style.min.css" rel="stylesheet">
   <style>
-    .blog-article { padding-top: 52px; padding-bottom: 80px; }
+    .blog-main { padding-top: 65px; }
+    .blog-article { padding-bottom: 80px; }
     .blog-article article { max-width: 780px; margin: 0 auto; }
     .blog-article h1 { font-size: 2.2rem; margin-bottom: 0.5rem; text-wrap: balance; }
     .blog-article .meta { color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem; }
+    .blog-article article > img { max-height: 550px; object-fit: contain; display: block; margin-left: auto; margin-right: auto; }
+    .blog-article article > img.hero-float { float: right; max-width: 45%; margin: 0 0 1.5rem 2rem; }
+    .article-intro > p:nth-of-type(2) ~ * { clear: both; }
     .blog-article h2 { font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--primary); text-wrap: balance; }
     .blog-article h3 { font-size: 1.15rem; margin-top: 1.8rem; margin-bottom: 0.5rem; }
     .blog-article p { line-height: 1.85; margin-bottom: 1.2rem; color: #444; }
@@ -109,13 +113,13 @@ function render_blog(array $meta, string $content_html, string $lang): string {
     .blog-article .author-box img { width: 56px; height: 56px; border-radius: 50%; }
     .blog-article .faq-section details { margin-bottom: 8px; }
     .blog-article .faq-section summary { font-weight: 600; cursor: pointer; padding: 8px 0; }
-    @media (max-width: 768px) { .blog-article h1 { font-size: 1.6rem; } .blog-article { padding-top: 48px; } }
+    @media (max-width: 768px) { .blog-article h1 { font-size: 1.6rem; } .blog-main { padding-top: 60px; } }
   </style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 $navbar_html
-<main>
+<main class="blog-main">
 <section class="blog-article">
   <div class="container">
     <article>
