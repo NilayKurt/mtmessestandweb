@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page Not Found | MT Messe Stand</title>
   <meta name="robots" content="noindex">
-  <link rel="icon" type="image/png" href="assets/img/favicon.webp">
-  <link href="assets/vendor/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/css/style.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.webp">
+  <link href="/assets/vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/css/style.min.css" rel="stylesheet">
   <style>
     .error-section { padding: 180px 0 60px; min-height: 60vh; display: flex; align-items: center; }
     .error-code { font-size: 7rem; font-weight: 800; color: #cc0000; line-height: 1; opacity: 0.2; }
@@ -19,7 +19,12 @@
   </style>
 </head>
 <body>
-<div id="navbar-placeholder"></div>
+<header style="background:#1a1a1a;padding:1rem 0;position:fixed;top:0;width:100%;z-index:1000">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a href="/en/"><img src="/assets/img/logo.webp" alt="MT Messe Stand" width="186" height="36"></a>
+    <a href="/en/" class="btn btn-sm btn-outline-light">Go to Homepage</a>
+  </div>
+</header>
 
 <section class="error-section">
   <div class="container text-center">
@@ -69,7 +74,7 @@
   <div class="container">
     <div class="row g-4">
       <div class="col-lg-4">
-        <img src="assets/img/logo.webp" alt="MT Messe Stand — Exhibition Stand Builder" width="186" height="36" class="mb-3">
+        <img src="/assets/img/logo.webp" alt="MT Messe Stand — Exhibition Stand Builder" width="186" height="36" class="mb-3">
         <p>Your trusted exhibition stand builder in Turkiye. Custom stands, modular systems, and full exhibitor services worldwide.</p>
         <div class="social-links mt-3">
           <a href="#"><i class="bi bi-linkedin"></i></a>
@@ -99,11 +104,11 @@
         <div class="d-flex gap-2 flex-wrap">
           <a href="/en/" class="badge bg-accent text-white text-decoration-none px-2 py-1">EN</a>
           <a href="/tr/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">TR</a>
-          <a href="/de/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">DE</a>
-          <a href="/fr/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">FR</a>
-          <a href="/es/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">ES</a>
-          <a href="/ar/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">AR</a>
-          <a href="/zh/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">ZH</a>
+          <a href="#" class="badge bg-secondary text-white text-decoration-none px-2 py-1 text-muted">DE <small>(soon)</small></a>
+          <a href="#" class="badge bg-secondary text-white text-decoration-none px-2 py-1 text-muted">FR <small>(soon)</small></a>
+          <a href="#" class="badge bg-secondary text-white text-decoration-none px-2 py-1 text-muted">ES <small>(soon)</small></a>
+          <a href="#" class="badge bg-secondary text-white text-decoration-none px-2 py-1 text-muted">AR <small>(soon)</small></a>
+          <a href="#" class="badge bg-secondary text-white text-decoration-none px-2 py-1 text-muted">ZH <small>(soon)</small></a>
         </div>
       </div>
     </div>
@@ -112,8 +117,6 @@
   </div>
 </footer>
 
-<script src="assets/vendor/bootstrap.bundle.min.js"></script>
-<script src="assets/js/main.min.js"></script>
-<script src="assets/js/navbar.js"></script>
+<script src="/assets/vendor/bootstrap.bundle.min.js"></script>
 </body>
 </html>
