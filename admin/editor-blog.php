@@ -13,11 +13,16 @@ $data = $defaults;
 if (!$is_new) {
     $json_path = __DIR__ . "/../data/$lang/blog/$slug.json";
     if (file_exists($json_path)) {
-        $data = array_merge($defaults, json_decode(file_get_contents($json_path), true));
+        $loaded = json_decode(file_get_contents($json_path), true);
+        if (is_array($loaded)) $data = array_merge($defaults, $loaded);
     }
 }
 
 $saved = isset($_GET['saved']);
+$error_msg = $_GET['error'] ?? '';
+$toast = '';
+if ($saved) $toast = '<div class="toast show align-items-center text-bg-success border-0 position-fixed top-0 end-0 m-3" role="alert"><div class="d-flex"><div class="toast-body">✓ Kaydedildi</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div>';
+if ($error_msg) $toast = '<div class="toast show align-items-center text-bg-danger border-0 position-fixed top-0 end-0 m-3" role="alert"><div class="d-flex"><div class="toast-body">⚠ ' . htmlspecialchars($error_msg) . '</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div>';
 $token = csrf_token();
 $lang_name = LANGUAGES[$lang] ?? $lang;
 $page_title = $data['title'] ? htmlspecialchars($data['title']) : 'Yeni Yazı';

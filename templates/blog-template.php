@@ -12,11 +12,10 @@ function render_blog(array $meta, string $content_html, string $lang): string {
     $canonical = SITE_URL . "/$lang/blog/$slug_esc/";
     $image_url = SITE_URL . $image_esc;
 
-    // Cross-language hreflang
     $hreflang_html = "  <link rel=\"alternate\" hreflang=\"$lang\" href=\"$canonical\">\n";
     $hreflang_html .= "  <link rel=\"alternate\" hreflang=\"x-default\" href=\"" . SITE_URL . "/en/blog/$slug_esc/\">\n";
 
-    // FAQPage schema auto-extract
+    // FAQPage schema
     $faq_json = '';
     if (preg_match_all('/<details>\s*<summary>([^<]+)<\/summary>\s*<p>([^<]+)<\/p>\s*<\/details>/s', $content_html, $faq_matches, PREG_SET_ORDER)) {
         $faq_items = [];
@@ -26,6 +25,13 @@ function render_blog(array $meta, string $content_html, string $lang): string {
             $faq_items[] = '{"@type":"Question","name":"' . $q . '","acceptedAnswer":{"@type":"Answer","text":"' . $a . '"}}';
         }
         $faq_json = ",\n  <script type=\"application/ld+json\">\n  {\n    \"@context\": \"https://schema.org\",\n    \"@type\": \"FAQPage\",\n    \"mainEntity\": [" . implode(",", $faq_items) . "]\n  }\n  </script>";
+    }
+
+    // Footer language badges (built BEFORE heredoc)
+    $footer_langs = '';
+    foreach (LANGUAGES as $code => $name) {
+        $active = $code === $lang ? ' bg-accent' : ' bg-secondary';
+        $footer_langs .= "          <a href=\"/$code/blog/\" class=\"badge{$active} text-white text-decoration-none px-2 py-1\">" . strtoupper($code) . "</a>\n";
     }
 
     $asset_prefix = '../../assets/';
@@ -40,25 +46,20 @@ function render_blog(array $meta, string $content_html, string $lang): string {
   <meta name="description" content="$meta_desc">
   <meta name="author" content="MT Messe Stand">
   <meta name="robots" content="index, follow">
-
   <link rel="canonical" href="$canonical">
   $hreflang_html
-
   <link rel="icon" type="image/png" href="{$asset_prefix}img/favicon.webp">
   <link rel="apple-touch-icon" href="{$asset_prefix}img/favicon.webp">
-
   <meta property="og:title" content="$full_title">
   <meta property="og:description" content="$meta_desc">
   <meta property="og:image" content="$image_url">
   <meta property="og:url" content="$canonical">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="MT Messe Stand">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="$title_esc">
   <meta name="twitter:description" content="$meta_desc">
   <meta name="twitter:image" content="$image_url">
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -74,7 +75,6 @@ function render_blog(array $meta, string $content_html, string $lang): string {
     "isAccessibleForFree": true
   }
   </script>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -87,11 +87,9 @@ function render_blog(array $meta, string $content_html, string $lang): string {
   }
   </script>
   $faq_json
-
   <link href="{$asset_prefix}vendor/bootstrap.min.css" rel="stylesheet">
   <link href="{$asset_prefix}vendor/bootstrap-icons.css" rel="stylesheet">
   <link href="{$asset_prefix}css/style.min.css" rel="stylesheet">
-
   <style>
     .blog-article { padding-top: 120px; padding-bottom: 80px; }
     .blog-article article { max-width: 780px; margin: 0 auto; }
@@ -144,31 +142,24 @@ function render_blog(array $meta, string $content_html, string $lang): string {
       <div class="col-lg-2 col-md-4">
         <h5>Services</h5>
         <ul class="list-unstyled">
-          <li><a href="../index.html#services">Wooden Stands</a></li>
-          <li><a href="../index.html#services">Maxima Stands</a></li>
-          <li><a href="../index.html#services">Package Stands</a></li>
-          <li><a href="../index.html#services">Pavilion Solutions</a></li>
+          <li><a href="../../index.html#services">Wooden Stands</a></li>
+          <li><a href="../../index.html#services">Maxima Stands</a></li>
+          <li><a href="../../index.html#services">Package Stands</a></li>
+          <li><a href="../../index.html#services">Pavilion Solutions</a></li>
         </ul>
       </div>
       <div class="col-lg-2 col-md-4">
         <h5>Company</h5>
         <ul class="list-unstyled">
-          <li><a href="../about.html">About</a></li>
+          <li><a href="../../about.html">About</a></li>
           <li><a href="index.html">Blog</a></li>
-          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-md-6">
         <h5>Language</h5>
         <div class="d-flex gap-2 flex-wrap">
-HTML;
-    $footer_langs = '';
-    foreach (LANGUAGES as $code => $name) {
-        $active = $code === $lang ? ' bg-accent' : ' bg-secondary';
-        $footer_langs .= "          <a href=\"/$code/blog/\" class=\"badge{$active} text-white text-decoration-none px-2 py-1\">" . strtoupper($code) . "</a>\n";
-    }
-    $footer_html = $footer_langs . <<<HTML
-        </div>
+$footer_langs        </div>
       </div>
     </div>
     <hr class="mt-4 mb-3">

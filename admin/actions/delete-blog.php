@@ -25,5 +25,6 @@ header('Location: ../dashboard.php?deleted=1');
 } catch (Throwable $e) {
     log_error('delete_blog: ' . $e->getMessage());
     ob_end_clean();
-    die('Delete failed. Check logs.');
+    header('Location: ../dashboard.php?error=' . urlencode('Silme başarısız. Log\'ları kontrol edin.'));
+    exit;
 }

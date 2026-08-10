@@ -20,14 +20,31 @@ $data_base = __DIR__ . '/../data/';
 foreach (glob("$data_base/*/blog/*.json") as $jf) {
     $d = json_decode(file_get_contents($jf), true);
     if (!$d) continue;
-    $img_path = $d['image'] ?? '';
-    if (!$img_path) continue;
-    $fn = basename($img_path); // normalize to just filename
     $rel = str_replace($data_base, '', $jf);
     $parts = explode('/', $rel);
     $blog_lang = strtoupper($parts[0] ?? '');
-    if (!isset($usage[$fn])) $usage[$fn] = [];
-    $usage[$fn][] = ['slug' => $d['slug'] ?? '', 'title' => $d['title'] ?? '', 'lang' => $blog_lang];
+    $img_path = $d['image'] ?? '';
+    if ($img_path) {
+        $fn = basename($img_path);
+        if (!isset($usage[$fn])) $usage[$fn] = [];
+        $usage[$fn][] = ['slug' => $d['slug'] ?? '', 'title' => $d['title'] ?? '', 'lang' => $blog_lang];
+    }
+    // Also scan content for inline <img> tags
+    $content = $d['content'] ?? '';
+    if (preg_match_all('/<img[^>]+src="([^"]+)"/', $content, $cm)) {
+        foreach ($cm[1] as $csrc) {
+            $cfn = basename($csrc);
+            if (!isset($usage[$cfn])) $usage[$cfn] = [];
+            // Dedup: don't add same blog twice
+            $exists = false;
+            foreach ($usage[$cfn] as $existing) {
+                if ($existing['slug'] === $d['slug']) { $exists = true; break; }
+            }
+            if (!$exists) {
+                $usage[$cfn][] = ['slug' => $d['slug'] ?? '', 'title' => $d['title'] ?? '', 'lang' => $blog_lang];
+            }
+        }
+    }
 }
 
 $img_html = '';
@@ -99,6 +116,9 @@ $toast
   </div>
   <small class="text-muted">Max 2MB — .webp, .jpg, .png — Aynı isim varsa reddedilir</small>
 </form>
+<div class="alert alert-light border small mb-3" role="alert">
+  💡 <strong>Kullanımda olan görsel nasıl silinir?</strong> Görselin altındaki blog linkine tıklayın → blog düzenleyicide görseli değiştirin → kaydedin → görsel "kullanılmıyor" durumuna düşer → silinebilir.
+</div>
 <div class="row">$img_html</div>
 $picker_js
 HTML;

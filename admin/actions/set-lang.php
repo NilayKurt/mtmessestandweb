@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../auth.php';
-require_login();
-check_csrf();
-$_SESSION['lang'] = $_POST['lang'] ?? 'tr';
+$lang = $_POST['lang'] ?? 'tr';
+if (isset(LANGUAGES[$lang])) {
+    $_SESSION['lang'] = $lang;
+}
 header('Location: ../dashboard.php');
