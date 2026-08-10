@@ -3,7 +3,7 @@ require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/admin-layout.php';
 require_login();
 
-$lang = $_GET['lang'] ?? 'tr';
+$lang = $_SESSION['lang'] ?? 'tr';
 $token = csrf_token();
 
 $img_dir = __DIR__ . '/../assets/img/blog';

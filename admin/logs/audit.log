@@ -12,3 +12,16 @@
 [2026-08-10 11:54:08] [127.0.0.1] delete_blog: success {"lang":"tr","slug":"hata-test"}
 [2026-08-10 11:54:48] [127.0.0.1] save_blog: success {"lang":"tr","slug":"hata-test2"}
 [2026-08-10 11:54:48] [127.0.0.1] delete_blog: success {"lang":"tr","slug":"hata-test2"}
+[2026-08-10 11:59:48] [127.0.0.1] login: success
+[2026-08-10 11:59:49] [127.0.0.1] save_page: success {"lang":"tr","page":"about"}
+[2026-08-10 11:59:50] [127.0.0.1] save_blog: success {"lang":"tr","slug":"test-blog-yazisi"}
+[2026-08-10 11:59:50] [127.0.0.1] delete_blog: success {"lang":"tr","slug":"test-blog-yazisi"}
+[2026-08-10 12:01:12] [127.0.0.1] login: success
+[2026-08-10 12:01:13] [127.0.0.1] save_blog: success {"lang":"tr","slug":"ucuca-test"}
+[2026-08-10 12:01:13] [127.0.0.1] delete_blog: success {"lang":"tr","slug":"ucuca-test"}
+[2026-08-10 12:20:49] [127.0.0.1] login: success
+[2026-08-10 12:26:22] [127.0.0.1] login: success
+[2026-08-10 13:01:15] [127.0.0.1] login: success
+[2026-08-10 13:01:18] [127.0.0.1] save_page: success {"lang":"tr","page":"about"}
+[2026-08-10 13:03:23] [cli] save_blog: success {"lang":"tr","slug":"is-guvenligi-testi"}
+[2026-08-10 13:03:41] [cli] save_blog: success {"lang":"tr","slug":"is-guvenligi-testi"}

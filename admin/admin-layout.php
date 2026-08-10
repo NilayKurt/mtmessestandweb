@@ -2,16 +2,16 @@
 function render_admin_layout(string $title, string $content, string $current_page = 'blog'): void {
     $lang = $_SESSION['lang'] ?? 'tr';
     $langs = LANGUAGES;
+    $lang_name = $langs[$lang] ?? $lang;
     $sidebar_items = [
-        'blog'  => ['📝', 'Blog'],
-        'page'  => ['📄', 'Sayfalar'],
-        'media' => ['🖼️', 'Medya'],
+        'blog'  => ['📝', 'Blog', 'dashboard.php'],
+        'page'  => ['📄', 'Sayfalar', 'editor-page.php'],
+        'media' => ['🖼️', 'Medya', 'media.php'],
     ];
     $sidebar_html = '';
-    foreach ($sidebar_items as $key => [$icon, $label]) {
+    foreach ($sidebar_items as $key => [$icon, $label, $href]) {
         $active = $current_page === $key ? ' active' : '';
-        $href = $key === 'page' ? 'editor-page.php' : ($key === 'media' ? 'media.php' : 'dashboard.php');
-        $sidebar_html .= "<a href=\"$href?lang=$lang\" class=\"sidebar-link$active\">$icon $label</a>\n";
+        $sidebar_html .= "<a href=\"$href\" class=\"sidebar-link$active\">$icon $label</a>\n";
     }
     $lang_options = '';
     foreach ($langs as $code => $name) {
@@ -52,7 +52,9 @@ function render_admin_layout(string $title, string $content, string $current_pag
   $sidebar_html
 </div>
 <div class="topbar">
-  <select class="form-select form-select-sm" onchange="location.href=location.pathname+'?lang='+this.value" style="max-width:140px">$lang_options</select>
+  <span class="text-muted small me-2">İçerik dili:</span>
+  <select class="form-select form-select-sm" onchange="fetch('actions/set-lang.php?lang='+this.value).then(()=>location='dashboard.php')" style="max-width:140px">$lang_options</select>
+  <span class="badge bg-accent ms-2">$lang_name</span>
   <div class="ms-auto text-muted small">Admin</div>
   <a href="logout.php" class="btn btn-sm btn-outline-secondary">Çıkış</a>
 </div>

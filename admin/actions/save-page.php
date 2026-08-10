@@ -1,10 +1,11 @@
 <?php
+ob_start();
 require_once __DIR__ . '/../auth.php';
 require_once __DIR__ . '/../../templates/page-template.php';
 require_login();
 check_csrf();
 
-$lang = $_POST['lang'] ?? 'tr';
+$lang = $_SESSION['lang'] ?? 'tr';
 $page = $_POST['page'] ?? 'about';
 $title = trim($_POST['title'] ?? '');
 $content_raw = $_POST['content'] ?? '';
@@ -26,7 +27,6 @@ if (!is_dir($data_dir)) mkdir($data_dir, 0755, true);
 $json_path = "$data_dir/$page.json";
 $html_path = __DIR__ . "/../../$lang/$page.html";
 
-// Atomic write
 file_put_contents("$json_path.tmp", json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 rename("$json_path.tmp", $json_path);
 
@@ -35,10 +35,16 @@ try {
     file_put_contents("$html_path.tmp", $html);
     rename("$html_path.tmp", $html_path);
     log_action('save_page', 'success', ['lang' => $lang, 'page' => $page]);
-} catch (Exception $e) {
-    log_error('save_page failed: ' . $e->getMessage());
+} catch (Throwable $e) {
+    log_error('save_page: ' . $e->getMessage());
     @unlink("$json_path.tmp");
+    ob_end_clean();
     die('Render failed. Check logs.');
 }
 
-header('Location: ../editor-page.php?lang=' . urlencode($lang) . '&page=' . urlencode($page) . '&saved=1');
+if (file_exists(__DIR__ . '/../../build.php')) {
+    include __DIR__ . '/../../build.php';
+}
+
+ob_end_clean();
+header('Location: ../editor-page.php?page=' . urlencode($page) . '&saved=1');
