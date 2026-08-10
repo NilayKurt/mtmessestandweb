@@ -1,5 +1,5 @@
 /* ===== FONTS ===== */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
+@import url('fonts.css');
 
 /* ===== CSS Custom Properties ===== */
 :root {
@@ -37,7 +37,7 @@ a:hover { color: var(--accent-hover); }
 .section { padding: 100px 0; }
 .section-title { text-align: center; margin-bottom: 60px; }
 .section-title h2 { font-size: 2.2rem; margin-bottom: 12px; }
-.section-title p { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+.section-title p { color: var(--gray); font-size: 1.1rem; max-width: 800px; margin: 0 auto; }
 
 /* ===== HEADER ===== */
 #header {
@@ -46,8 +46,16 @@ a:hover { color: var(--accent-hover); }
   z-index: 999;
   transition: 0.4s;
   padding: 10px 0;
+  background: rgba(10, 15, 26, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
 }
-#header.scrolled {
+.home #header {
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+.home #header.scrolled {
   background: rgba(10, 15, 26, 0.95);
   backdrop-filter: blur(10px);
   box-shadow: var(--shadow);
@@ -78,7 +86,7 @@ a:hover { color: var(--accent-hover); }
 /* ===== HERO ===== */
 #hero {
   min-height: 100vh;
-  background: url('../img/hero-bg.jpg') center/cover no-repeat;
+  background: url('../img/hero-bg.webp') center/cover no-repeat;
   position: relative;
 }
 .hero-overlay {

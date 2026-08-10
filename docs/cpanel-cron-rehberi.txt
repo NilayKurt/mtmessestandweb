@@ -1,0 +1,140 @@
+MT Messe Stand — cPanel Cron Job Rehberi
+═══════════════════════════════════════════════════════════
+Tarih: 9 Ağustos 2026
+
+Bu rehber, blog yazılarının ana sayfada otomatik görünmesi
+için gerekli adımları açıklar.
+
+═══════════════════════════════════════════════════════════
+SİSTEM NASIL ÇALIŞIR?
+═══════════════════════════════════════════════════════════
+
+3 parça var:
+
+1. build.py — Blog klasörünü tarar, en yeni 3 yazıyı
+   bulur ve ana sayfaya kart olarak ekler.
+
+2. blog-cards.js — Emniyet kemeri. Eğer build.py bir
+   sebepten çalışmazsa, sayfa yüklendiğinde kontrol eder
+   ve konsola uyarı yazar.
+
+3. index.html içinde <!-- BLOG_CARDS --> placeholder'ı.
+   build.py bu satırı bulur ve blog kartlarıyla değiştirir.
+
+═══════════════════════════════════════════════════════════
+cPanel'DA YAPILMASI GEREKENLER
+═══════════════════════════════════════════════════════════
+
+ADIM 1: Dosyaları Sunucuya Yükle
+────────────────────────────────
+Bu dosyaları public_html ana dizinine yükle (FTP veya
+cPanel Dosya Yöneticisi ile):
+
+• build.py
+• assets/js/blog-cards.js
+• index.html (içinde <!-- BLOG_CARDS --> satırı olan)
+
+ADIM 2: build.py'yi Çalıştırılabilir Yap
+────────────────────────────────
+cPanel → Dosya Yöneticisi → build.py dosyasına sağ tıkla
+→ "Permissions" (İzinler) → 755 olarak ayarla.
+
+Veya SSH ile:
+  chmod 755 ~/public_html/build.py
+
+ADIM 3: Cron Job Ekle
+────────────────────────────────
+cPanel → "Cron Jobs" (veya "Zamanlanmış Görevler")
+
+1. "Add New Cron Job" butonuna tıkla
+
+2. Common Settings (Sıklık):
+   → "Once Per Day" seç
+
+3. Saat ve dakika:
+   → Minute: 0
+   → Hour:   14
+   → Day:    *
+   → Month:  *
+   → Weekday:*
+
+   (Bu, her gün saat 14:00'da çalışır)
+
+4. Command (Komut) kutusuna şunu yaz:
+   /usr/bin/python3 /home/SENIN-KULLANICI-ADIN/public_html/build.py
+
+   ⚠️ "SENIN-KULLANICI-ADIN" yerine gerçek cPanel kullanıcı
+   adını yaz. Örneğin:
+   /usr/bin/python3 /home/mtmesse/public_html/build.py
+
+5. "Add New Cron Job" butonuna tıkla
+
+ADIM 4: Test Et
+────────────────────────────────
+Cron Job listesinde yeni eklenen satırın yanındaki
+▶ (çalıştır) butonuna tıkla.
+
+Veya SSH ile manuel test:
+  cd ~/public_html
+  python3 build.py
+
+Çıktı şöyle olmalı:
+  [build.py] 2026-08-09 14:00:00 — Blog kartlari kontrol ediliyor...
+  [build.py] 1 yazi bulundu
+  [build.py] ✓ Blog kartlari ana sayfaya gomuldu
+
+═══════════════════════════════════════════════════════════
+YENİ BLOG YAZISI EKLENDİĞİNDE
+═══════════════════════════════════════════════════════════
+
+1. Blog yazısını blog/ klasörüne yükle (FTP ile)
+
+2. blog/index.html dosyasına yeni kartı ekle (diğer
+   blog kartlarıyla aynı formatta)
+
+3. Hiçbir şey yapmana gerek yok — Cron Job her gün
+   14:00'da build.py'yi çalıştıracak ve ana sayfayı
+   otomatik güncelleyecek.
+
+   Acil güncelleme için: cPanel → Cron Jobs → ▶ butonu
+
+═══════════════════════════════════════════════════════════
+KRİTİK KONTROL LİSTESİ
+═══════════════════════════════════════════════════════════
+
+□ build.py dosya yolu doğru mu?
+  (~/public_html/build.py)
+
+□ Dosya izinleri 755 mi?
+
+□ Python3 sunucuda kurulu mu?
+  SSH ile kontrol: python3 --version
+
+□ Cron Job komutunda kullanıcı adı doğru mu?
+
+□ index.html içinde <!-- BLOG_CARDS --> satırı var mı?
+
+□ blog/index.html içinde en az 1 gerçek blog yazısı var mı?
+
+═══════════════════════════════════════════════════════════
+SORUN GİDERME
+═══════════════════════════════════════════════════════════
+
+SORUN: Cron Job çalışmıyor
+ÇÖZÜM: cPanel → Cron Jobs → satırın yanındaki "Edit"e
+tıkla. Komut satırını kopyala, SSH'de elle çalıştır.
+Hata mesajını gör.
+
+SORUN: python3 bulunamadı
+ÇÖZÜM: SSH'de "which python3" yaz. Çıkan yolu Cron Job
+komutunda kullan. Alternatif: "which python" dene.
+
+SORUN: Blog kartları ana sayfada görünmüyor
+ÇÖZÜM: build.py'yi manuel çalıştır. "1 yazi bulundu"
+yazdığından emin ol. "HATA: blog/index.html bulunamadi"
+yazıyorsa dosya yolları yanlış.
+
+SORUN: Ana sayfa bozuldu
+ÇÖZÜM: index.html'nin yedeğini al. build.py sadece
+<!-- BLOG_CARDS --> satırını değiştirir, geri kalanı
+el sürmez.

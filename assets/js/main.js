@@ -18,7 +18,3 @@ document.querySelectorAll('.nav-link').forEach(link => {
   });
 });
 
-/* Init GLightbox */
-const lightbox = GLightbox({
-  selector: '.glightbox'
-});

@@ -1,0 +1,3 @@
+[2026-08-10 11:38:10] [127.0.0.1] ERROR: test error message
+[2026-08-10 11:54:28] [127.0.0.1] ERROR: delete_blog: JSON not found tr/nonexistent
+[2026-08-10 11:55:10] [127.0.0.1] ERROR: delete_blog: JSON not found tr/hata-test2

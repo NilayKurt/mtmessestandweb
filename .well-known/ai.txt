@@ -1,0 +1,14 @@
+# MT Messe Stand — AI Crawler Configuration
+# https://mtmessestand.com/.well-known/ai.txt
+
+# AI endpoints available for structured data access
+AI-Description: Exhibition stand design and construction company in Istanbul, Turkiye
+AI-Language: en
+AI-Endpoints: /ai/summary.json, /ai/faq.json, /ai/service.json
+
+# Crawler permissions (also defined in robots.txt)
+Allow: GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-User, PerplexityBot, Google-Extended
+
+# Content usage
+AI-Training: allowed
+AI-Index: allowed

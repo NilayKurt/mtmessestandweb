@@ -1,16 +1,44 @@
-User-agent: *
+User-Agent: *
 Allow: /
 
-User-agent: GPTBot
+# AI Crawlers
+User-Agent: GPTBot
 Allow: /
-
-User-agent: ClaudeBot
+User-Agent: ChatGPT-User
 Allow: /
-
-User-agent: PerplexityBot
+User-Agent: OAI-SearchBot
 Allow: /
-
-User-agent: Google-Extended
+User-Agent: ClaudeBot
 Allow: /
-
-Sitemap: https://mtmessestand.com/sitemap.xml
+User-Agent: Claude-User
+Allow: /
+User-Agent: Claude-SearchBot
+Allow: /
+User-Agent: PerplexityBot
+Allow: /
+User-Agent: Perplexity-User
+Allow: /
+User-Agent: Google-Extended
+Allow: /
+User-Agent: Google-CloudVertexBot
+Allow: /
+User-Agent: meta-externalagent
+Allow: /
+User-Agent: Meta-ExternalFetcher
+Allow: /
+User-Agent: cohere-ai
+Allow: /
+User-Agent: Amazonbot
+Allow: /
+User-Agent: Applebot-Extended
+Allow: /
+User-Agent: Bytespider
+Allow: /
+User-Agent: PetalBot
+Allow: /
+User-Agent: AI2Bot
+Allow: /
+User-Agent: AI2Bot-Dolma
+Allow: /
+User-Agent: CCBot
+Allow: /

@@ -1,51 +1,49 @@
 # MT Messe Stand
-> Exhibition stand design and construction company in Istanbul, Turkey.
+> Exhibition stand design and construction company in Istanbul, Turkiye. Custom wooden, Maxima modular stands for international trade fairs. 300+ stands in 15+ countries since 2010.
 
-## HERO
-Heading: We Build Where You Exhibit.
-Subtext: Local workshops in Istanbul, Dubai, Moscow. 15+ countries. Since 2010.
-Stats: 300+ Stands · 15+ Countries · 3 Workshops · Since 2010
-CTA 1: View Projects (links to #portfolio)
-CTA 2: WhatsApp (links to https://wa.me/905054682964)
+- [Home](https://mtmessestand.com/)
+- [About](https://mtmessestand.com/about.html)
+- [Blog](https://mtmessestand.com/blog/)
+- [Contact](https://mtmessestand.com/contact.html)
 
-## About
-MT Messe Stand provides custom wooden, Octanorm, Maxima & modular exhibition stands. Turn-key service from design to dismantling worldwide. 300+ stands built across 28+ countries.
-
-## WHERE WE WORK
-We design, manufacture and install custom exhibition stands worldwide. With our own factory in Istanbul and trusted logistics network, we deliver turn-key booths across Europe, the Middle East and beyond.
-
-- Istanbul — Turkey (Headquarters & Factory)
-- Dubai — UAE [TBD]
-- Moscow — Russia [TBD]
-
-## HOW WE WORK
-1. **Discovery & Quote** — You share your fair details, m², stand type and budget. We send a tailored proposal within 48 hours.
-2. **3D Design & Approval** — Our designers create a custom 3D render of your stand. You review, request changes, and approve.
-3. **Production & Logistics** — We manufacture in our Istanbul factory, handle all shipping and customs, and transport to the fair venue.
-4. **Installation & Support** — Our team sets up your stand before the fair opens. A dedicated Junior Assistant-Mate stays with you throughout the event.
+## Craft & Quality
+Wherever You Exhibit — We're Already There. Every exhibition stand is designed, manufactured and installed through our own workshops in [Istanbul](https://mtmessestand.com/#locations), [Dubai](https://mtmessestand.com/#locations) or [Moscow](https://mtmessestand.com/#locations).
 
 ## Services
-- Custom Wooden Stands: Premium construction tailored to brand
-- Maxima Modular Stands: Cost-effective, modern look
-- Octanorm Modular Stands: Best for limited budgets
-- Enhancing Package Stands: Transform standard booths
-- Country Pavilion Solutions: Complete pavilion design
-- Turn-key Exhibitor Services: Furniture, hostesses, catering, logistics
+- [Custom Wooden Stands](https://mtmessestand.com/#services) — Full custom builds, 18–800m²
+- [Maxima Modular Stands](https://mtmessestand.com/#services) — Premium look, 30–40% less than wood
+- [Enhancing Package Stands](https://mtmessestand.com/#services) — Upgrade standard booths
+- [Country Pavilion Solutions](https://mtmessestand.com/#services) — National pavilions, group exhibits
+- [Turn-key Exhibitor Services](https://mtmessestand.com/#services) — Furniture, hostesses, logistics
+- [Turn-key Organizer Services](https://mtmessestand.com/#services) — Bulk merchandise, package stands
 
-## Projects
-- Nagashima (Japan): Curved wooden stand at IDEF
-- Perlight (China): Artistic wooden stand
-- Ilta Inox (Italy): Cubic wooden stand
-- Meyer Burger (Germany): Sharp shaped wooden stand
-- Fronius (Austria): Simple wooden stand
-- Goodwe (China): Compact wooden stand
-- Mondragon (Spain): Flat wooden stand
-- Ingeteam (Italy): Simple bright stand
+## Where We Work
+Three workshops. Three regions. One standard.
+
+- [Istanbul — Turkiye](https://mtmessestand.com/#locations) — Exhibition Stand Builder & Manufacturer
+- [Dubai — UAE](https://mtmessestand.com/#locations) — Exhibition Stand Contractor — MENA
+- [Moscow — Russia](https://mtmessestand.com/#locations) — Trade Fair Booth Builder — CIS
+
+## How We Work
+1. **Discovery & Quote** — Exhibition details, tailored proposal, transparent pricing
+2. **3D Design & Approval** — Custom rendering, revisions, client sign-off
+3. **Production & Logistics** — Manufactured in nearest workshop, shipping handled
+4. **Installation & Support** — On-site setup, dedicated project manager on WhatsApp
+
+## Why MT MesseStand
+- Built Near Your Fair — Three workshops for lower shipping costs
+- On Time — Planning backwards from your event date
+- One Contact, Start to Finish — Dedicated project manager
+- Since 2010 — 300+ stands, repeat clients and referrals
+
+## Blog
+Exhibition stand operational cost guides and country-specific regulations.
+
+- [Almanya Fuar Standı Operasyonel Maliyet Rehberi](https://mtmessestand.com/blog/almanya-hidden-costs.html) — Messe Frankfurt, Hannover, Düsseldorf, Stuttgart, München, Berlin teknik düzenlemeleri ve saha maliyetleri
 
 ## Contact
-- WhatsApp: +90 505 468 2964
-- Phone: (+90) 212 876 7001
-- Email: info@mtmessestand.com
-- Istanbul: Trump Towers No:12 - 405 M.köy Yolu Cd. 34358 Şişli İstanbul — Turkey
-- Dubai: [TBD]
-- Moscow: [TBD]
+- Phone: [+90 212 876 7001](tel:+902128767001)
+- WhatsApp: [+90 505 468 29 64](https://wa.me/905054682964)
+- Email: [info@mtmessestand.com](mailto:info@mtmessestand.com)
+- Istanbul: Trump Towers No:12 - 405, M.köy Yolu Cd. 34358 Şişli, İstanbul — Turkiye
+- Dubai: CWS-1V-000160, 26th Floor, Amber Gem Tower, Ajman · WhatsApp: [+971 50 688 29 64](https://wa.me/971506882964)

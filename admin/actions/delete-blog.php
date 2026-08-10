@@ -1,4 +1,5 @@
 <?php
+try {
 require_once __DIR__ . '/../auth.php';
 require_login();
 check_csrf();
@@ -10,10 +11,13 @@ if ($slug) {
     $data_dir = __DIR__ . "/../../data/$lang/blog";
     $blog_dir = __DIR__ . "/../../$lang/blog";
     
-    if (unlink("$data_dir/$slug.json") || unlink("$blog_dir/$slug.html")) {
+    $deleted = @unlink("$data_dir/$slug.json");
+    @unlink("$blog_dir/$slug.html");
+    
+    if ($deleted) {
         log_action('delete_blog', 'success', ['lang' => $lang, 'slug' => $slug]);
     } else {
-        log_error("delete_blog failed: $lang/$slug");
+        log_error("delete_blog: JSON not found $lang/$slug");
     }
 
     if (file_exists(__DIR__ . '/../../build.php')) {
@@ -22,3 +26,7 @@ if ($slug) {
 }
 
 header('Location: ../dashboard.php?lang=' . urlencode($lang) . '&deleted=1');
+} catch (Throwable $e) {
+    log_error('delete_blog: ' . $e->getMessage());
+    die('Delete failed. Check logs.');
+}

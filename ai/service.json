@@ -1,0 +1,71 @@
+{
+  "name": "MT Messe Stand Services",
+  "description": "Exhibition stand design, manufacturing and installation services for international trade fairs",
+  "services": [
+    {
+      "id": "custom-wooden",
+      "name": "Custom Wooden Stands",
+      "description": "Full custom builds — curved walls, integrated LED screens, suspended ceilings, branded floor finishes. 18–800m², 3–6 weeks delivery.",
+      "price_range": "From $400/m²",
+      "category": "bespoke"
+    },
+    {
+      "id": "maxima-modular",
+      "name": "Maxima Modular Stands",
+      "description": "Aluminium frame system with fabric graphics, backlit panels, seamless connections. Premium look at 30–40% less cost. Reusable across multiple fairs.",
+      "price_range": "From $250/m²",
+      "category": "modular"
+    },
+    {
+      "id": "enhancing-package",
+      "name": "Enhancing Package Stands",
+      "description": "Overlay printed fabric graphics, add lighting, furniture and flooring to shell scheme stands. Transforms a generic booth into a branded space.",
+      "price_range": "From $150/m²",
+      "category": "shell-scheme"
+    },
+    {
+      "id": "country-pavilion",
+      "name": "Country Pavilion Solutions",
+      "description": "National pavilions, trade ministry stands, group exhibits. Complete pavilion design, identity, construction, logistics and onsite management.",
+      "price_range": "Custom quote",
+      "category": "government"
+    },
+    {
+      "id": "turn-key-exhibitor",
+      "name": "Turn-key Exhibitor Services",
+      "description": "Furniture rental, AV equipment, hostess service, graphic printing, catering coordination — everything beyond the booth itself.",
+      "price_range": "Custom quote",
+      "category": "services"
+    },
+    {
+      "id": "turn-key-organizer",
+      "name": "Turn-key Organizer Services",
+      "description": "Pre-built package stands, bulk furniture rental, lanyards, tote bags, trophies, registration counters — turn-key solutions for exhibition organizers.",
+      "price_range": "Custom quote",
+      "category": "b2b"
+    }
+  ],
+  "locations": [
+    {
+      "city": "Istanbul",
+      "country": "Turkiye",
+      "serves": "Europe, Middle East"
+    },
+    {
+      "city": "Dubai",
+      "country": "UAE",
+      "serves": "MENA, Gulf"
+    },
+    {
+      "city": "Moscow",
+      "country": "Russia",
+      "serves": "CIS, Central Asia"
+    }
+  ],
+  "contact": {
+    "whatsapp_tr": "+902128767001",
+    "whatsapp_uae": "+971585927235",
+    "email": "info@mtmessestand.com",
+    "website": "https://mtmessestand.com"
+  }
+}
