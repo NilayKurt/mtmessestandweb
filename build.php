@@ -7,6 +7,9 @@
 
 $BASE = __DIR__;
 
+require_once $BASE . '/templates/navbar.php';
+require_once $BASE . '/templates/footer.php';
+
 $LANGS = [
     'en/'  => 'en/blog',
     'tr/' => 'tr/blog',
@@ -141,10 +144,26 @@ foreach ($LANGS as $index_rel => $blog_dir) {
     $posts = parse_blog_posts($blog_dir);
     echo "  [$lang_code] " . count($posts) . " posts\n";
 
+    // Inject blog cards
     $blog_html = build_cards_html($posts, $lang_code, $blog_dir);
     if (!inject($index_rel, $blog_html)) {
-        echo "  [$lang_code] FAILED\n";
+        echo "  [$lang_code] BLOG FAILED\n";
         $all_ok = false;
+    }
+
+    // Inject navbar + footer into homepage
+    $hp_html = file_get_contents($index_path);
+    $hp_html = str_replace('<!-- NAVBAR -->', render_navbar($lang_code, 'home'), $hp_html);
+    $hp_html = str_replace('<!-- FOOTER -->',  render_footer($lang_code, 1, 'home'), $hp_html);
+    file_put_contents($index_path, $hp_html);
+
+    // Inject navbar + footer into blog index
+    $blog_index_path = $BASE . '/' . $lang_code . '/blog/index.html';
+    if (file_exists($blog_index_path)) {
+        $bi_html = file_get_contents($blog_index_path);
+        $bi_html = str_replace('<!-- NAVBAR -->', render_navbar($lang_code, 'blog_list'), $bi_html);
+        $bi_html = str_replace('<!-- FOOTER -->',  render_footer($lang_code, 2, 'blog_index'), $bi_html);
+        file_put_contents($blog_index_path, $bi_html);
     }
 }
 

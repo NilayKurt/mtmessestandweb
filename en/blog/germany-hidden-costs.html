@@ -61,7 +61,7 @@
   <link href="../../assets/vendor/bootstrap-icons.css" rel="stylesheet">
   <link href="../../assets/css/style.min.css" rel="stylesheet">
   <style>
-    .blog-article { padding-top: 120px; padding-bottom: 80px; }
+    .blog-article { padding-top: 52px; padding-bottom: 80px; }
     .blog-article article { max-width: 780px; margin: 0 auto; }
     .blog-article h1 { font-size: 2.2rem; margin-bottom: 0.5rem; text-wrap: balance; }
     .blog-article .meta { color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem; }
@@ -74,12 +74,44 @@
     .blog-article .author-box img { width: 56px; height: 56px; border-radius: 50%; }
     .blog-article .faq-section details { margin-bottom: 8px; }
     .blog-article .faq-section summary { font-weight: 600; cursor: pointer; padding: 8px 0; }
-    @media (max-width: 768px) { .blog-article h1 { font-size: 1.6rem; } .blog-article { padding-top: 100px; } }
+    @media (max-width: 768px) { .blog-article h1 { font-size: 1.6rem; } .blog-article { padding-top: 48px; } }
   </style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<div id="navbar-placeholder"></div>
+
+<header id="header" class="fixed-top">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <img src="/assets/img/logo.webp" alt="MT Messe Stand" width="140" height="27">
+        <span class="brand-text">MT Messe Stand</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="./">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">EN</a>
+            <ul class="dropdown-menu">
+<li><a class="dropdown-item" href="/tr/blog/almanya-hidden-costs.html">TR</a></li>
+<li><a class="dropdown-item text-muted" href="#">DE (soon)</a></li>
+<li><a class="dropdown-item text-muted" href="#">FR (soon)</a></li>
+<li><a class="dropdown-item" href="/es/blog/germany-hidden-costs.html">ES</a></li>
+<li><a class="dropdown-item text-muted" href="#">AR (soon)</a></li>
+<li><a class="dropdown-item text-muted" href="#">ZH (soon)</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
 <main>
 <section class="blog-article">
   <div class="container">
@@ -310,20 +342,7 @@
 
       <!-- ===== RELATED POSTS ===== -->
       <div class="related">
-        <h2>Other Country Guides</h2>
-        <div class="row g-3 mt-2">
-          <div class="col-md-6">
-            <div class="card"><div class="card-body">
-              <h5 class="card-title" style="font-size:1rem;">Dubai Exhibition Stand Operational Cost Guide</h5>
-              <p class="card-text" style="font-size:0.85rem;color:var(--gray);">DWTC ve ADNEC teknik kılavuzlarından derlenmiştir.</p>
-              <a href="dubai-hidden-costs.html" class="btn btn-sm btn-primary">Coming Soon →</a>
-            </div></div>
-          </div>
-          <div class="col-md-6">
-            <div class="card"><div class="card-body">
-              <h5 class="card-title" style="font-size:1rem;">Moscow Exhibition Stand Operational Cost Guide</h5>
-              <p class="card-text" style="font-size:0.85rem;color:var(--gray);">Crocus Expo ve Expocentre saha deneyimi.</p>
-              <a href="moskova-hidden-costs.html" class="btn btn-sm btn-primary">Coming Soon →</a></div>
+        <h2>Other Country Guides</h2></div>
       <div class="author-box">
         <img src="../../assets/img/logo.webp" alt="MT Messe Stand" width="56" height="56" loading="lazy">
         <div><div class="author-name fw-bold">MT Messe Stand Editor</div><p class="m-0 small text-muted">Exhibition stand design and construction since 2010. 300+ stands built across 15 countries.</p></div>
@@ -332,54 +351,58 @@
   </div>
 </section>
 </main>
+
 <footer class="footer">
   <div class="container">
     <div class="row g-4">
       <div class="col-lg-4">
-        <img src="../../assets/img/logo.webp" alt="MT Messe Stand — Exhibition Stand Builder" width="186" height="36" class="mb-3">
-        <p>Your trusted exhibition stand builder in Turkiye. Custom stands, modular systems, and full exhibitor services worldwide.</p>
+        <img src="../../assets/img/logo.webp" alt="MT Messe Stand" width="186" height="36" class="mb-3">
+        <p>MT MesseStand &mdash; Your trade fair partner across three continents. Custom stands, modular systems, and full exhibitor services worldwide.</p>
+        <p class="small">Built to international trade fair standards. <a href="https://www.auma.de/en" target="_blank" rel="noopener">AUMA</a> · <a href="https://www.dguv.de" target="_blank" rel="noopener">DGUV</a></p>
         <div class="social-links mt-3">
-          <a href="#"><i class="bi bi-linkedin"></i></a>
-          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/mt-messe-stand" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.instagram.com/mtmessestand" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
           <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
       <div class="col-lg-2 col-md-4">
         <h5>Services</h5>
         <ul class="list-unstyled">
-          <li><a href="../../index.html#services">Wooden Stands</a></li>
-          <li><a href="../../index.html#services">Maxima Stands</a></li>
-          <li><a href="../../index.html#services">Package Stands</a></li>
-          <li><a href="../../index.html#services">Pavilion Solutions</a></li>
+          <li><a href="../index.html#services">Custom Wooden</a></li>
+          <li><a href="../index.html#services">Maxima Modular</a></li>
+          <li><a href="../index.html#services">Package Upgrade</a></li>
+          <li><a href="../index.html#services">Country Pavilions</a></li>
+          <li><a href="../index.html#services">Exhibitor Services</a></li>
+          <li><a href="../index.html#services">Organizer Services</a></li>
         </ul>
       </div>
       <div class="col-lg-2 col-md-4">
         <h5>Company</h5>
         <ul class="list-unstyled">
-          <li><a href="../../about.html">About</a></li>
-          <li><a href="index.html">Blog</a></li>
-          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../index.html#services">Projects</a></li>
+          <li><a href="../contact.html">Contact</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-md-6">
         <h5>Language</h5>
-        <div class="d-flex gap-2 flex-wrap">
-          <a href="/en/blog/" class="badge bg-accent text-white text-decoration-none px-2 py-1">EN</a>
-          <a href="/tr/blog/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">TR</a>
-          <a href="/de/blog/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">DE</a>
-          <a href="/fr/blog/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">FR</a>
-          <a href="/es/blog/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">ES</a>
-          <a href="/ar/blog/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">AR</a>
-          <a href="/zh/blog/" class="badge bg-secondary text-white text-decoration-none px-2 py-1">ZH</a>
+        <div class="d-flex gap-2">
+              <a href="/en/blog/" class="badge bg-accent text-white text-decoration-none px-2 py-1">EN</a>
+              <a href="/tr/blog/" class="badge bg-dark text-white text-decoration-none px-2 py-1">TR</a>
+              <a href="/de/blog/" class="badge bg-dark text-white text-decoration-none px-2 py-1">DE</a>
+              <a href="/fr/blog/" class="badge bg-dark text-white text-decoration-none px-2 py-1">FR</a>
+              <a href="/es/blog/" class="badge bg-dark text-white text-decoration-none px-2 py-1">ES</a>
+              <a href="/ar/blog/" class="badge bg-dark text-white text-decoration-none px-2 py-1">AR</a>
+              <a href="/zh/blog/" class="badge bg-dark text-white text-decoration-none px-2 py-1">ZH</a>
         </div>
       </div>
     </div>
-    <hr class="mt-4 mb-3">
-    <div class="text-center"><small>&copy; 2026 MT Messe Stand. All Rights Reserved.</small></div>
+    <div class="text-center">
+      <small>&copy; 2026 MT MesseStand. All Rights Reserved.</small>
+    </div>
   </div>
 </footer>
 <script src="../../assets/vendor/bootstrap.bundle.min.js"></script>
 <script src="../../assets/js/main.min.js"></script>
-<script src="../../assets/js/navbar.js"></script>
 </body>
 </html>

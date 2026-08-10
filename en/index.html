@@ -132,7 +132,39 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ===== HEADER ===== -->
-<div id="navbar-placeholder"></div>
+
+<header id="header" class="fixed-top">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="/assets/img/logo.webp" alt="MT Messe Stand" width="140" height="27">
+        <span class="brand-text">MT Messe Stand</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog/">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">EN</a>
+            <ul class="dropdown-menu">
+<li><a class="dropdown-item" href="/tr">TR</a></li>
+<li><a class="dropdown-item text-muted" href="#">DE (soon)</a></li>
+<li><a class="dropdown-item text-muted" href="#">FR (soon)</a></li>
+<li><a class="dropdown-item" href="/es">ES</a></li>
+<li><a class="dropdown-item text-muted" href="#">AR (soon)</a></li>
+<li><a class="dropdown-item text-muted" href="#">ZH (soon)</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
 
 <!-- ===== HERO ===== -->
 <section id="hero" class="d-flex align-items-center">
@@ -334,6 +366,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ===== BLOG ===== -->
 <!-- ===== BLOG ===== -->
+<!-- ===== BLOG ===== -->
 <section id="blog" class="section bg-light">
   <div class="container">
     <div class="section-title" data-aos="fade-up">
@@ -344,7 +377,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="col-lg-4 col-md-6" data-aos="fade-up">
           <div class="service-card">
             <small class="text-muted">August 9, 2026</small>
-            <h4><a href="blog/germany-hidden-costs.html" class="text-decoration-none">Germany Exhibition Stand Operational Cost Guide</a></h4>
+            <h4><a href="blog/germany-hidden-costs.html" class="text-decoration-none">Hidden Costs of Building an Exhibition Stand in Germany</a></h4>
             <p>Planning to exhibit in Germany? Hidden costs not found in official exhibitor manuals can derail your budget. We reviewed the 2026 technical guidelines (Technische Richtlinien) of all six major German fairgrounds — Messe Frankfurt, Hannover, Düsseldorf, Stuttgart, Munich and Berlin. This guide covers 30+ real-world cost items: B1 fire certificates, TÜV structural inspections, mandatory fire watches (Brandwache), catering monopolies, suspension weight limits, waste separation rules (GewAbfV), hot work permits, and late installation penalties. Everything your initial stand quote will not show you — but your invoice will.</p>
             <a href="blog/germany-hidden-costs.html" class="btn btn-sm btn-outline-primary mt-2">Read More →</a>
           </div>
@@ -363,6 +396,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+
 
 
 
@@ -414,6 +448,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 </main>
+
 <footer class="footer">
   <div class="container">
     <div class="row g-4">
@@ -441,36 +476,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="col-lg-2 col-md-4">
         <h5>Company</h5>
         <ul class="list-unstyled">
-          <li><a href="../about.html">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="#services">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
-    
-          <div class="col-lg-3 col-md-6">
-            <h5>Language</h5>
-            <div class="d-flex gap-2">
-              <a href="#" class="badge bg-accent text-white text-decoration-none px-2 py-1">EN</a>
+      <div class="col-lg-3 col-md-6">
+        <h5>Language</h5>
+        <div class="d-flex gap-2">
+              <a href="/en/" class="badge bg-accent text-white text-decoration-none px-2 py-1">EN</a>
               <a href="/tr/" class="badge bg-dark text-white text-decoration-none px-2 py-1">TR</a>
               <a href="/de/" class="badge bg-dark text-white text-decoration-none px-2 py-1">DE</a>
               <a href="/fr/" class="badge bg-dark text-white text-decoration-none px-2 py-1">FR</a>
+              <a href="/es/" class="badge bg-dark text-white text-decoration-none px-2 py-1">ES</a>
               <a href="/ar/" class="badge bg-dark text-white text-decoration-none px-2 py-1">AR</a>
               <a href="/zh/" class="badge bg-dark text-white text-decoration-none px-2 py-1">ZH</a>
-            </div>
-          </div>
-
         </div>
-    
-
-    <div class="text-center">
-      <small>© 2026 MT MesseStand. All Rights Reserved.</small>
+      </div>
     </div>
+    <div class="text-center">
+      <small>&copy; 2026 MT MesseStand. All Rights Reserved.</small>
+    </div>
+  </div>
 </footer>
 
 <!-- Bootstrap JS -->
 <script src="../assets/vendor/bootstrap.bundle.min.js"></script>
 <!-- Navbar -->
-<script src="../assets/js/navbar.js"></script>
 <!-- AOS -->
 <script src="../assets/vendor/aos.js"></script>
 <script>AOS.init({ duration: 800, once: true });</script>

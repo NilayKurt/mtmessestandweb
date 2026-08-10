@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../admin/config.php';
+require_once __DIR__ . '/navbar.php';
+require_once __DIR__ . '/footer.php';
 
 function render_blog(array $meta, string $content_html, string $lang): string {
     $title_esc = htmlspecialchars($meta['title'] ?? '');
@@ -27,17 +29,19 @@ function render_blog(array $meta, string $content_html, string $lang): string {
         $faq_json = ",\n  <script type=\"application/ld+json\">\n  {\n    \"@context\": \"https://schema.org\",\n    \"@type\": \"FAQPage\",\n    \"mainEntity\": [" . implode(",", $faq_items) . "]\n  }\n  </script>";
     }
 
-    // Footer language badges (built BEFORE heredoc)
-    $footer_langs = '';
-    foreach (LANGUAGES as $code => $name) {
-        $active = $code === $lang ? ' bg-accent' : ' bg-secondary';
-        $footer_langs .= "          <a href=\"/$code/blog/\" class=\"badge{$active} text-white text-decoration-none px-2 py-1\">" . strtoupper($code) . "</a>\n";
-    }
+    $navbar_html = render_navbar($lang, 'blog_post', $slug_esc);
+    $footer_html = render_footer($lang, 2, 'blog');
 
-$hero_img = $image_esc ? "<img src=\"$image_esc\" alt=\"$title_esc\" width=\"1200\" height=\"1600\" class=\"img-fluid rounded shadow-sm mb-4\" loading=\"eager\">" : '';
+    // Author box per language
+    $author_names = ['tr' => 'MT Messe Stand Editörü'];
+    $author_name = $author_names[$lang] ?? 'MT Messe Stand Editor';
+    $author_descs = ['tr' => '2010\'dan beri fuar standı tasarımı ve üretimi. 15 ülkede 300\'den fazla stant inşa edildi.'];
+    $author_desc = $author_descs[$lang] ?? 'Exhibition stand design and construction since 2010. 300+ stands built across 15 countries.';
+
+    $hero_img = $image_esc ? "<img src=\"$image_esc\" alt=\"$title_esc\" width=\"1200\" height=\"1600\" class=\"img-fluid rounded shadow-sm mb-4\" loading=\"eager\">" : '';
     $asset_prefix = '../../assets/';
 
-    return <<<HTML
+    $html = <<<HTML
 <!DOCTYPE html>
 <html lang="$lang">
 <head>
@@ -92,7 +96,7 @@ $hero_img = $image_esc ? "<img src=\"$image_esc\" alt=\"$title_esc\" width=\"120
   <link href="{$asset_prefix}vendor/bootstrap-icons.css" rel="stylesheet">
   <link href="{$asset_prefix}css/style.min.css" rel="stylesheet">
   <style>
-    .blog-article { padding-top: 120px; padding-bottom: 80px; }
+    .blog-article { padding-top: 52px; padding-bottom: 80px; }
     .blog-article article { max-width: 780px; margin: 0 auto; }
     .blog-article h1 { font-size: 2.2rem; margin-bottom: 0.5rem; text-wrap: balance; }
     .blog-article .meta { color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem; }
@@ -105,72 +109,34 @@ $hero_img = $image_esc ? "<img src=\"$image_esc\" alt=\"$title_esc\" width=\"120
     .blog-article .author-box img { width: 56px; height: 56px; border-radius: 50%; }
     .blog-article .faq-section details { margin-bottom: 8px; }
     .blog-article .faq-section summary { font-weight: 600; cursor: pointer; padding: 8px 0; }
-    @media (max-width: 768px) { .blog-article h1 { font-size: 1.6rem; } .blog-article { padding-top: 100px; } }
+    @media (max-width: 768px) { .blog-article h1 { font-size: 1.6rem; } .blog-article { padding-top: 48px; } }
   </style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<div id="navbar-placeholder"></div>
+$navbar_html
 <main>
 <section class="blog-article">
   <div class="container">
     <article>
-      <p class="meta"><span>MT Messe Stand Editor</span> &middot; <span>$date_esc</span></p>
+      <p class="meta"><span>$author_name</span> &middot; <span>$date_esc</span></p>
       <h1>$title_esc</h1>
       <p class="lead">$summary_esc</p>
       $hero_img
       <div class="article-intro">$content_html</div>
       <div class="author-box">
         <img src="{$asset_prefix}img/logo.webp" alt="MT Messe Stand" width="56" height="56" loading="lazy">
-        <div><div class="author-name fw-bold">MT Messe Stand Editor</div><p class="m-0 small text-muted">Exhibition stand design and construction since 2010. 300+ stands built across 15 countries.</p></div>
+        <div><div class="author-name fw-bold">$author_name</div><p class="m-0 small text-muted">$author_desc</p></div>
       </div>
     </article>
   </div>
 </section>
 </main>
-<footer class="footer">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-lg-4">
-        <img src="{$asset_prefix}img/logo.webp" alt="MT Messe Stand — Exhibition Stand Builder" width="186" height="36" class="mb-3">
-        <p>Your trusted exhibition stand builder in Turkiye. Custom stands, modular systems, and full exhibitor services worldwide.</p>
-        <div class="social-links mt-3">
-          <a href="#"><i class="bi bi-linkedin"></i></a>
-          <a href="#"><i class="bi bi-instagram"></i></a>
-          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-        </div>
-      </div>
-      <div class="col-lg-2 col-md-4">
-        <h5>Services</h5>
-        <ul class="list-unstyled">
-          <li><a href="../../index.html#services">Wooden Stands</a></li>
-          <li><a href="../../index.html#services">Maxima Stands</a></li>
-          <li><a href="../../index.html#services">Package Stands</a></li>
-          <li><a href="../../index.html#services">Pavilion Solutions</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-2 col-md-4">
-        <h5>Company</h5>
-        <ul class="list-unstyled">
-          <li><a href="../../about.html">About</a></li>
-          <li><a href="index.html">Blog</a></li>
-          <li><a href="../../contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <h5>Language</h5>
-        <div class="d-flex gap-2 flex-wrap">
-$footer_langs        </div>
-      </div>
-    </div>
-    <hr class="mt-4 mb-3">
-    <div class="text-center"><small>&copy; 2026 MT Messe Stand. All Rights Reserved.</small></div>
-  </div>
-</footer>
+$footer_html
 <script src="{$asset_prefix}vendor/bootstrap.bundle.min.js"></script>
 <script src="{$asset_prefix}js/main.min.js"></script>
-<script src="{$asset_prefix}js/navbar.js"></script>
 </body>
 </html>
 HTML;
+    return $html;
 }

@@ -1,197 +1,284 @@
 #!/usr/bin/env python3
 """
-build_blog_tr.py — Build a translated blog page from blog{LANG}.txt on Desktop.
+build_blog_tr.py — Translate EN blog article to TR, preserving all HTML/CSS.
+Two-step workflow:
+  1. python3 build_blog_tr.py extract      → saves translation blocks to data/{lang}/blog/{slug}-tr.json
+  2. Agent translates the blocks
+  3. python3 build_blog_tr.py build --slug={slug}  → applies translations, renders via template
 
-blog{LANG}.txt format:
-  Line 1:  author/date line
-  Line 2:  blank
-  Line 3:  title (H1)
-  Line 4:  subtitle/lead
-  Line 5:  image alt text
-  Line 6:  blank
-  ---
-  Content. Sections matching EN <h3> tags must be wrapped in **...**.
-  **Heading order must match EN H3 order exactly.**
-  Lines that are not EN <h3> equivalents stay as plain text.
-
-Usage: python3 scripts/build_blog_tr.py [--lang tr]
+No blogtr.txt dependency. All HTML structure preserved.
 """
 
-import sys, os, re, subprocess
+import sys, os, re, json
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent.parent
-DESKTOP = Path("/mnt/c/Users/nilay/OneDrive/Desktop")
-LANG = sys.argv[2] if len(sys.argv) > 2 and sys.argv[1] == '--lang' else 'tr'
+LANG = 'tr'
+DATA_DIR = BASE / 'data' / LANG / 'blog'
+BLOG_DIR = BASE / LANG / 'blog'
+EN_BLOG_DIR = BASE / 'en' / 'blog'
+TEMPLATES = BASE / 'templates'
 
-# ── 1. Read translation file ──
-spec_file = DESKTOP / f"blog{LANG}.txt"
-if not spec_file.exists():
-    print(f"ERROR: {spec_file} not found on Desktop")
-    sys.exit(1)
-
-tr_md = spec_file.read_text(encoding='utf-8')
-
-if '---' not in tr_md[:300]:
-    lines = tr_md.splitlines()
-    tr_md = '\n'.join(lines[:6] + ['---'] + lines[6:])
-
-tr_lines = tr_md.splitlines()
-tr_title = tr_lines[2].strip() if len(tr_lines) > 2 else ''
-
-# ── 2. Match to EN blog post ──
 TITLE_MAP = {
     'Almanya': 'germany-hidden-costs.html',
     'İlk Kez': 'first-time-exhibitor-guide.html',
     'Dubai': 'dubai-hidden-costs.html',
     'Moskova': 'moskova-hidden-costs.html',
 }
-best_en = None
-for keyword, en_file in TITLE_MAP.items():
-    if keyword.lower() in tr_title.lower():
-        best_en = en_file
-        break
-if not best_en:
-    print(f"ERROR: Could not match TR title to any EN post. Title: {tr_title}")
-    sys.exit(1)
 
-slug_map = {
+SLUG_MAP = {
     'germany-hidden-costs.html': 'almanya-hidden-costs.html',
     'first-time-exhibitor-guide.html': 'ilk-kez-katilacaklar-rehberi.html',
+    'dubai-hidden-costs.html': 'dubai-hidden-costs.html',
+    'moskova-hidden-costs.html': 'moskova-hidden-costs.html',
 }
-tr_slug = slug_map.get(best_en, best_en)
-tr_path = BASE / LANG / 'blog' / tr_slug
 
-# ── 3. Parse EN HTML ──
-en_html = (BASE / 'en/blog' / best_en).read_text(encoding='utf-8', errors='ignore')
-head_match = re.search(r'(<!DOCTYPE.*?)<body>', en_html, re.DOTALL)
-head = head_match.group(1) if head_match else ""
-body_match = re.search(r'<body>\s*(.*?)\s*</section>\s*</main>', en_html, re.DOTALL)
-en_body = body_match.group(1) if body_match else ""
-footer_match = re.search(r'<footer(.*?</html>)', en_html, re.DOTALL)
-tail = footer_match.group(1) if footer_match else ""
 
-# ── 4. Parse TR content into sections (only **...** headings) ──
-tr_sections = {}
-current = '_intro'
-tr_sections[current] = []
-content_started = False
+def find_en_file(keyword: str) -> str | None:
+    for k, f in TITLE_MAP.items():
+        if k.lower() in keyword.lower():
+            return f
+    return None
 
-for line in tr_lines:
-    if not content_started:
-        if line.strip() == '---':
-            content_started = True
-        continue
-    s = line.strip()
-    if s.startswith('**') and s.endswith('**') and len(s) > 3:
-        current = s.strip('*')
-        if current not in tr_sections:
-            tr_sections[current] = []
-    else:
-        tr_sections[current].append(line)
 
-tr_headings = [h for h in tr_sections if h != '_intro']
-
-def tr_lines_to_html(lines):
-    html = []
-    for raw in lines:
-        s = raw.strip()
-        if not s:
-            html.append('')
+def extract_blocks(en_path: Path) -> dict:
+    """Extract all translatable text blocks from article-intro."""
+    html = en_path.read_text(encoding='utf-8', errors='ignore')
+    
+    # Extract article-intro content
+    m = re.search(r'<div class="article-intro">(.*?)<div class="author-box">', html, re.DOTALL)
+    if not m:
+        raise ValueError(f"article-intro not found in {en_path}")
+    
+    article = m.group(1)
+    title = re.search(r'<h1>([^<]+)</h1>', html)
+    lead = re.search(r'<p class="lead">([^<]+)</p>', html)
+    meta_desc = re.search(r'<meta name="description" content="([^"]+)"', html)
+    
+    # Extract all text-bearing elements with their exact HTML
+    blocks = []
+    pattern = re.compile(
+        r'<(p|h2|h3|h4|li|blockquote|summary|figcaption)(\s[^>]*)?>(.*?)</\1>',
+        re.DOTALL
+    )
+    
+    for m in pattern.finditer(article):
+        tag = m.group(1)
+        attrs = m.group(2) or ''
+        inner = m.group(3)
+        full = m.group(0)
+        
+        # Extract clean text for translation
+        clean = re.sub(r'<[^>]+>', '', inner).strip()
+        if not clean:
             continue
-        if s.startswith('> '):
-            html.append(f'      <blockquote class="mt-note"><p>{s[2:]}</p></blockquote>')
-        elif s.startswith('* '):
-            text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', s[2:])
-            html.append(f'      <p>• {text}</p>')
-        elif s.startswith('**') and s.endswith('**'):
-            html.append(f'      <h4>{s.strip("*")}</h4>')
-        elif re.match(r'^\d+\.\s', s):
-            text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', s)
-            html.append(f'      <p><strong>{text}</strong></p>')
+        
+        # Detect if English
+        en_words = ['the', 'and', 'you', 'your', 'that', 'this', 'with', 'from', 'they']
+        words = clean.lower().split()
+        en_count = sum(1 for w in words if w in en_words)
+        is_en = en_count >= 2 and len(words) > 3
+        
+        # Also translate headings and structural elements regardless
+        if tag in ('h2', 'h3', 'h4', 'summary'):
+            is_en = True
+        
+        blocks.append({
+            'id': len(blocks),
+            'tag': tag,
+            'attrs': attrs,
+            'inner': inner,
+            'clean': clean,
+            'translated': None,
+            'needs_translation': is_en,
+        })
+    
+    return {
+        'en_file': en_path.name,
+        'tr_slug': SLUG_MAP.get(en_path.name, en_path.name),
+        'title': title.group(1) if title else '',
+        'lead': lead.group(1) if lead else '',
+        'meta_desc': meta_desc.group(1) if meta_desc else '',
+        'blocks': blocks,
+        'stats': {
+            'total': len(blocks),
+            'needs_translation': sum(1 for b in blocks if b['needs_translation']),
+        }
+    }
+
+
+def apply_translations(data: dict) -> str:
+    """Build translated article by iterating EN elements and applying translations."""
+    en_path = EN_BLOG_DIR / data['en_file']
+    html = en_path.read_text(encoding='utf-8', errors='ignore')
+    m = re.search(r'<div class="article-intro">(.*?)<div class="author-box">', html, re.DOTALL)
+    article = m.group(1)
+    
+    # Build a lookup: block_id → translated text
+    tr_lookup = {}
+    for block in data['blocks']:
+        if block.get('translated') and block['translated'] != block['clean']:
+            tr_lookup[block['id']] = block['translated']
+    
+    # Rebuild article: iterate through text elements, replace each with translation
+    result = []
+    pos = 0
+    block_idx = 0
+    
+    tag_pattern = re.compile(
+        r'<(p|h2|h3|h4|li|blockquote|summary|figcaption)(\s[^>]*)?>(.*?)</\1>',
+        re.DOTALL
+    )
+    
+    for m in tag_pattern.finditer(article):
+        tag = m.group(1)
+        attrs = m.group(2) or ''
+        inner = m.group(3)
+        
+        # Add text between matches
+        result.append(article[pos:m.start()])
+        pos = m.end()
+        
+        # Apply translation if available for this block index
+        if block_idx < len(data['blocks']) and block_idx in tr_lookup:
+            tr_text = tr_lookup[block_idx]
+            # Preserve nested tags: replace text-only content
+            clean_en = re.sub(r'<[^>]+>', '', inner).strip()
+            if clean_en:
+                # Try replacing clean text first
+                new_inner = inner.replace(clean_en, tr_text)
+                # If that didn't work (nested tags), just use TR text with original tags
+                if new_inner == inner and '<' in inner:
+                    # Has nested tags, wrap TR text with first tag structure
+                    nested = re.findall(r'(<[^>]+>)', inner)
+                    if nested:
+                        new_inner = nested[0] + tr_text + nested[-1] if len(nested) > 1 else tr_text
+                    else:
+                        new_inner = tr_text
+                result.append(f'<{tag}{attrs}>{new_inner}</{tag}>')
+            else:
+                result.append(m.group(0))
         else:
-            text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', s)
-            html.append(f'      <p>{text}</p>')
-    return html
+            result.append(m.group(0))
+        
+        block_idx += 1
+    
+    result.append(article[pos:])
+    return ''.join(result)
 
-# ── 5. Build TR body (positional H3 matching) ──
-en_lines = en_body.split('\n')
-result_lines = []
-replaced = set()
-i = 0
-heading_idx = 0
 
-while i < len(en_lines):
-    line = en_lines[i]
-    h3_match = re.search(r'<h3>(.+?)</h3>', line)
-    if h3_match:
-        en_h3 = h3_match.group(1).strip()
-        if heading_idx < len(tr_headings):
-            tr_heading = tr_headings[heading_idx]
-            heading_idx += 1
-            if tr_sections.get(tr_heading):
-                replaced.add(en_h3)
-                result_lines.append(f'      <h3>{tr_heading}</h3>')
-                result_lines.extend(tr_lines_to_html(tr_sections[tr_heading]))
-                i += 1
-                while i < len(en_lines):
-                    if re.search(r'<(h[234]|blockquote)', en_lines[i]):
-                        break
-                    if re.search(r'</div>\s*$', en_lines[i]) and 'article' in en_lines[i]:
-                        break
-                    i += 1
-                continue
-    result_lines.append(line)
-    i += 1
+def render_page(slug: str, content: str, title: str, lead: str) -> str:
+    """Render the blog page via blog-template.php and return HTML."""
+    import subprocess
+    
+    # Update JSON — preserve existing fields, only update content
+    slug_clean = slug.replace('.html', '')
+    jp = DATA_DIR / f'{slug_clean}.json'
+    if jp.exists():
+        data = json.loads(jp.read_text())
+    else:
+        data = {}
+    
+    # Only update these fields
+    data['title'] = title
+    data['summary'] = lead
+    data['meta_desc'] = lead[:160] if lead else ''
+    data['content'] = content
+    
+    jp.write_text(json.dumps(data, ensure_ascii=False, indent=4))
+    
+    # Render via PHP template (write to temp file to avoid shell escaping issues)
+    slug_clean = slug.replace('.html', '')
+    php_code = f'''<?php
+$b = "{BASE}";
+require "$b/admin/config.php";
+require "$b/templates/blog-template.php";
+$d = json_decode(file_get_contents("{jp}"), true);
+$content = $d["content"] ?? " ";
+$h = render_blog($d, $content, "tr");
+file_put_contents("{BLOG_DIR}/{slug_clean}.html.tmp", $h);
+rename("{BLOG_DIR}/{slug_clean}.html.tmp", "{BLOG_DIR}/{slug_clean}.html");
+echo "OK:" . strlen($h);
+'''
+    tmp = BASE / 'tmp_render.php'
+    tmp.write_text(php_code)
+    r = subprocess.run(['php', str(tmp)], capture_output=True, text=True, cwd=str(BASE))
+    tmp.unlink(missing_ok=True)
+    if r.returncode != 0:
+        raise RuntimeError(f"PHP render failed: {r.stderr}")
+    return r.stdout.strip()
 
-print(f"TR: {tr_title[:80]}")
-print(f"EN: {best_en}")
-print(f"Replaced {len(replaced)} sections, {heading_idx}/{len(tr_headings)} TR headings used")
 
-not_replaced = set(re.findall(r'<h3>([^<]+)</h3>', en_body)) - replaced
-if not_replaced:
-    print(f"NOT replaced: {len(not_replaced)}")
-    for r in sorted(not_replaced):
-        print(f"  ✗ {r[:70]}")
+# ── CLI ──
 
-# ── 6. Update meta (lang, title, SEO tags) ──
-tr_sub = tr_lines[3].strip() if len(tr_lines) > 3 else ''
-head = head.replace('<html lang="en">', f'<html lang="{LANG}">')
-head = re.sub(r'<link rel="canonical"[^>]*>',
-              f'<link rel="canonical" href="https://mtmessestand.com/{LANG}/blog/{tr_slug.replace(".html", "/")}">',
-              head)
-head = re.sub(r'<title>[^<]+</title>', f'<title>{tr_title} | MT Messe Stand</title>', head)
+def cmd_extract():
+    """Extract translation blocks from the first matching blog."""
+    # Auto-detect EN blog from blogtr.txt or use all
+    en_files = sorted(EN_BLOG_DIR.glob('*.html'))
+    for en_path in en_files:
+        data = extract_blocks(en_path)
+        tr_path = DATA_DIR / f"{data['tr_slug']}-tr.json"
+        tr_path.write_text(json.dumps(data, ensure_ascii=False, indent=2))
+        print(f"[{data['en_file']}] → {tr_path.name}")
+        print(f"  Blocks: {data['stats']['total']} total, {data['stats']['needs_translation']} need translation")
+        print(f"  Title: {data['title'][:80]}")
 
-# OG / Twitter / description
-head = re.sub(r'<meta name="description" content="[^"]*">',
-              f'<meta name="description" content="{tr_sub}">', head)
-head = re.sub(r'<meta property="og:title" content="[^"]*">',
-              f'<meta property="og:title" content="{tr_title} | MT Messe Stand">', head)
-head = re.sub(r'<meta property="og:description" content="[^"]*">',
-              f'<meta property="og:description" content="{tr_sub}">', head)
-head = re.sub(r'<meta property="og:url" content="[^"]*">',
-              f'<meta property="og:url" content="https://mtmessestand.com/{LANG}/blog/{tr_slug.replace(".html", "/")}">', head)
-head = re.sub(r'<meta name="twitter:title" content="[^"]*">',
-              f'<meta name="twitter:title" content="{tr_title}">', head)
-head = re.sub(r'<meta name="twitter:description" content="[^"]*">',
-              f'<meta name="twitter:description" content="{tr_sub}">', head)
 
-# ── 7. Assemble & write ──
-full_html = head + '<body>\n' + '\n'.join(result_lines) + '\n</section>\n</main>\n<footer' + tail
-tr_path.parent.mkdir(parents=True, exist_ok=True)
-tr_path.write_text(full_html)
-print(f"Written: {tr_path} ({len(full_html)} chars)")
+def cmd_build(slug: str):
+    """Apply translations and render the page."""
+    tr_path = DATA_DIR / f'{slug}-tr.json'
+    if not tr_path.exists():
+        print(f"ERROR: {tr_path} not found. Run 'extract' first.")
+        sys.exit(1)
+    
+    data = json.loads(tr_path.read_text())
+    
+    # Check if all blocks are translated
+    missing = sum(1 for b in data['blocks'] if b['needs_translation'] and not b['translated'])
+    if missing > 0:
+        print(f"ERROR: {missing} blocks still need translation. Translate them in {tr_path} first.")
+        print("  Set 'translated' field to Turkish text for each block with 'needs_translation': true")
+        sys.exit(1)
+    
+    # Apply and render
+    content = apply_translations(data)
+    result = render_page(data['tr_slug'], content, data['title'], data['lead'])
+    print(f"Rendered: {BLOG_DIR / data['tr_slug']}.html ({result})")
+    print(f"Blocks: {data['stats']['total']} total, all translated")
 
-# ── 8. Navbar & audit ──
-navbar_js = BASE / 'assets/js/navbar.js'
-njs = navbar_js.read_text()
-if not (f"'{best_en}':" in njs and f"'{tr_slug}':" in njs):
-    new_entries = f"    '{best_en}': {{ en: '{best_en}', tr: '{tr_slug}' }},\n    '{tr_slug}': {{ en: '{best_en}', tr: '{tr_slug}' }}"
-    njs = njs.replace("  };\n\n  // Active page detection",
-                       f"  {new_entries}\n  }};\n\n  // Active page detection")
-    navbar_js.write_text(njs)
-    print("navbar.js: updated ✓")
 
-if (BASE / 'scripts/audit_links.py').exists():
-    r = subprocess.run(['python3', str(BASE / 'scripts/audit_links.py')], cwd=BASE, capture_output=True, text=True)
-    print("Audit: ✓ PASS" if r.returncode == 0 else f"Audit: ❌ FAIL\n{r.stdout[-300:]}")
+def cmd_status():
+    """Show translation status for all blog posts."""
+    for tf in sorted(DATA_DIR.glob('*-tr.json')):
+        data = json.loads(tf.read_text())
+        total = data['stats']['total']
+        need = data['stats']['needs_translation']
+        done = sum(1 for b in data['blocks'] if b['translated'])
+        pct = int(done / max(need, 1) * 100)
+        bar = '█' * (pct // 10) + '░' * (10 - pct // 10)
+        print(f"{bar} {data['tr_slug']:40s} {done}/{need} ({pct}%)")
+
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print(__doc__)
+        print("Commands: extract | build --slug=<name> | status")
+        sys.exit(0)
+    
+    cmd = sys.argv[1]
+    if cmd == 'extract':
+        cmd_extract()
+    elif cmd == 'build':
+        slug = None
+        for a in sys.argv[2:]:
+            if a.startswith('--slug='):
+                slug = a.split('=', 1)[1]
+        if not slug:
+            print("ERROR: --slug= required for build")
+            sys.exit(1)
+        cmd_build(slug)
+    elif cmd == 'status':
+        cmd_status()
+    else:
+        print(f"Unknown command: {cmd}")
+        sys.exit(1)

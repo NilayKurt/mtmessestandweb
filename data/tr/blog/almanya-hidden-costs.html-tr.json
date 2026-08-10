@@ -1,0 +1,1237 @@
+{
+  "en_file": "germany-hidden-costs.html",
+  "tr_slug": "almanya-hidden-costs.html",
+  "title": "Hidden Costs of Building an Exhibition Stand in Germany",
+  "lead": "A comprehensive guide compiled from the technical manuals of Messe Frankfurt, Hannover, Düsseldorf, Stuttgart, Munich and Berlin — backed by field experience.",
+  "meta_desc": "Hidden operational costs of building exhibition stands in Germany — not found in official exhibitor manuals. Compiled from Messe Frankfurt, Hannover, Düsseld",
+  "blocks": [
+    {
+      "id": 0,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Germany is Europe's largest trade fair market. Over 180 international trade fairs are held annually; <a href=\"https://www.messefrankfurt.com\" target=\"_blank\" rel=\"noopener\">Messe Frankfurt</a> alone organizes more than 50 trade fairs. The total cost of a 100-square-meter stand ranges from EUR 115,000 to EUR 205,000, depending on the fair and city <a href=\"https://www.auma.de/en\" target=\"_blank\" rel=\"noopener\">(AUMA 2026 Exhibitor Cost Survey)</a>.",
+      "clean": "Germany is Europe's largest trade fair market. Over 180 international trade fairs are held annually; Messe Frankfurt alone organizes more than 50 trade fairs. The total cost of a 100-square-meter stand ranges from EUR 115,000 to EUR 205,000, depending on the fair and city (AUMA 2026 Exhibitor Cost Survey).",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 1,
+      "tag": "p",
+      "attrs": "",
+      "inner": "However, this figure is just the starting point. It covers space rental, stand construction, and basic services. There are dozens of operational cost items not included in this figure — items most exhibitors only learn about once they arrive at the fairground.",
+      "clean": "However, this figure is just the starting point. It covers space rental, stand construction, and basic services. There are dozens of operational cost items not included in this figure — items most exhibitors only learn about once they arrive at the fairground.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 2,
+      "tag": "blockquote",
+      "attrs": "",
+      "inner": "At MT Messe Stand, we saw a client in Hannover incur EUR 4,200 in additional costs for a 100 m² stand — just for technical compliance documents and fire certificates. None of these items were in the initial budget.",
+      "clean": "At MT Messe Stand, we saw a client in Hannover incur EUR 4,200 in additional costs for a 100 m² stand — just for technical compliance documents and fire certificates. None of these items were in the initial budget.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 3,
+      "tag": "p",
+      "attrs": "",
+      "inner": "In this guide, we reviewed the official technical guidelines (<strong>Technische Richtlinien</strong>) of six major German trade fair cities and combined them with our field experience. For each city, you will find which major fairs take place, which special rules apply, and how they impact your budget.",
+      "clean": "In this guide, we reviewed the official technical guidelines (Technische Richtlinien) of six major German trade fair cities and combined them with our field experience. For each city, you will find which major fairs take place, which special rules apply, and how they impact your budget.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 4,
+      "tag": "h2",
+      "attrs": "",
+      "inner": "📋 Table of Contents",
+      "clean": "📋 Table of Contents",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 5,
+      "tag": "li",
+      "attrs": "",
+      "inner": "<a href=\"#genel\">Technical Regulations Applicable Across Germany</a>",
+      "clean": "Technical Regulations Applicable Across Germany",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 6,
+      "tag": "li",
+      "attrs": "",
+      "inner": "<a href=\"#frankfurt\">Messe Frankfurt — Catering Monopoly and 2.5 Meter Threshold</a>",
+      "clean": "Messe Frankfurt — Catering Monopoly and 2.5 Meter Threshold",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 7,
+      "tag": "li",
+      "attrs": "",
+      "inner": "<a href=\"#hannover\">Hannover — Halls with Suspension Bans</a>",
+      "clean": "Hannover — Halls with Suspension Bans",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 8,
+      "tag": "li",
+      "attrs": "",
+      "inner": "<a href=\"#dusseldorf\">Messe Düsseldorf — Brandwache and 50 kg Suspension Limit</a>",
+      "clean": "Messe Düsseldorf — Brandwache and 50 kg Suspension Limit",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 9,
+      "tag": "li",
+      "attrs": "",
+      "inner": "<a href=\"#stuttgart\">Messe Stuttgart — Mandatory Fire Watch</a>",
+      "clean": "Messe Stuttgart — Mandatory Fire Watch",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 10,
+      "tag": "li",
+      "attrs": "",
+      "inner": "<a href=\"#munih\">Messe München — 18:00 Installation Deadlines</a>",
+      "clean": "Messe München — 18:00 Installation Deadlines",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 11,
+      "tag": "li",
+      "attrs": "",
+      "inner": "<a href=\"#berlin\">Messe Berlin — Waste Separation Obligation</a>",
+      "clean": "Messe Berlin — Waste Separation Obligation",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 12,
+      "tag": "li",
+      "attrs": "",
+      "inner": "<a href=\"#maliyet\">Operational Cost Analysis</a>",
+      "clean": "Operational Cost Analysis",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 13,
+      "tag": "li",
+      "attrs": "",
+      "inner": "<a href=\"#sss\">Frequently Asked Questions</a>",
+      "clean": "Frequently Asked Questions",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 14,
+      "tag": "h2",
+      "attrs": " id=\"genel\"",
+      "inner": "Technical Regulations Applicable Across Germany",
+      "clean": "Technical Regulations Applicable Across Germany",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 15,
+      "tag": "p",
+      "attrs": "",
+      "inner": "All German fairgrounds are subject to the same federal regulations: <strong>MVStättVO</strong> (Venue Ordinance), <strong>DIN VDE 0100-718</strong> (Electrical Installations), <strong>DGUV Vorschriften 17/18</strong> (Event Technology). Therefore, the following rules apply across all German trade fairs regardless of city <a href=\"https://www.dguv.de\" target=\"_blank\" rel=\"noopener\" class=\"source-link\">→ DGUV source</a>.",
+      "clean": "All German fairgrounds are subject to the same federal regulations: MVStättVO (Venue Ordinance), DIN VDE 0100-718 (Electrical Installations), DGUV Vorschriften 17/18 (Event Technology). Therefore, the following rules apply across all German trade fairs regardless of city → DGUV source.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 16,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Fire Class B1 — Mandatory for All Stand Materials",
+      "clean": "Fire Class B1 — Mandatory for All Stand Materials",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 17,
+      "tag": "p",
+      "attrs": "",
+      "inner": "All materials used in stand construction must meet <strong>DIN 4102 B1</strong> or <strong>EN 13501-1 Class CFL-S1</strong> fire classification. This includes wall panels, carpets, curtains, banners, and decorative elements. A separate certificate is required for each material <a href=\"https://www.messefrankfurt.com/content/dam/messefrankfurt-redaktion/corporate/documents/en/services/technical-information/technical-guidelines-messe-frankfurt-2026-with-construction-heights.pdf\" target=\"_blank\" rel=\"noopener\" class=\"source-link\">→ Messe Frankfurt TG 2026, §4.4.1.1</a>.",
+      "clean": "All materials used in stand construction must meet DIN 4102 B1 or EN 13501-1 Class CFL-S1 fire classification. This includes wall panels, carpets, curtains, banners, and decorative elements. A separate certificate is required for each material → Messe Frankfurt TG 2026, §4.4.1.1.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 18,
+      "tag": "blockquote",
+      "attrs": "",
+      "inner": "At MT Messe Stand, we use B1-certified materials in all our production. We submit certificates to the fairground technical office 4 weeks before stand installation.",
+      "clean": "At MT Messe Stand, we use B1-certified materials in all our production. We submit certificates to the fairground technical office 4 weeks before stand installation.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 19,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Styrofoam (Styropor) — Strictly Prohibited",
+      "clean": "Styrofoam (Styropor) — Strictly Prohibited",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 20,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Rigid polystyrene foam (Styropor) and thermoplastic materials that drip or emit smoke when burning cannot be used in stand construction. Styrofoam 3D logos commonly used in other countries are not accepted in Germany. Aluminum composite or B1-certified foam PVC must be used as alternatives <a href=\"https://www.messe.de/files/files/000/media/downloads/technische-richtlinien/technische-richtlinien-2026-2.pdf\" target=\"_blank\" rel=\"noopener\" class=\"source-link\">→ Deutsche Messe TR 2026, §4.4.1.1</a>.",
+      "clean": "Rigid polystyrene foam (Styropor) and thermoplastic materials that drip or emit smoke when burning cannot be used in stand construction. Styrofoam 3D logos commonly used in other countries are not accepted in Germany. Aluminum composite or B1-certified foam PVC must be used as alternatives → Deutsche Messe TR 2026, §4.4.1.1.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 21,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Artificial Flowers and Plants — Not Permitted",
+      "clean": "Artificial Flowers and Plants — Not Permitted",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 22,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Due to fire regulations, artificial flowers, artificial plants, and decorative branches — unless treated with fire retardant — cannot be used in stand decoration. Live plants are permitted, but irrigation and drainage planning is required.",
+      "clean": "Due to fire regulations, artificial flowers, artificial plants, and decorative branches — unless treated with fire retardant — cannot be used in stand decoration. Live plants are permitted, but irrigation and drainage planning is required.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 23,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Open Corner Rule — 3:1 Ratio",
+      "clean": "Open Corner Rule — 3:1 Ratio",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 24,
+      "tag": "p",
+      "attrs": "",
+      "inner": "The \"open corner\" rule applies to walls facing neighboring stands: the side walls of a three-side open stand may be closed for no more than 1/3 of the depth. This rule preserves visibility for the adjacent stand.",
+      "clean": "The \"open corner\" rule applies to walls facing neighboring stands: the side walls of a three-side open stand may be closed for no more than 1/3 of the depth. This rule preserves visibility for the adjacent stand.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 25,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Elevation and Ramp Requirements",
+      "clean": "Elevation and Ramp Requirements",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 26,
+      "tag": "p",
+      "attrs": "",
+      "inner": "If the stand floor has an elevation of more than 2 cm, a ramp must be installed. Maximum slope is 6%. Disabled access is mandatory under German law → MVStättVO §11, Barrier-Free Construction.",
+      "clean": "If the stand floor has an elevation of more than 2 cm, a ramp must be installed. Maximum slope is 6%. Disabled access is mandatory under German law → MVStättVO §11, Barrier-Free Construction.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 27,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Closed Ceilings — Fire Sprinkler and Smoke Detectors",
+      "clean": "Closed Ceilings — Fire Sprinkler and Smoke Detectors",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 28,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Stands with fully or partially closed ceilings must be located under the fire sprinkler system. Stands over 200 m² with closed ceilings require interconnected smoke detectors, a fire watch, and additional fire extinguishers. For closed ceilings exceeding 1,000 m², an individual fire protection concept must be prepared and submitted to Messe approval <a href=\"https://www.messefrankfurt.com/content/dam/messefrankfurt-redaktion/corporate/documents/en/services/technical-information/technical-guidelines-messe-frankfurt-2026-with-construction-heights.pdf\" target=\"_blank\" rel=\"noopener\" class=\"source-link\">→ Messe Frankfurt TG 2026, §4.4.1</a>.",
+      "clean": "Stands with fully or partially closed ceilings must be located under the fire sprinkler system. Stands over 200 m² with closed ceilings require interconnected smoke detectors, a fire watch, and additional fire extinguishers. For closed ceilings exceeding 1,000 m², an individual fire protection concept must be prepared and submitted to Messe approval → Messe Frankfurt TG 2026, §4.4.1.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 29,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "70 dB(A) Sound Limit",
+      "clean": "70 dB(A) Sound Limit",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 30,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Sound levels measured at the stand boundary must not exceed 70 dB(A). This rule is the same at all German fairgrounds. Louder presentations require prior written permission and acoustic insulation. Violation may result in the stand's electricity being cut.",
+      "clean": "Sound levels measured at the stand boundary must not exceed 70 dB(A). This rule is the same at all German fairgrounds. Louder presentations require prior written permission and acoustic insulation. Violation may result in the stand's electricity being cut.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 31,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "TÜV/Structural Inspection — Can Be Triggered at Any Time",
+      "clean": "TÜV/Structural Inspection — Can Be Triggered at Any Time",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 32,
+      "tag": "p",
+      "attrs": "",
+      "inner": "All fairgrounds can request an inspection by an independent structural engineer (Statiker) at any time if there is any doubt about the stand's structural safety — at the exhibitor's expense. This inspection typically costs EUR 800-1,500.",
+      "clean": "All fairgrounds can request an inspection by an independent structural engineer (Statiker) at any time if there is any doubt about the stand's structural safety — at the exhibitor's expense. This inspection typically costs EUR 800-1,500.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 33,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Waste and Disposal — Exhibitor Responsibility",
+      "clean": "Waste and Disposal — Exhibitor Responsibility",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 34,
+      "tag": "p",
+      "attrs": "",
+      "inner": "At the end of the fair, all construction waste, packaging, and decoration materials must be removed by the exhibitor. Uncleaned areas will be charged a cleaning fee by the fair management. In Frankfurt, this starts at EUR 500 per stand.",
+      "clean": "At the end of the fair, all construction waste, packaging, and decoration materials must be removed by the exhibitor. Uncleaned areas will be charged a cleaning fee by the fair management. In Frankfurt, this starts at EUR 500 per stand.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 35,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "VAT Refund — Up to EUR 18,000-32,000 Recoverable",
+      "clean": "VAT Refund — Up to EUR 18,000-32,000 Recoverable",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 36,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Germany applies a 19% VAT rate. For non-EU exhibitors, EUR 18,000-32,000 in VAT can be reclaimed for a 100 m² stand. The refund process is managed through <strong>BZSt</strong> (Federal Central Tax Office) and may take 3-6 months → BZSt (Federal Central Tax Office).",
+      "clean": "Germany applies a 19% VAT rate. For non-EU exhibitors, EUR 18,000-32,000 in VAT can be reclaimed for a 100 m² stand. The refund process is managed through BZSt (Federal Central Tax Office) and may take 3-6 months → BZSt (Federal Central Tax Office).",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 37,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Hot Work Permit — Welding and Cutting Operations",
+      "clean": "Hot Work Permit — Welding and Cutting Operations",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 38,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Operations with fire risk — welding, grinding, soldering — during stand installation require a \"Hot Work Permit\" (Heißarbeit Erlaubnis) obtained in advance. In Hannover and Berlin, this permit additionally requires working under the supervision of a fire watch.",
+      "clean": "Operations with fire risk — welding, grinding, soldering — during stand installation require a \"Hot Work Permit\" (Heißarbeit Erlaubnis) obtained in advance. In Hannover and Berlin, this permit additionally requires working under the supervision of a fire watch.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 39,
+      "tag": "blockquote",
+      "attrs": "",
+      "inner": "At MT Messe Stand, we complete all cutting and assembly work in our own workshop and only enter the fairground for installation. This avoids hot work permit costs and delays.",
+      "clean": "At MT Messe Stand, we complete all cutting and assembly work in our own workshop and only enter the fairground for installation. This avoids hot work permit costs and delays.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 40,
+      "tag": "h2",
+      "attrs": " id=\"frankfurt\"",
+      "inner": "Messe Frankfurt — Catering Monopoly, 2.5 Meter TÜV Threshold",
+      "clean": "Messe Frankfurt — Catering Monopoly, 2.5 Meter TÜV Threshold",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 41,
+      "tag": "p",
+      "attrs": "",
+      "inner": "<a href=\"https://www.messefrankfurt.com\" target=\"_blank\" rel=\"noopener\">Messe Frankfurt</a> is Germany's largest fairground (592,127 m², 11 halls). It hosts over 50 trade fairs annually.",
+      "clean": "Messe Frankfurt is Germany's largest fairground (592,127 m², 11 halls). It hosts over 50 trade fairs annually.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 42,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Major fairs:",
+      "clean": "Major fairs:",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 43,
+      "tag": "li",
+      "attrs": "",
+      "inner": "Automechanika (automotive)",
+      "clean": "Automechanika (automotive)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 44,
+      "tag": "li",
+      "attrs": "",
+      "inner": "Ambiente (consumer goods)",
+      "clean": "Ambiente (consumer goods)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 45,
+      "tag": "li",
+      "attrs": "",
+      "inner": "Heimtextil (textiles)",
+      "clean": "Heimtextil (textiles)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 46,
+      "tag": "li",
+      "attrs": "",
+      "inner": "ISH (HVAC/water)",
+      "clean": "ISH (HVAC/water)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 47,
+      "tag": "li",
+      "attrs": "",
+      "inner": "Light + Building (lighting)",
+      "clean": "Light + Building (lighting)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 48,
+      "tag": "li",
+      "attrs": "",
+      "inner": "ACHEMA (chemical engineering)",
+      "clean": "ACHEMA (chemical engineering)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 49,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Catering Monopoly — Accente Gastronomie Service",
+      "clean": "Catering Monopoly — Accente Gastronomie Service",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 50,
+      "tag": "p",
+      "attrs": "",
+      "inner": "At Messe Frankfurt, all food and beverage services are provided exclusively by <strong>Accente Gastronomie Service</strong>. Bringing outside food and drink is <strong>strictly prohibited.</strong> All catering — from coffee to full lunch service — must be ordered through Accente. This rule is unique to Messe Frankfurt; other German fairgrounds do not have this restriction <a href=\"https://www.messefrankfurt.com/content/dam/messefrankfurt-redaktion/corporate/documents/en/services/technical-information/technical-guidelines-messe-frankfurt-2026-with-construction-heights.pdf\" target=\"_blank\" rel=\"noopener\" class=\"source-link\">→ Messe Frankfurt TG 2026, §4.4.3</a>.",
+      "clean": "At Messe Frankfurt, all food and beverage services are provided exclusively by Accente Gastronomie Service. Bringing outside food and drink is strictly prohibited. All catering — from coffee to full lunch service — must be ordered through Accente. This rule is unique to Messe Frankfurt; other German fairgrounds do not have this restriction → Messe Frankfurt TG 2026, §4.4.3.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 51,
+      "tag": "blockquote",
+      "attrs": "",
+      "inner": "At MT Messe Stand, we inform all our clients about Frankfurt's catering rules during the initial briefing. We coordinate directly with Accente to include catering in the overall project timeline.",
+      "clean": "At MT Messe Stand, we inform all our clients about Frankfurt's catering rules during the initial briefing. We coordinate directly with Accente to include catering in the overall project timeline.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 52,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "2.5 Meter Threshold — TÜV Structural Approval",
+      "clean": "2.5 Meter Threshold — TÜV Structural Approval",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 53,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Structural elements over 2.5 meters require full structural approval with TÜV-certified static calculations. The approval process takes 4 additional weeks and costs EUR 1,200-2,500. This applies to towers, hanging structures, two-story stands, and roof elements.",
+      "clean": "Structural elements over 2.5 meters require full structural approval with TÜV-certified static calculations. The approval process takes 4 additional weeks and costs EUR 1,200-2,500. This applies to towers, hanging structures, two-story stands, and roof elements.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 54,
+      "tag": "h2",
+      "attrs": " id=\"hannover\"",
+      "inner": "Hannover — Halls with Suspension Bans and Hot Work",
+      "clean": "Hannover — Halls with Suspension Bans and Hot Work",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 55,
+      "tag": "p",
+      "attrs": "",
+      "inner": "<a href=\"https://www.messe.de\" target=\"_blank\" rel=\"noopener\">Deutsche Messe Hannover</a> is the world's largest fairground at 463,000 m². Major fairs:",
+      "clean": "Deutsche Messe Hannover is the world's largest fairground at 463,000 m². Major fairs:",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 56,
+      "tag": "li",
+      "attrs": "",
+      "inner": "Hannover Messe (industrial)",
+      "clean": "Hannover Messe (industrial)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 57,
+      "tag": "li",
+      "attrs": "",
+      "inner": "DOMOTEX (carpet/flooring)",
+      "clean": "DOMOTEX (carpet/flooring)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 58,
+      "tag": "li",
+      "attrs": "",
+      "inner": "LIGNA (woodworking)",
+      "clean": "LIGNA (woodworking)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 59,
+      "tag": "li",
+      "attrs": "",
+      "inner": "EMO (metalworking)",
+      "clean": "EMO (metalworking)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 60,
+      "tag": "li",
+      "attrs": "",
+      "inner": "Agritechnica (agriculture)",
+      "clean": "Agritechnica (agriculture)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 61,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Hall 8, 9 and 26 — Suspension Strictly Prohibited",
+      "clean": "Hall 8, 9 and 26 — Suspension Strictly Prohibited",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 62,
+      "tag": "p",
+      "attrs": "",
+      "inner": "In Hannover, ceiling suspension is <strong>strictly prohibited</strong> in Hall 8, Hall 9 and Hall 26 <a href=\"https://www.messe.de/files/files/000/media/downloads/technische-richtlinien/technische-richtlinien-2026-2.pdf\" target=\"_blank\" rel=\"noopener\" class=\"source-link\">→ Deutsche Messe TR 2026, §4.7.5</a>. In these halls, all structures must be floor-supported.",
+      "clean": "In Hannover, ceiling suspension is strictly prohibited in Hall 8, Hall 9 and Hall 26 → Deutsche Messe TR 2026, §4.7.5. In these halls, all structures must be floor-supported.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 63,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Hot Work Permit — Fire Watch Required",
+      "clean": "Hot Work Permit — Fire Watch Required",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 64,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Welding, cutting, and grinding operations in Hannover require a \"Hot Work Permit\" and a fire watch must be present during the operation. Deutsche Messe also requires special permits for work in areas with explosion and fire risk.",
+      "clean": "Welding, cutting, and grinding operations in Hannover require a \"Hot Work Permit\" and a fire watch must be present during the operation. Deutsche Messe also requires special permits for work in areas with explosion and fire risk.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 65,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Final Installation Day 18:00 Deadline",
+      "clean": "Final Installation Day 18:00 Deadline",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 66,
+      "tag": "p",
+      "attrs": "",
+      "inner": "All stand construction must be completed by 18:00 on the final installation day. Aisles must be cleared and emptied by this time.",
+      "clean": "All stand construction must be completed by 18:00 on the final installation day. Aisles must be cleared and emptied by this time.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 67,
+      "tag": "h2",
+      "attrs": " id=\"dusseldorf\"",
+      "inner": "Messe Düsseldorf — Brandwache and 50 kg Suspension Limit",
+      "clean": "Messe Düsseldorf — Brandwache and 50 kg Suspension Limit",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 68,
+      "tag": "p",
+      "attrs": "",
+      "inner": "<a href=\"https://www.messe-duesseldorf.de\" target=\"_blank\" rel=\"noopener\">Messe Düsseldorf</a> is one of the world's 10 largest fairgrounds. Major fairs:",
+      "clean": "Messe Düsseldorf is one of the world's 10 largest fairgrounds. Major fairs:",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 69,
+      "tag": "li",
+      "attrs": "",
+      "inner": "Interpack (packaging)",
+      "clean": "Interpack (packaging)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 70,
+      "tag": "li",
+      "attrs": "",
+      "inner": "K (plastics/rubber)",
+      "clean": "K (plastics/rubber)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 71,
+      "tag": "li",
+      "attrs": "",
+      "inner": "MEDICA (healthcare)",
+      "clean": "MEDICA (healthcare)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 72,
+      "tag": "li",
+      "attrs": "",
+      "inner": "drupa (printing)",
+      "clean": "drupa (printing)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 73,
+      "tag": "li",
+      "attrs": "",
+      "inner": "ProWein (wine)",
+      "clean": "ProWein (wine)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 74,
+      "tag": "li",
+      "attrs": "",
+      "inner": "boot (maritime)",
+      "clean": "boot (maritime)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 75,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Brandwache — Fire Watch Mandatory",
+      "clean": "Brandwache — Fire Watch Mandatory",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 76,
+      "tag": "p",
+      "attrs": "",
+      "inner": "In Düsseldorf, a fire watch (Brandwache) must be present at the stand throughout the fair in certain cases. Particularly for shrink-wrap usage and open-flame operations, a fire watch assigned by the fair company must be paid for by the exhibitor. This service costs EUR 400-800 per event <a href=\"https://www.duesseldorfcongress.de/wp-content/uploads/2024/12/Technical-Guidelines-Messe-Duesseldorf-2025_en.pdf\" target=\"_blank\" rel=\"noopener\" class=\"source-link\">→ Messe Düsseldorf TG 2025, §4.4.1</a>.",
+      "clean": "In Düsseldorf, a fire watch (Brandwache) must be present at the stand throughout the fair in certain cases. Particularly for shrink-wrap usage and open-flame operations, a fire watch assigned by the fair company must be paid for by the exhibitor. This service costs EUR 400-800 per event → Messe Düsseldorf TG 2025, §4.4.1.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 77,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Maximum 50 kg Per Suspension Point",
+      "clean": "Maximum 50 kg Per Suspension Point",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 78,
+      "tag": "p",
+      "attrs": "",
+      "inner": "In Düsseldorf, maximum 50 kg load per suspension point. Heavier structures require special engineering calculations and additional suspension point orders.",
+      "clean": "In Düsseldorf, maximum 50 kg load per suspension point. Heavier structures require special engineering calculations and additional suspension point orders.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 79,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Vehicle Height Limit 4.00 Meters",
+      "clean": "Vehicle Height Limit 4.00 Meters",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 80,
+      "tag": "p",
+      "attrs": "",
+      "inner": "All vehicles within Messe Düsseldorf grounds have a maximum height of 4.00 meters <a href=\"https://www.duesseldorfcongress.de/wp-content/uploads/2024/12/Technical-Guidelines-Messe-Duesseldorf-2025_en.pdf\" target=\"_blank\" rel=\"noopener\" class=\"source-link\">→ Messe Düsseldorf TG 2025, §2.1.2</a>. Special tall vehicles require prior authorization.",
+      "clean": "All vehicles within Messe Düsseldorf grounds have a maximum height of 4.00 meters → Messe Düsseldorf TG 2025, §2.1.2. Special tall vehicles require prior authorization.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 81,
+      "tag": "h2",
+      "attrs": " id=\"stuttgart\"",
+      "inner": "Messe Stuttgart — Fire Watch and TÜV Onsite",
+      "clean": "Messe Stuttgart — Fire Watch and TÜV Onsite",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 82,
+      "tag": "p",
+      "attrs": "",
+      "inner": "<a href=\"https://www.messe-stuttgart.de\" target=\"_blank\" rel=\"noopener\">Landesmesse Stuttgart</a>, known especially for automotive and technology fairs. Major fairs:",
+      "clean": "Landesmesse Stuttgart, known especially for automotive and technology fairs. Major fairs:",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 83,
+      "tag": "li",
+      "attrs": "",
+      "inner": "AMB (metalworking)",
+      "clean": "AMB (metalworking)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 84,
+      "tag": "li",
+      "attrs": "",
+      "inner": "Intergastra (gastronomy)",
+      "clean": "Intergastra (gastronomy)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 85,
+      "tag": "li",
+      "attrs": "",
+      "inner": "VISION (machine vision)",
+      "clean": "VISION (machine vision)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 86,
+      "tag": "li",
+      "attrs": "",
+      "inner": "MOTEK (assembly technology)",
+      "clean": "MOTEK (assembly technology)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 87,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Brandwache — Fire Watch",
+      "clean": "Brandwache — Fire Watch",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 88,
+      "tag": "p",
+      "attrs": "",
+      "inner": "In Stuttgart, as in Düsseldorf, a fire watch assigned by LMS (Landesmesse Stuttgart) may be mandatory during fair opening hours. The decision is at LMS's discretion and the cost falls on the exhibitor <a href=\"https://medtec-live.conteo.site/media/raw/415081bb141c6e74e99c50a49b999db314060016a4bef16bb935ae705200e332/Landesmesse+Stuttgart_TechnischeRichtlinien_TechnicalGuidelines.pdf\" target=\"_blank\" rel=\"noopener\" class=\"source-link\">→ LMS TR §4.4.1</a>.",
+      "clean": "In Stuttgart, as in Düsseldorf, a fire watch assigned by LMS (Landesmesse Stuttgart) may be mandatory during fair opening hours. The decision is at LMS's discretion and the cost falls on the exhibitor → LMS TR §4.4.1.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 89,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "TÜV Onsite",
+      "clean": "TÜV Onsite",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 90,
+      "tag": "p",
+      "attrs": "",
+      "inner": "The Stuttgart fairground works closely with TÜV. When needed, a TÜV inspector can conduct onsite inspections.",
+      "clean": "The Stuttgart fairground works closely with TÜV. When needed, a TÜV inspector can conduct onsite inspections.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 91,
+      "tag": "h2",
+      "attrs": " id=\"munih\"",
+      "inner": "Messe München — bauma, ISPO and 18:00 Deadlines",
+      "clean": "Messe München — bauma, ISPO and 18:00 Deadlines",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 92,
+      "tag": "p",
+      "attrs": "",
+      "inner": "<a href=\"https://www.messe-muenchen.de\" target=\"_blank\" rel=\"noopener\">Messe München</a> hosts bauma, the world's largest fair by area. Major fairs:",
+      "clean": "Messe München hosts bauma, the world's largest fair by area. Major fairs:",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 93,
+      "tag": "li",
+      "attrs": "",
+      "inner": "bauma (construction machinery)",
+      "clean": "bauma (construction machinery)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 94,
+      "tag": "li",
+      "attrs": "",
+      "inner": "ISPO (sports)",
+      "clean": "ISPO (sports)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 95,
+      "tag": "li",
+      "attrs": "",
+      "inner": "EXPO REAL (real estate)",
+      "clean": "EXPO REAL (real estate)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 96,
+      "tag": "li",
+      "attrs": "",
+      "inner": "transport logistic (logistics)",
+      "clean": "transport logistic (logistics)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 97,
+      "tag": "li",
+      "attrs": "",
+      "inner": "IFAT (environmental technology)",
+      "clean": "IFAT (environmental technology)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 98,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Final Installation Day 18:00",
+      "clean": "Final Installation Day 18:00",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 99,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Just like Hannover, all stand construction in Munich must be completed by 18:00 on the final installation day. Aisles must be cleared from this time. Stands missing this deadline may not be ready for the next day's fair opening.",
+      "clean": "Just like Hannover, all stand construction in Munich must be completed by 18:00 on the final installation day. Aisles must be cleared from this time. Stands missing this deadline may not be ready for the next day's fair opening.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 100,
+      "tag": "blockquote",
+      "attrs": "",
+      "inner": "At MT Messe Stand, we always plan the installation team one day early for Munich projects. Traffic and logistics delays are common for large fairs like bauma.",
+      "clean": "At MT Messe Stand, we always plan the installation team one day early for Munich projects. Traffic and logistics delays are common for large fairs like bauma.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 101,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "DVWG and TÜV Coordination",
+      "clean": "DVWG and TÜV Coordination",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 102,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Munich also requires compliance with DVWG (German Gas and Water Association), TÜV, Munich Fire Department (Branddirektion München), and Stadtwerke München regulations.",
+      "clean": "Munich also requires compliance with DVWG (German Gas and Water Association), TÜV, Munich Fire Department (Branddirektion München), and Stadtwerke München regulations.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 103,
+      "tag": "h2",
+      "attrs": " id=\"berlin\"",
+      "inner": "Messe Berlin — Waste Separation and Hot Work",
+      "clean": "Messe Berlin — Waste Separation and Hot Work",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 104,
+      "tag": "p",
+      "attrs": "",
+      "inner": "<a href=\"https://www.messe-berlin.de\" target=\"_blank\" rel=\"noopener\">Messe Berlin</a> hosts world-famous fairs like IFA and ITB. Major fairs:",
+      "clean": "Messe Berlin hosts world-famous fairs like IFA and ITB. Major fairs:",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 105,
+      "tag": "li",
+      "attrs": "",
+      "inner": "IFA (consumer electronics)",
+      "clean": "IFA (consumer electronics)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 106,
+      "tag": "li",
+      "attrs": "",
+      "inner": "ITB (tourism)",
+      "clean": "ITB (tourism)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 107,
+      "tag": "li",
+      "attrs": "",
+      "inner": "Grüne Woche (agriculture/food)",
+      "clean": "Grüne Woche (agriculture/food)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 108,
+      "tag": "li",
+      "attrs": "",
+      "inner": "Fruit Logistica (fresh produce)",
+      "clean": "Fruit Logistica (fresh produce)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 109,
+      "tag": "li",
+      "attrs": "",
+      "inner": "InnoTrans (rail transport)",
+      "clean": "InnoTrans (rail transport)",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 110,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Waste Separation — GewAbfV Obligation",
+      "clean": "Waste Separation — GewAbfV Obligation",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 111,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Berlin applies the German Commercial Waste Ordinance (GewAbfV). Stand builders are classified as commercial waste producers. All waste must be separated by type (wood, metal, plastic, mixed) and documented with disposal certificates. Non-compliance results in administrative fines <a href=\"https://www.gesetze-im-internet.de/gewabfv_2017/\" target=\"_blank\" rel=\"noopener\" class=\"source-link\">→ GewAbfV regulation</a>.",
+      "clean": "Berlin applies the German Commercial Waste Ordinance (GewAbfV). Stand builders are classified as commercial waste producers. All waste must be separated by type (wood, metal, plastic, mixed) and documented with disposal certificates. Non-compliance results in administrative fines → GewAbfV regulation.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 112,
+      "tag": "h3",
+      "attrs": "",
+      "inner": "Hot Work Permit — Fire Watch Mandatory",
+      "clean": "Hot Work Permit — Fire Watch Mandatory",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 113,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Like Hannover, Berlin requires a Hot Work Permit with a fire watch present. This applies to all operations involving open flame, welding, or sparking tools on the fairground during installation.",
+      "clean": "Like Hannover, Berlin requires a Hot Work Permit with a fire watch present. This applies to all operations involving open flame, welding, or sparking tools on the fairground during installation.",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 114,
+      "tag": "h2",
+      "attrs": " id=\"sss\"",
+      "inner": "Frequently Asked Questions",
+      "clean": "Frequently Asked Questions",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 115,
+      "tag": "summary",
+      "attrs": "",
+      "inner": "Almanya'da fuar standı kurmanın toplam gizli maliyeti ne kadardır?",
+      "clean": "Almanya'da fuar standı kurmanın toplam gizli maliyeti ne kadardır?",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 116,
+      "tag": "p",
+      "attrs": "",
+      "inner": "100 m²'lik bir stand için yukarıdaki kalemlerin toplamı EUR 8.000-18.000 arasında ek maliyet getirebilir. Bu, standın şehre, fuara ve tasarım karmaşıklığına bağlı olarak değişir. En yüksek ek maliyet genellikle Frankfurt'ta (catering tekeli + 2.5m TÜV eşiği) ortaya çıkar.",
+      "clean": "100 m²'lik bir stand için yukarıdaki kalemlerin toplamı EUR 8.000-18.000 arasında ek maliyet getirebilir. Bu, standın şehre, fuara ve tasarım karmaşıklığına bağlı olarak değişir. En yüksek ek maliyet genellikle Frankfurt'ta (catering tekeli + 2.5m TÜV eşiği) ortaya çıkar.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 117,
+      "tag": "summary",
+      "attrs": "",
+      "inner": "Messe Frankfurt'ta dışarıdan catering getirilebilir mi?",
+      "clean": "Messe Frankfurt'ta dışarıdan catering getirilebilir mi?",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 118,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Hayır. Messe Frankfurt'ta tüm yiyecek-içecek hizmetleri Accente Gastronomie Service tarafından sağlanır. Dışarıdan yiyecek-içecek getirmek kesinlikle yasaktır. Bu kural sadece Messe Frankfurt'a özeldir; Hannover, Düsseldorf, Stuttgart, Münih ve Berlin'de böyle bir kısıtlama yoktur.",
+      "clean": "Hayır. Messe Frankfurt'ta tüm yiyecek-içecek hizmetleri Accente Gastronomie Service tarafından sağlanır. Dışarıdan yiyecek-içecek getirmek kesinlikle yasaktır. Bu kural sadece Messe Frankfurt'a özeldir; Hannover, Düsseldorf, Stuttgart, Münih ve Berlin'de böyle bir kısıtlama yoktur.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 119,
+      "tag": "summary",
+      "attrs": "",
+      "inner": "Hangi yangın sertifikası gereklidir ve ne kadara mal olur?",
+      "clean": "Hangi yangın sertifikası gereklidir ve ne kadara mal olur?",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 120,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Tüm malzemeler DIN 4102 B1 veya EN 13501-1 Class CFL-S1 sertifikasına sahip olmalıdır. Her malzeme grubu için sertifika maliyeti EUR 300-800 arasındadır. MT Messe Stand olarak tüm üretimlerimizde B1 sertifikalı malzeme kullanıyoruz.",
+      "clean": "Tüm malzemeler DIN 4102 B1 veya EN 13501-1 Class CFL-S1 sertifikasına sahip olmalıdır. Her malzeme grubu için sertifika maliyeti EUR 300-800 arasındadır. MT Messe Stand olarak tüm üretimlerimizde B1 sertifikalı malzeme kullanıyoruz.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 121,
+      "tag": "summary",
+      "attrs": "",
+      "inner": "Messe Frankfurt'ta 2.5 metreden yüksek stand için ne gerekir?",
+      "clean": "Messe Frankfurt'ta 2.5 metreden yüksek stand için ne gerekir?",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 122,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Messe Frankfurt'ta 2.5 metreden yüksek yapı elemanları tam yapısal onay (TÜV sertifikalı statik hesaplama) gerektirir. Onay süreci 4 hafta ek süre alır ve maliyeti EUR 1.200-2.500 arasındadır. 2.4 metre altı yapılar basitleştirilmiş onay rejimine tabidir.",
+      "clean": "Messe Frankfurt'ta 2.5 metreden yüksek yapı elemanları tam yapısal onay (TÜV sertifikalı statik hesaplama) gerektirir. Onay süreci 4 hafta ek süre alır ve maliyeti EUR 1.200-2.500 arasındadır. 2.4 metre altı yapılar basitleştirilmiş onay rejimine tabidir.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 123,
+      "tag": "summary",
+      "attrs": "",
+      "inner": "Brandwache nedir, hangi şehirlerde zorunludur?",
+      "clean": "Brandwache nedir, hangi şehirlerde zorunludur?",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 124,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Brandwache, fuar süresince standda bulundurulması gereken yangın nöbetçisidir. Düsseldorf ve Stuttgart fuar alanlarında belirli durumlarda zorunludur. Ücreti etkinlik başına EUR 400-800 arasındadır.",
+      "clean": "Brandwache, fuar süresince standda bulundurulması gereken yangın nöbetçisidir. Düsseldorf ve Stuttgart fuar alanlarında belirli durumlarda zorunludur. Ücreti etkinlik başına EUR 400-800 arasındadır.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 125,
+      "tag": "summary",
+      "attrs": "",
+      "inner": "Which halls in Hannover prohibit ceiling suspension?",
+      "clean": "Which halls in Hannover prohibit ceiling suspension?",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 126,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Hannover'de Hall 8, Hall 9 ve Hall 26'da salon tavanından askı kesinlikle yapılamaz. Bu salonlarda tüm yapılar zeminden desteklenmelidir. Diğer salonlarda askı, yük hesaplaması ile mümkündür.",
+      "clean": "Hannover'de Hall 8, Hall 9 ve Hall 26'da salon tavanından askı kesinlikle yapılamaz. Bu salonlarda tüm yapılar zeminden desteklenmelidir. Diğer salonlarda askı, yük hesaplaması ile mümkündür.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 127,
+      "tag": "summary",
+      "attrs": "",
+      "inner": "Can styrofoam be used in German exhibition stands?",
+      "clean": "Can styrofoam be used in German exhibition stands?",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 128,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Hayır. Polistiren sert köpük (Styropor) ve yanarken damlayan termoplastik malzemeler tüm Alman fuar alanlarında yasaktır. Alternatif olarak alüminyum kompozit veya B1 sertifikalı köpük PVC kullanılmalıdır. Bu Türkiye ile Almanya arasındaki en önemli malzeme farklarından biridir.",
+      "clean": "Hayır. Polistiren sert köpük (Styropor) ve yanarken damlayan termoplastik malzemeler tüm Alman fuar alanlarında yasaktır. Alternatif olarak alüminyum kompozit veya B1 sertifikalı köpük PVC kullanılmalıdır. Bu Türkiye ile Almanya arasındaki en önemli malzeme farklarından biridir.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 129,
+      "tag": "summary",
+      "attrs": "",
+      "inner": "Almanya fuar alanlarında ses sınırı kaç dB'dir?",
+      "clean": "Almanya fuar alanlarında ses sınırı kaç dB'dir?",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 130,
+      "tag": "p",
+      "attrs": "",
+      "inner": "At all German fairgrounds, sound levels at the stand boundary must not exceed 70 dB(A). İhlal durumunda standın elektriği kesilebilir. Daha yüksek sesli sunumlar için ses yalıtımlı alan ve önceden yazılı izin gerekir.",
+      "clean": "At all German fairgrounds, sound levels at the stand boundary must not exceed 70 dB(A). İhlal durumunda standın elektriği kesilebilir. Daha yüksek sesli sunumlar için ses yalıtımlı alan ve önceden yazılı izin gerekir.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 131,
+      "tag": "summary",
+      "attrs": "",
+      "inner": "KDV iadesi nasıl alınır, ne kadar geri gelir?",
+      "clean": "KDV iadesi nasıl alınır, ne kadar geri gelir?",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 132,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Germany applies 19% VAT. Non-EU exhibitors can claim VAT refunds through BZSt. 100 m² stand için EUR 18.000-32.000 geri alınabilir. Process takes 3-6 months sürer. Vergi danışmanı ile çalışmak önerilir.",
+      "clean": "Germany applies 19% VAT. Non-EU exhibitors can claim VAT refunds through BZSt. 100 m² stand için EUR 18.000-32.000 geri alınabilir. Process takes 3-6 months sürer. Vergi danışmanı ile çalışmak önerilir.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 133,
+      "tag": "summary",
+      "attrs": "",
+      "inner": "Berlin'de atık ayrıştırma zorunluluğu nedir?",
+      "clean": "Berlin'de atık ayrıştırma zorunluluğu nedir?",
+      "translated": null,
+      "needs_translation": true
+    },
+    {
+      "id": 134,
+      "tag": "p",
+      "attrs": "",
+      "inner": "Berlin'de Alman Ticari Atık Yönetmeliği (GewAbfV) kapsamında stand kurulumu yapan firmalar 'atık üreticisi' sayılır. Atıklar türüne göre (ahşap, metal, plastik, kağıt, karışık) ayrıştırılmalı ve belgelenmelidir. Ayrıştırma yapılmazsa idari para cezası uygulanır.",
+      "clean": "Berlin'de Alman Ticari Atık Yönetmeliği (GewAbfV) kapsamında stand kurulumu yapan firmalar 'atık üreticisi' sayılır. Atıklar türüne göre (ahşap, metal, plastik, kağıt, karışık) ayrıştırılmalı ve belgelenmelidir. Ayrıştırma yapılmazsa idari para cezası uygulanır.",
+      "translated": null,
+      "needs_translation": false
+    },
+    {
+      "id": 135,
+      "tag": "h2",
+      "attrs": "",
+      "inner": "Other Country Guides",
+      "clean": "Other Country Guides",
+      "translated": null,
+      "needs_translation": true
+    }
+  ],
+  "stats": {
+    "total": 136,
+    "needs_translation": 74
+  }
+}
