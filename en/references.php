@@ -63,6 +63,9 @@ if (empty($cards)) {
   <meta name="author" content="MT Messe Stand">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://mtmessestand.com/en/references/">
+  <link rel="alternate" hreflang="x-default" href="https://mtmessestand.com/en/references/">
+  <link rel="alternate" hreflang="en" href="https://mtmessestand.com/en/references/">
+  <link rel="alternate" hreflang="tr" href="https://mtmessestand.com/tr/referanslar/">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <link rel="apple-touch-icon" href="../assets/img/favicon.png">
 
@@ -95,7 +98,7 @@ if (empty($cards)) {
   <style>
     .portfolio-item { overflow: hidden; border-radius: 0.5rem; transition: transform 0.3s ease; }
     .portfolio-item:hover { transform: scale(1.03); }
-    .portfolio-item img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3; }
+    .portfolio-item img { display: block; width: 100%; height: 100%; object-fit: contain; background: #f8f9fa; }
   </style>
 </head>
 <body>

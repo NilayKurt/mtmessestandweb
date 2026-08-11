@@ -3,3 +3,22 @@ ErrorDocument 404 /404.html
 # References pages served as PHP
 RewriteEngine On
 RewriteRule ^(en/references|tr/referanslar|de/referenzen|fr/references|es/referencias|ar/references|zh/references)\.html$ $1.php [L]
+
+# Hotlink protection — portfolio images only
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?mtmessestand\.com [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?mellow-souffle-1db250\.netlify\.app [NC]
+RewriteRule ^assets/img/portfolio/.+\.(webp|jpg|png)$ - [F]
+
+# Cache headers for static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Disable directory listing
+Options -Indexes

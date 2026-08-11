@@ -1,63 +1,59 @@
-# Portfolio / References Page Implementation Plan
+# Portfolio / References Page — Complete Implementation Plan
 
-> **For agentic workers:** Implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** Implement task-by-task. `- [ ]` checkbox syntax for tracking.
 
-**Goal:** Complete references/portfolio system: admin upload pipeline (JPG→WEBP + SEO + steganography + watermark), editor with multi-language alt texts + metadata fields, image sitemap, and production page rebuild.
+**Goal:** Complete references system: admin upload pipeline (JPG→WEBP with EXIF cleanup, AI scan, watermark, steganography, XMP), 8-language alt text editor, image sitemap, schema, hreflang, `.htaccess` security layers.
 
-**Architecture:** Flat-file PHP (~/projects/mtmesse). Admin upload goes through full processing pipeline. References pages are PHP files reading `data/references.json`. Admin panel uses existing pattern (session auth, CSRF, atomic write, toast redirects).
+**Architecture:** Flat-file PHP (~/projects/mtmesse). PHP pages read `data/references.json`. Upload pipeline: PHP GD for conversion/resize/watermark/steganography. cPanel-only — `.htaccess` for rewrite, hotlink protection, cache, directory listing. No Netlify.
 
-**Tech Stack:** PHP 8.x with GD, Bootstrap 5.3, GLightbox, exiftool (XMP metadata), PHP GD (WEBP conversion, resize, watermark, steganography)
+**Tech Stack:** PHP 8.x + GD, Bootstrap 5.3, GLightbox, exiftool (optional XMP)
 
 ## Global Constraints
 
-- All file changes within ~/projects/mtmesse
-- PHP GD must be available (cPanel standard)
+- PHP GD must be available (cPanel standard, `imagewebp` PHP 7.1+)
 - exiftool via `exec()` — graceful fallback if missing
 - WEBP only, quality 85, originals deleted after conversion
-- No cropping — aspect ratio preserved with `object-fit: cover` in CSS
-- Multi-language: EN + TR live now, others as "coming soon"
+- **No cropping**: `object-fit: contain` on all grid images
+- 8 language alt text fields (en, tr, de, fr, es, ru, zh, ar)
 - Atomic writes: `.tmp` → `rename()` for JSON
-- Session-based auth + CSRF on all POST actions
+- Session-based auth + CSRF on all POST
+- cPanel-only: all rules in `.htaccess`, no Netlify config files
 
 ---
 
-## ✅ DONE: Tasks 1-6 (Phase 1 — Pages + Navbar)
+## ✅ DONE: Phase 1 — Tasks 1–6
 
-Pages and navbar implemented and deployed. Summary:
+EN + TR pages live, navbar updated, deployed.
 
-| Task | Status | Deliverable |
+| Task | Status | What |
 |---|---|---|
-| 1 | ✅ | `data/references.json` (empty array) |
+| 1 | ✅ | `data/references.json` empty array |
 | 2 | ✅ | Navbar: 7-language "References" link |
 | 3 | ✅ | `en/references.php` — 4-col grid, GLightbox, pagination |
 | 4 | ✅ | `tr/referanslar.php` — Turkish version |
-| 5 | ✅ | Audit: 0 errors, PASS |
-| 6 | ✅ | Deploy: Netlify + GitHub Pages live |
+| 5 | ✅ | Audit: 0 errors |
+| 6 | ✅ | Deployed (GitHub + cPanel ready) |
 
 ---
 
-### Task 7: Complete `data/references.json` structure
+## Task 7: JSON schema — all fields
 
-**Files:**
-- Modify: `data/references.json`
+**Files:** Modify `data/references.json`
 
-**Interfaces:**
-- Produces: Array of reference objects with full metadata
-
-- [ ] **Step 1: Define the full JSON schema**
+**Schema per entry:**
 
 ```json
 {
   "position": 1,
-  "filename": "exhibition-stand-frankfurt-wooden-01.webp",
-  "src": "/assets/img/portfolio/exhibition-stand-frankfurt-wooden-01.webp",
+  "filename": "exhibition-stand-frankfurt-01.webp",
+  "src": "/assets/img/portfolio/exhibition-stand-frankfurt-01.webp",
   "sector": "automotive",
   "fair": "Messe Frankfurt",
   "city": "Frankfurt",
   "country": "Germany",
   "year": "2024",
-  "alt_en": "Custom wooden exhibition stand built for automotive manufacturer at Messe Frankfurt 2024 in Germany",
-  "alt_tr": "Almanya Messe Frankfurt 2024'te otomotiv üreticisi için inşa edilen özel ahşap fuar standı",
+  "alt_en": "Custom wooden stand built for automotive client at Messe Frankfurt 2024",
+  "alt_tr": "Almanya Messe Frankfurt 2024'te otomotiv firması için özel ahşap stand",
   "alt_de": "",
   "alt_fr": "",
   "alt_es": "",
@@ -65,447 +61,163 @@ Pages and navbar implemented and deployed. Summary:
   "alt_zh": "",
   "alt_ar": "",
   "watermarked": true,
-  "stegano_hash": "abc123..."
+  "stegano_hash": "abc123"
 }
 ```
 
-- [ ] **Step 2: Write the schema to file as empty array**
-
-`data/references.json` = `[]`
-
-- [ ] **Step 3: Verify JSON validity**
-
-```bash
-php -r "var_dump(json_decode(file_get_contents('data/references.json'), true));"
-```
-Expected: `array(0) {}`
-
-- [ ] **Step 4: Commit**
-
-```bash
-git add data/references.json
-git commit -m "feat: references.json schema with multi-lang alt texts + metadata"
-```
+- [ ] Write `data/references.json` = `[]`
+- [ ] Verify: `php -r "var_dump(json_decode(file_get_contents('data/references.json')));"` → empty array
+- [ ] Commit
 
 ---
 
-### Task 8: Image processing pipeline (upload handler)
+## Task 8: Upload pipeline — `admin/actions/upload-reference.php`
 
-**Files:**
-- Create: `admin/actions/upload-reference.php`
+**Full pipeline (in order):**
 
-**Interfaces:**
-- Consumes: `$_FILES['image']` (JPG/PNG), `$_POST` (alt texts, metadata)
-- Produces: Processed WEBP in `assets/img/portfolio/`, entry in `data/references.json`
+1. Validate upload (JPG/PNG, MIME, 5MB max)
+2. **EXIF cleanup** — PHP GD `imagecreatefromjpeg()` automatically strips EXIF/GPS
+3. **AI marker scan** — filename + raw binary for midjourney/dalle/synthetic markers
+4. Open source image via GD
+5. **Resize** to 1200px wide, proportional height
+6. **SEO filename** — lowercase, hyphens, no special chars
+7. **Watermark** — logo.webp bottom-right corner, 30% opacity via `imagecopymerge()`
+8. Save as WEBP, quality 85 via `imagewebp()`
+9. **XMP metadata** — `exec('exiftool ...')` if available, skip silently if not
+10. **Steganography** — embed `© MT Messe Stand YYYY` into first row LSB via GD
+11. **JSON save** — atomic write to `data/references.json`
+12. **Image sitemap** — regenerate `sitemap-images.xml`
+13. Redirect to editor with toast
 
-- [ ] **Step 1: Create upload handler with full pipeline**
-
-```php
-<?php
-// admin/actions/upload-reference.php
-try {
-    require_once __DIR__ . '/../auth.php';
-    require_login();
-    check_csrf();
-
-    // --- 1. VALIDATE UPLOAD ---
-    if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
-        header('Location: ../editor-references.php?error=upload_failed');
-        exit;
-    }
-    $file = $_FILES['image'];
-    if ($file['size'] > 5 * 1024 * 1024) { // 5MB limit
-        header('Location: ../editor-references.php?error=too_large');
-        exit;
-    }
-    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-    if (!in_array($ext, ['jpg', 'jpeg', 'png'])) {
-        header('Location: ../editor-references.php?error=invalid_type');
-        exit;
-    }
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mime = finfo_file($finfo, $file['tmp_name']);
-    finfo_close($finfo);
-    if (!in_array($mime, ['image/jpeg', 'image/png'])) {
-        header('Location: ../editor-references.php?error=invalid_mime');
-        exit;
-    }
-
-    // --- 2. AI MARKER SCAN ---
-    $ai_markers = ['midjourney', 'dalle', 'dall-e', 'stable-diffusion', 'synthetic',
-                   'ai-generated', 'generated by ai', 'imagen', 'adobe firefly',
-                   'created with ai', 'ai_gen'];
-    $fname_lower = strtolower($file['name']);
-    $raw_head = file_get_contents($file['tmp_name'], false, null, 0, 8192);
-    $ai_detected = false;
-    foreach ($ai_markers as $marker) {
-        $clean = str_replace([' ', '-'], '', $marker);
-        if (strpos(str_replace(['-', '_'], '', $fname_lower), $clean) !== false) {
-            $ai_detected = true; break;
-        }
-        if (stripos($raw_head, $clean) !== false) {
-            $ai_detected = true; break;
-        }
-    }
-    if ($ai_detected) {
-        header('Location: ../editor-references.php?error=ai_detected');
-        exit;
-    }
-
-    // --- 3. OPEN SOURCE IMAGE ---
-    $src_img = null;
-    if ($ext === 'png') {
-        $src_img = imagecreatefrompng($file['tmp_name']);
-    } else {
-        $src_img = imagecreatefromjpeg($file['tmp_name']);
-    }
-    if (!$src_img) {
-        header('Location: ../editor-references.php?error=corrupt');
-        exit;
-    }
-
-    // --- 4. RESIZE TO 1200px WIDE ---
-    $orig_w = imagesx($src_img);
-    $orig_h = imagesy($src_img);
-    $target_w = 1200;
-    if ($orig_w > $target_w) {
-        $target_h = (int)($orig_h * $target_w / $orig_w);
-        $resized = imagecreatetruecolor($target_w, $target_h);
-        imagecopyresampled($resized, $src_img, 0, 0, 0, 0, $target_w, $target_h, $orig_w, $orig_h);
-        imagedestroy($src_img);
-        $src_img = $resized;
-    }
-
-    // --- 5. GENERATE SEO FILENAME ---
-    $seo_name = trim(preg_replace('/[^a-z0-9]+/', '-', strtolower(
-        $_POST['seo_name'] ?? pathinfo($file['name'], PATHINFO_FILENAME)
-    )), '-');
-    $seo_name = $seo_name ?: 'exhibition-stand';
-    $filename = $seo_name . '.webp';
-    $upload_dir = __DIR__ . '/../../assets/img/portfolio';
-    if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
-    $target = "$upload_dir/$filename";
-
-    // --- 6. WATERMARK (bottom-right corner, 30% opacity logo) ---
-    $logo_path = __DIR__ . '/../../assets/img/logo.webp';
-    if (file_exists($logo_path)) {
-        $logo = imagecreatefromwebp($logo_path);
-        if ($logo) {
-            $logo_w = imagesx($logo);
-            $logo_h = imagesy($logo);
-            $dst_x = imagesx($src_img) - $logo_w - 20;
-            $dst_y = imagesy($src_img) - $logo_h - 20;
-            // 30% opacity via imagecopymerge
-            imagecopymerge($src_img, $logo, $dst_x, $dst_y, 0, 0, $logo_w, $logo_h, 30);
-            imagedestroy($logo);
-        }
-    }
-
-    // --- 7. SAVE AS WEBP ---
-    imagewebp($src_img, $target, 85);
-    imagedestroy($src_img);
-
-    // --- 8. XMP METADATA ---
-    $xmp_cmd = sprintf(
-        'exiftool -overwrite_original -q ' .
-        '-XMP-dc:Creator="MT Messe Stand" ' .
-        '-XMP-dc:Rights="© %s MT Messe Stand. All rights reserved." ' .
-        '-XMP-dc:Title="Exhibition Stand Reference - %s" ' .
-        '-XMP-dc:Description="%s" ' .
-        '-XMP-dc:Subject="exhibition stand, trade fair, portfolio, reference" ' .
-        '%s 2>/dev/null',
-        escapeshellarg($_POST['year'] ?? date('Y')),
-        escapeshellarg($seo_name),
-        escapeshellarg(substr($_POST['alt_en'] ?? 'Exhibition stand reference', 0, 200)),
-        escapeshellarg($target)
-    );
-    exec($xmp_cmd);
-
-    // --- 9. STEGANOGRAPHY (LSB via PHP GD) ---
-    $copyright_text = '© MT Messe Stand ' . ($_POST['year'] ?? date('Y'));
-    // Embed copyright into first row's LSB of R channel
-    $img = imagecreatefromwebp($target);
-    $w = imagesx($img);
-    for ($i = 0; $i < min(strlen($copyright_text), $w); $i++) {
-        $rgb = imagecolorat($img, $i, 0);
-        $r = ($rgb >> 16) & 0xFF;
-        $g = ($rgb >> 8) & 0xFF;
-        $b = $rgb & 0xFF;
-        $char = ord($copyright_text[$i]);
-        // Store 2 bits per pixel in R LSBs
-        $r = ($r & 0xFC) | (($char >> 6) & 0x03);
-        $g = ($g & 0xFC) | (($char >> 4) & 0x03);
-        $b = ($b & 0xFC) | (($char >> 2) & 0x03);
-        $new_color = imagecolorallocate($img, $r, $g, $b);
-        imagesetpixel($img, $i, 0, $new_color);
-    }
-    imagewebp($img, $target, 85);
-    imagedestroy($img);
-
-    // --- 10. UPDATE JSON ---
-    $json_file = __DIR__ . '/../../data/references.json';
-    $lock_file = $json_file . '.lock';
-    $fp = fopen($lock_file, 'w');
-    if (flock($fp, LOCK_EX)) {
-        $refs = file_exists($json_file) ? json_decode(file_get_contents($json_file), true) : [];
-        if (!is_array($refs)) $refs = [];
-        
-        $max_pos = 0;
-        foreach ($refs as $r) { $max_pos = max($max_pos, $r['position'] ?? 0); }
-        
-        $entry = [
-            'position' => $max_pos + 1,
-            'filename' => $filename,
-            'src' => '/assets/img/portfolio/' . $filename,
-            'sector' => $_POST['sector'] ?? '',
-            'fair' => $_POST['fair'] ?? '',
-            'city' => $_POST['city'] ?? '',
-            'country' => $_POST['country'] ?? '',
-            'year' => $_POST['year'] ?? date('Y'),
-            'alt_en' => $_POST['alt_en'] ?? '',
-            'alt_tr' => $_POST['alt_tr'] ?? '',
-            'alt_de' => $_POST['alt_de'] ?? '',
-            'alt_fr' => $_POST['alt_fr'] ?? '',
-            'alt_es' => $_POST['alt_es'] ?? '',
-            'alt_ru' => $_POST['alt_ru'] ?? '',
-            'alt_zh' => $_POST['alt_zh'] ?? '',
-            'alt_ar' => $_POST['alt_ar'] ?? '',
-            'watermarked' => true,
-            'stegano_hash' => md5($copyright_text),
-        ];
-        $refs[] = $entry;
-        
-        $tmp = $json_file . '.tmp';
-        file_put_contents($tmp, json_encode($refs, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-        rename($tmp, $json_file);
-        
-        flock($fp, LOCK_UN);
-    }
-    fclose($fp);
-    @unlink($lock_file);
-
-    // --- 11. REGENERATE SITEMAP ---
-    // (see Task 10)
-
-    log_action('upload_reference', 'success', ['file' => $filename]);
-    header('Location: ../editor-references.php?uploaded=1');
-
-} catch (Throwable $e) {
-    log_error('Upload reference: ' . $e->getMessage());
-    header('Location: ../editor-references.php?error=system_error');
-}
-```
-
-- [ ] **Step 2: Verify PHP syntax**
-
-```bash
-php -l admin/actions/upload-reference.php
-```
-Expected: No syntax errors
-
-- [ ] **Step 3: Test with a sample image**
-
-```bash
-# Upload a test JPG
-curl -X POST -F "image=@test.jpg" -F "alt_en=test stand" -F "seo_name=test-stand-01" \
-  -F "csrf_token=..." "http://localhost:8765/admin/actions/upload-reference.php"
-```
-Expected: 302 redirect, WEBP created in `assets/img/portfolio/`
-
-- [ ] **Step 4: Verify outputs**
-
-```bash
-file assets/img/portfolio/test-stand-01.webp  # WEBP image data
-exiftool assets/img/portfolio/test-stand-01.webp | grep Creator  # MT Messe Stand
-php -r "var_dump(json_decode(file_get_contents('data/references.json'), true));"  # Entry exists
-```
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add admin/actions/upload-reference.php
-git commit -m "feat: reference upload pipeline — JPG→WEBP, resize, AI scan, XMP, steganography, watermark"
-```
+- [ ] Create `admin/actions/upload-reference.php` with pipeline code
+- [ ] Verify PHP syntax: `php -l`
+- [ ] Test upload → check WEBP output, EXIF stripped, watermark visible, XMP if exiftool, JSON entry complete
+- [ ] Commit
 
 ---
 
-### Task 9: Admin editor page (editor-references.php)
+## Task 9: Admin editor — `admin/editor-references.php`
 
-**Files:**
-- Create: `admin/editor-references.php`
-- Create: `admin/actions/reorder-references.php`
-- Create: `admin/actions/delete-reference.php`
-- Modify: `admin/admin-layout.php` (add sidebar link)
+**Files:** Create `admin/editor-references.php`, `admin/actions/reorder-references.php`, `admin/actions/delete-reference.php`. Modify `admin/admin-layout.php`.
 
-**Interfaces:**
-- Consumes: `admin/config.php`, `admin/auth.php`, `admin/admin-layout.php`
-- Produces: Full CRUD interface for references
+**Editor features:**
 
-- [ ] **Step 1: Build the editor page**
+- Grid of all images sorted by position
+- Each shows: thumbnail (150px), position input, alt text preview, sector badge
+- ↑ ↓ arrows for reorder (AJAX → swap positions in JSON)
+- Edit button → inline form with all 8 language alt texts + metadata
+- Delete button → confirmation → removes JSON entry + deletes file + regenerates sitemap
+- "Add New" → upload form: file input + alt texts + sector/fair/city/country/year/seo_name
+- Sidebar: "Referanslar" link
 
-Page layout using `admin-layout.php` wrapper:
-
-**Header area:** "Referanslar" title + "Yeni Görsel Ekle" button
-**Upload form (collapsed):** File input + 8 language alt text fields + metadata fields (sector, fair, city, country, year) + SEO filename
-**Grid view:** All images sorted by position, each showing:
-- Position number (editable input)
-- Thumbnail (150px)
-- First few alt text chars
-- ↑ ↓ order buttons
-- Edit button (opens inline form with all fields)
-- Delete button (with confirmation)
-
-- [ ] **Step 2: Build reorder action**
-
-`admin/actions/reorder-references.php`:
-- Takes `$_POST['id']` (position index) and `$_POST['direction']` ('up' or 'down')
-- Swaps position values with adjacent entry
-- Atomic write back to JSON
-- Redirect back to editor
-
-- [ ] **Step 3: Build delete action**
-
-`admin/actions/delete-reference.php`:
-- Takes `$_POST['id']`
-- Removes entry from JSON array
-- Deletes image file from `assets/img/portfolio/`
-- Regenerates sitemap
-- Redirect back to editor
-
-- [ ] **Step 4: Add sidebar link**
-
-In `admin/admin-layout.php`, add to sidebar nav:
-```php
-<li class="nav-item">
-  <a class="nav-link <?= $current_page === 'references' ? 'active' : '' ?>" 
-     href="editor-references.php">
-    <i class="bi bi-images"></i> Referanslar
-  </a>
-</li>
-```
-
-- [ ] **Step 5: Test all CRUD operations**
-
-1. Upload a test image → appears in grid
-2. Edit alt texts → saved in JSON
-3. Move up/down → position changes
-4. Delete → removed from JSON + file deleted
-
-- [ ] **Step 6: Commit**
-
-```bash
-git add admin/editor-references.php admin/actions/reorder-references.php \
-        admin/actions/delete-reference.php admin/admin-layout.php
-git commit -m "feat: admin references editor — upload, reorder, edit alt texts, delete"
-```
+- [ ] Create editor + reorder + delete PHP files
+- [ ] Add sidebar link in `admin-layout.php`
+- [ ] Test full CRUD cycle
+- [ ] Commit
 
 ---
 
-### Task 10: SEO package (sitemap + schema + hreflang)
+## Task 10: SEO + security layers
 
-**Files:**
-- Create: `sitemap-images.xml`
-- Modify: `en/references.php`, `tr/referanslar.php`
-- Modify: `build.php` (add sitemap regeneration)
-- Modify: `llms.txt`
+**Files:** Modify `.htaccess`, `en/references.php`, `tr/referanslar.php`, `robots.txt`, `llms.txt`. Create `sitemap-images.xml`.
 
-- [ ] **Step 1: Image sitemap generator**
+### 10A — Image sitemap
 
-PHP script that reads `data/references.json` and generates `sitemap-images.xml`:
+`sitemap-images.xml` reads `data/references.json`, generates:
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url>
-    <loc>https://mtmessestand.com/en/references/</loc>
-    <image:image>
-      <image:loc>https://mtmessestand.com/assets/img/portfolio/stand-01.webp</image:loc>
-      <image:caption>Custom wooden exhibition stand at Messe Frankfurt 2024</image:caption>
-      <image:title>Exhibition Stand Frankfurt - Reference</image:title>
-    </image:image>
-    <!-- repeated for each image -->
-  </url>
-</urlset>
+<url>
+  <loc>https://mtmessestand.com/en/references/</loc>
+  <image:image>
+    <image:loc>https://mtmessestand.com/assets/img/portfolio/file.webp</image:loc>
+    <image:caption>alt_en text</image:caption>
+  </image:image>
+</url>
 ```
+Regenerated after every upload/delete.
 
-Auto-regenerated after every upload/delete/reorder.
+### 10B — Schema on page
 
-- [ ] **Step 2: Add ImageObject schema to references pages**
+Both `en/references.php` and `tr/referanslar.php`:
+- `ImageObject` schema for first 10 images (creditText, creator, copyrightNotice, license)
+- `BreadcrumbList`: Home → References
+- `CollectionPage` with `inLanguage`
 
-In `en/references.php` and `tr/referanslar.php`, add structured data for first 10 images:
-```json
-{
-  "@type": "ImageObject",
-  "contentUrl": "https://mtmessestand.com/assets/img/portfolio/stand-01.webp",
-  "license": "https://mtmessestand.com/rights/",
-  "acquireLicensePage": "https://mtmessestand.com/contact.html",
-  "creditText": "MT Messe Stand",
-  "creator": { "@type": "Organization", "name": "MT Messe Stand" },
-  "copyrightNotice": "© MT Messe Stand"
-}
-```
+### 10C — hreflang chain
 
-- [ ] **Step 3: Add hreflang to references pages**
-
-Both pages already have canonical + schema `inLanguage`. Add `<link rel="alternate" hreflang="X">` tags to `en/references.php`:
+In `<head>` of both pages:
 ```html
 <link rel="alternate" hreflang="x-default" href="https://mtmessestand.com/en/references/">
 <link rel="alternate" hreflang="en" href="https://mtmessestand.com/en/references/">
 <link rel="alternate" hreflang="tr" href="https://mtmessestand.com/tr/referanslar/">
 ```
 
-- [ ] **Step 4: Update llms.txt**
+### 10D — OG image
 
-Add section:
-```markdown
-## References
-- [Portfolio Gallery](https://mtmessestand.com/en/references/) — Exhibition stand references across 28+ countries
+Dynamically set first portfolio image as `og:image` via PHP.
+
+### 10E — `.htaccess` security layers
+
+Add to `.htaccess`:
+```apache
+# Hotlink protection
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?mtmessestand\.com [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?mellow-souffle-1db250\.netlify\.app [NC]
+RewriteRule \.(webp|jpg|png)$ - [F]
+
+# Cache headers for images
+<FilesMatch "\.(webp|png|jpg|css|js)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# Disable directory listing
+Options -Indexes
 ```
 
-- [ ] **Step 5: Commit**
+### 10F — robots.txt
 
-```bash
-git add sitemap-images.xml en/references.php tr/referanslar.php build.php llms.txt
-git commit -m "feat: SEO package — image sitemap, ImageObject schema, hreflang chain, llms.txt"
-```
+Add: `Sitemap: https://mtmessestand.com/sitemap-images.xml`
+
+### 10G — llms.txt
+
+Add references section with link to portfolio page.
+
+### 10H — ARIA
+
+Grid items: `role="listitem"`. Lightbox links: `aria-label="View enlarged reference image"`.
+
+- [ ] Create sitemap generator
+- [ ] Add all schema to both pages
+- [ ] Add hreflang chain
+- [ ] Dynamic OG image
+- [ ] Update `.htaccess` with all security rules
+- [ ] Update `robots.txt` and `llms.txt`
+- [ ] Add ARIA attributes
+- [ ] Commit
 
 ---
 
-### Task 11: Final audit + deploy
+## Task 11: `object-fit: contain` fix
 
-- [ ] **Step 1: Run full audit**
+**Files:** Modify `en/references.php`, `tr/referanslar.php`
 
-```bash
-cd ~/projects/mtmesse && python3 scripts/audit_links.py --check-external
-```
-Expected: 0 errors
-
-- [ ] **Step 2: Test upload pipeline end-to-end**
-
-1. Upload a real JPG photo through admin panel
-2. Verify WEBP output at correct size
-3. Verify XMP metadata via exiftool
-4. Verify steganography can be extracted
-5. Verify watermark visible at bottom-right
-6. Verify JSON entry complete
-7. Verify sitemap updated
-8. Verify page renders the new image
-
-- [ ] **Step 3: Git push**
-
-```bash
-git add -A && git commit -m "feat: complete references system — admin upload pipeline + SEO" && git push origin master
+Change CSS:
+```css
+.portfolio-item img { object-fit: contain; }
 ```
 
-- [ ] **Step 4: Deploy**
+- [ ] Remove `aspect-ratio: 4/3` if present, keep `object-fit: contain`
+- [ ] Add light gray background to image wrapper so empty areas blend: `background: #f8f9fa;`
+- [ ] Commit
 
-```bash
-cd ~/projects/mtmesse && netlify deploy --dir=. --message "references: admin pipeline + SEO package"
-```
+---
 
-- [ ] **Step 5: Production verification**
+## Task 12: Final audit + deploy
 
-```bash
-curl -sI "https://mellow-souffle-1db250.netlify.app/en/references.html"  # 200
-curl -s "https://mellow-souffle-1db250.netlify.app/sitemap-images.xml" | head -5  # Valid XML
-```
+- [ ] Run `python3 scripts/audit_links.py` → 0 errors
+- [ ] End-to-end test: upload JPG → verify pipeline outputs
+- [ ] Test both EN + TR pages in browser (grid, lightbox, navbar active)
+- [ ] Test admin CRUD (upload, reorder, edit alt texts, delete)
+- [ ] Verify `.htaccess` rules work on test server
+- [ ] Git push
+- [ ] cPanel `git pull` (user does this)

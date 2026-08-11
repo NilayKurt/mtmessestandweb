@@ -4,10 +4,11 @@ function render_admin_layout(string $title, string $content, string $current_pag
     $langs = LANGUAGES;
     $lang_name = $langs[$lang] ?? $lang;
     $sidebar_items = [
-        'blog'    => ['📝', 'Blog', 'dashboard.php'],
-        'about'   => ['📄', 'About', 'editor-page.php?page=about'],
-        'contact' => ['📧', 'Contact', 'editor-page.php?page=contact'],
-        'media'   => ['🖼️', 'Medya', 'media.php'],
+        'blog'       => ['📝', 'Blog', 'dashboard.php'],
+        'about'      => ['📄', 'About', 'editor-page.php?page=about'],
+        'contact'    => ['📧', 'Contact', 'editor-page.php?page=contact'],
+        'references' => ['🖼️', 'Referanslar', 'editor-references.php'],
+        'media'      => ['📁', 'Medya', 'media.php'],
     ];
     $sidebar_html = '';
     foreach ($sidebar_items as $key => [$icon, $label, $href]) {
