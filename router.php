@@ -18,6 +18,23 @@ if (is_dir($file)) {
     }
 }
 
+// Rewrite references .html → .php (cPanel .htaccess equivalent)
+$ref_map = [
+    '/en/references.html'   => '/en/references.php',
+    '/tr/referanslar.html'  => '/tr/referanslar.php',
+    '/de/referenzen.html'   => '/de/referenzen.php',
+    '/fr/references.html'   => '/fr/references.php',
+    '/es/referencias.html'  => '/es/referencias.php',
+    '/ar/references.html'   => '/ar/references.php',
+    '/zh/references.html'   => '/zh/references.php',
+];
+if (isset($ref_map[$path]) && is_file(__DIR__ . $ref_map[$path])) {
+    $_SERVER['SCRIPT_NAME'] = $ref_map[$path];
+    $_SERVER['SCRIPT_FILENAME'] = __DIR__ . $ref_map[$path];
+    include $_SERVER['SCRIPT_FILENAME'];
+    return true;
+}
+
 // 404
 http_response_code(404);
 include __DIR__ . '/404.html';
