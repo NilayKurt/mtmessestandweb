@@ -10,11 +10,7 @@ if (!is_array($refs)) $refs = [];
 
 usort($refs, function($a, $b) { return ($a['position'] ?? 999) - ($b['position'] ?? 999); });
 
-$perPage = 20;
 $total = count($refs);
-$page = max(1, (int)($_GET['page'] ?? 1));
-$offset = ($page - 1) * $perPage;
-$items = array_slice($refs, $offset, $perPage);
 
 $navbar = render_navbar('en', 'references');
 $footer = render_footer('en', 1, 'references');
@@ -29,7 +25,7 @@ foreach ($refs as $r) {
 $cards = '';
 $imageObjects = [];
 $imgIdx = 0;
-foreach ($items as $ref) {
+foreach ($refs as $ref) {
     $src = htmlspecialchars($ref['src'] ?? '');
     $alt = htmlspecialchars($ref['alt_en'] ?? $ref['alt'] ?? 'MT Messe Stand exhibition stand reference');
     if (empty($src)) continue;
@@ -57,17 +53,6 @@ HTML;
 }
 
 // Pagination
-$pagination = '';
-if ($total > $perPage) {
-    $totalPages = ceil($total / $perPage);
-    $pagination = '<nav class="mt-5" aria-label="Page navigation"><ul class="pagination justify-content-center">';
-    for ($i = 1; $i <= $totalPages; $i++) {
-        $active = $i === $page ? ' active' : '';
-        $pagination .= "<li class=\"page-item{$active}\"><a class=\"page-link\" href=\"?page={$i}\">{$i}</a></li>";
-    }
-    $pagination .= '</ul></nav>';
-}
-
 if (empty($cards)) {
     $cards = '<div class="col-12 text-center py-5"><p class="text-muted">Our reference gallery is being prepared. Check back soon.</p></div>';
 }
@@ -170,7 +155,6 @@ $schema_json = json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
       <?= $cards ?>
     </div>
 
-    <?= $pagination ?>
   </div>
 </section>
 </main>
