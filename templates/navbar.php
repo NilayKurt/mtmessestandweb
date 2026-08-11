@@ -9,6 +9,7 @@ function render_navbar(string $lang, string $page_type, string $slug = ''): stri
         'es' => ['Inicio', 'Nosotros', 'Blog', 'Referencias', 'Contacto'],
         'ar' => ['الرئيسية', 'من نحن', 'المدونة', 'مراجع', 'اتصل بنا'],
         'zh' => ['首页', '关于我们', '博客', '参考', '联系我们'],
+        'ru' => ['Главная', 'О нас', 'Блог', 'Портфолио', 'Контакты'],
     ];
     $L = $labels[$lang] ?? $labels['en'];
 
@@ -21,6 +22,7 @@ function render_navbar(string $lang, string $page_type, string $slug = ''): stri
         ['code' => 'es', 'name' => 'ES', 'available' => true],
         ['code' => 'ar', 'name' => 'AR', 'available' => true],
         ['code' => 'zh', 'name' => 'ZH', 'available' => true],
+        ['code' => 'ru', 'name' => 'RU', 'available' => true],
     ];
 
     // === AUTO-BUILD blog slug map from JSON data files ===
@@ -59,6 +61,7 @@ function render_navbar(string $lang, string $page_type, string $slug = ''): stri
         'es' => 'referencias.html',
         'ar' => 'references.html',
         'zh' => 'references.html',
+        'ru' => 'references.html',
     ];
     $refPage = $refPages[$lang] ?? 'references.html';
 

@@ -27,6 +27,7 @@ $ref_map = [
     '/es/referencias.html'  => '/es/referencias.php',
     '/ar/references.html'   => '/ar/references.php',
     '/zh/references.html'   => '/zh/references.php',
+    '/ru/references.html'   => '/ru/references.php',
 ];
 if (isset($ref_map[$path]) && is_file(__DIR__ . $ref_map[$path])) {
     $_SERVER['SCRIPT_NAME'] = $ref_map[$path];

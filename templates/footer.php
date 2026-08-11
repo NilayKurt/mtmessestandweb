@@ -100,7 +100,7 @@ function render_footer(string $lang, int $depth, string $page_type): string {
     $c = $ft['company'];
 
     // Language badges
-    $allLangs = ['en' => 'EN', 'tr' => 'TR', 'de' => 'DE', 'fr' => 'FR', 'es' => 'ES', 'ar' => 'AR', 'zh' => 'ZH'];
+    $allLangs = ['en' => 'EN', 'tr' => 'TR', 'de' => 'DE', 'fr' => 'FR', 'es' => 'ES', 'ar' => 'AR', 'zh' => 'ZH', 'ru' => 'RU'];
     $badges = '';
     foreach ($allLangs as $code => $name) {
         $active = $code === $lang ? ' bg-accent' : ' bg-dark';
