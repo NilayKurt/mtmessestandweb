@@ -51,6 +51,7 @@ $toast
   <textarea name="content" id="ch" style="display:none"></textarea>
   <button type="submit" class="btn btn-accent">💾 Kaydet</button>
 </form>
+<style>#editor img { max-width: 100%; height: auto; }</style>
 <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
 <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
 <script>

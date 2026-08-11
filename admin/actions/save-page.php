@@ -16,7 +16,7 @@ if (empty($title)) {
     exit;
 }
 
-$allowed_tags = '<h2><h3><h4><p><ul><ol><li><blockquote><strong><em><a><br>';
+$allowed_tags = '<h2><h3><h4><p><ul><ol><li><blockquote><strong><em><a><br><img>';
 $content_clean = strip_tags($content_raw, $allowed_tags);
 
 $data = [
