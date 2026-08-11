@@ -9,9 +9,17 @@ function render_page(array $meta, string $content_html, string $lang, string $pa
     $full_title = "$title_esc | MT Messe Stand";
     $canonical = SITE_URL . "/$lang/$page_type/";
     $asset_prefix = '../assets/';
-
     $navbar_html = render_navbar($lang, $page_type);
     $footer_html = render_footer($lang, 1, $page_type);
+
+    // About image (rendered by template, not in JSON content)
+    $about_image = '';
+    if ($page_type === 'about') {
+        $about_image = '
+    <div class="row mt-5"><div class="col-lg-6"></div><div class="col-lg-6 ps-lg-4 text-end">
+      <img src="' . $asset_prefix . 'img/about.webp" alt="MT Messe Stand" class="img-fluid rounded-4 shadow" width="400" height="204" loading="lazy">
+    </div></div>';
+    }
 
     $html = <<<HTML
 <!DOCTYPE html>
@@ -26,7 +34,6 @@ function render_page(array $meta, string $content_html, string $lang, string $pa
   <link rel="canonical" href="$canonical">
   <link rel="icon" type="image/png" href="{$asset_prefix}img/favicon.png">
   <link rel="apple-touch-icon" href="{$asset_prefix}img/favicon.png">
-
   <meta property="og:title" content="$full_title">
   <meta property="og:description" content="$meta_desc">
   <meta property="og:url" content="$canonical">
@@ -35,7 +42,6 @@ function render_page(array $meta, string $content_html, string $lang, string $pa
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="$title_esc">
   <meta name="twitter:description" content="$meta_desc">
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,7 +51,6 @@ function render_page(array $meta, string $content_html, string $lang, string $pa
     "logo": "https://mtmessestand.com{$asset_prefix}img/logo.webp"
   }
   </script>
-
   <link href="{$asset_prefix}vendor/bootstrap.min.css" rel="stylesheet">
   <link href="{$asset_prefix}vendor/bootstrap-icons.css" rel="stylesheet">
   <link href="{$asset_prefix}css/style.min.css" rel="stylesheet">
@@ -57,14 +62,7 @@ $navbar_html
   <div class="container">
     <h1 class="mb-4">$title_esc</h1>
     <div class="page-content">$content_html</div>
-HTML;
-    if ($page_type === 'about') {
-        $html .= '
-    <div class="row mt-5"><div class="col-lg-6"></div><div class="col-lg-6 ps-lg-4 text-end">
-      <img src="' . $asset_prefix . 'img/about.webp" alt="MT Messe Stand" class="img-fluid rounded-4 shadow" width="400" height="204" loading="lazy">
-    </div></div>';
-    }
-    $html .= '
+    $about_image
   </div>
 </section>
 </main>
