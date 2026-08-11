@@ -130,7 +130,38 @@ $toast
 <style>
   .ref-card { transition: transform .15s; }
   .ref-card:hover { transform: translateY(-1px); }
+  .toast-msg { position:fixed; top:1rem; right:1rem; z-index:9999; padding:.5rem 1rem; border-radius:6px; color:#fff; font-size:.9rem; display:none; }
+  .toast-msg.show { display:block; animation: fadeIn .3s; }
+  .toast-msg.success { background:#198754; }
+  .toast-msg.error { background:#dc3545; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
 </style>
+<div class="toast-msg" id="toast"></div>
+<script>
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = 'toast-msg show ' + type;
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+document.querySelectorAll('.ref-card form').forEach(form => {
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const fd = new FormData(this);
+    try {
+      const resp = await fetch(this.action, { method: 'POST', body: fd });
+      if (!resp.ok) { showToast('Hata oluştu', 'error'); return; }
+      // Reload page (positions changed, need fresh sort)
+      if (this.action.includes('delete')) {
+        this.closest('.ref-card').style.opacity = '0.3';
+        showToast('Silindi', 'success');
+      }
+      setTimeout(() => location.reload(), 400);
+    } catch(err) {
+      showToast('Bağlantı hatası', 'error');
+    }
+  });
+});
+</script>
 HEREDOC;
 
 require_once __DIR__ . '/admin-layout.php';
