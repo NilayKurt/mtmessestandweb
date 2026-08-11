@@ -1,9 +1,0 @@
-# Netlify build config — statik site, build komutu yok
-# Build dakikası tüketmemek için minimal yapılandırma
-[build]
-  command = ""
-  publish = "."
-
-# Sadece master branch deploy et
-[build.environment]
-  NODE_VERSION = "none"

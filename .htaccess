@@ -7,7 +7,6 @@ RewriteRule ^(en/references|tr/referanslar|de/referenzen|fr/references|es/refere
 # Hotlink protection — portfolio images only
 RewriteCond %{HTTP_REFERER} !^$
 RewriteCond %{HTTP_REFERER} !^https?://(www\.)?mtmessestand\.com [NC]
-RewriteCond %{HTTP_REFERER} !^https?://(www\.)?mellow-souffle-1db250\.netlify\.app [NC]
 RewriteRule ^assets/img/portfolio/.+\.(webp|jpg|png)$ - [F]
 
 # Cache headers for static assets
