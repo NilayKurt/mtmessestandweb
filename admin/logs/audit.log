@@ -49,3 +49,41 @@
 [2026-08-11 11:18:28] [127.0.0.1] login: success
 [2026-08-11 11:18:57] [127.0.0.1] upload_reference: success {"file":"e2e-final-pass.webp"}
 [2026-08-11 13:22:17] [172.26.80.1] login: success
+[2026-08-11 13:37:27] [172.26.80.1] move_reference: success {"id":128,"to":3}
+[2026-08-11 13:37:38] [172.26.80.1] move_reference: success {"id":11,"to":5}
+[2026-08-11 13:37:56] [172.26.80.1] move_reference: success {"id":127,"to":11}
+[2026-08-11 13:38:21] [172.26.80.1] move_reference: success {"id":128,"to":2}
+[2026-08-11 13:38:29] [172.26.80.1] move_reference: success {"id":1,"to":8}
+[2026-08-11 13:38:43] [172.26.80.1] move_reference: success {"id":10,"to":3}
+[2026-08-11 13:38:54] [172.26.80.1] move_reference: success {"id":13,"to":4}
+[2026-08-11 13:39:09] [172.26.80.1] move_reference: success {"id":33,"to":3}
+[2026-08-11 13:39:20] [172.26.80.1] move_reference: success {"id":7,"to":17}
+[2026-08-11 13:39:26] [172.26.80.1] move_reference: success {"id":14,"to":1}
+[2026-08-11 13:39:40] [172.26.80.1] move_reference: success {"id":34,"to":4}
+[2026-08-11 13:39:58] [172.26.80.1] move_reference: success {"id":33,"to":3}
+[2026-08-11 13:40:22] [172.26.80.1] move_reference: success {"id":111,"to":7}
+[2026-08-11 13:40:44] [172.26.80.1] move_reference: success {"id":128,"to":11}
+[2026-08-11 13:41:12] [172.26.80.1] move_reference: success {"id":111,"to":8}
+[2026-08-11 13:41:29] [172.26.80.1] move_reference: success {"id":81,"to":14}
+[2026-08-11 13:41:50] [172.26.80.1] move_reference: success {"id":48,"to":3}
+[2026-08-11 13:42:09] [172.26.80.1] move_reference: success {"id":51,"to":5}
+[2026-08-11 13:42:25] [172.26.80.1] move_reference: success {"id":111,"to":8}
+[2026-08-11 13:42:55] [172.26.80.1] reorder_reference: success {"id":109,"direction":"down"}
+[2026-08-11 13:46:30] [172.26.80.1] reorder_reference: success {"id":123,"direction":"down"}
+[2026-08-11 13:46:34] [172.26.80.1] reorder_reference: success {"id":124,"direction":"down"}
+[2026-08-11 13:47:01] [172.26.80.1] reorder_reference: success {"id":123,"direction":"up"}
+[2026-08-11 13:47:05] [172.26.80.1] reorder_reference: success {"id":123,"direction":"up"}
+[2026-08-11 13:47:09] [172.26.80.1] reorder_reference: success {"id":123,"direction":"up"}
+[2026-08-11 13:47:25] [172.26.80.1] move_reference: success {"id":123,"to":125}
+[2026-08-11 13:47:43] [172.26.80.1] move_reference: success {"id":125,"to":116}
+[2026-08-11 13:47:52] [172.26.80.1] move_reference: success {"id":128,"to":117}
+[2026-08-11 13:47:59] [172.26.80.1] move_reference: success {"id":127,"to":118}
+[2026-08-11 13:48:07] [172.26.80.1] move_reference: success {"id":128,"to":119}
+[2026-08-11 13:48:15] [172.26.80.1] move_reference: success {"id":127,"to":120}
+[2026-08-11 13:48:27] [172.26.80.1] move_reference: success {"id":109,"to":121}
+[2026-08-11 13:48:33] [172.26.80.1] move_reference: success {"id":109,"to":122}
+[2026-08-11 13:53:27] [172.26.80.1] move_reference: success {"id":55,"to":6}
+[2026-08-11 13:53:31] [172.26.80.1] move_reference: success {"id":55,"to":6}
+[2026-08-11 13:55:04] [127.0.0.1] login: success
+[2026-08-11 13:55:04] [127.0.0.1] move_reference: success {"id":0,"to":5}
+[2026-08-11 13:57:44] [172.26.80.1] move_reference: success {"id":8,"to":8}
