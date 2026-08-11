@@ -42,7 +42,12 @@ foreach ($refs as $idx => $r) {
     $cards .= <<<HTML
     <div class="ref-card col-12">
       <div class="d-flex align-items-start gap-3 p-3 bg-white rounded-3 shadow-sm">
-        <span class="badge bg-dark rounded-pill fs-6" style="min-width:32px">$pos</span>
+        <form method="post" action="actions/move-reference.php" class="d-flex gap-1 align-items-start flex-shrink-0" style="width:80px">
+          <input type="hidden" name="csrf_token" value="$csrf">
+          <input type="hidden" name="id" value="$idx">
+          <input type="number" name="new_pos" value="$pos" min="1" max="$total_count" class="form-control form-control-sm text-center" style="width:50px" title="Pozisyon">
+          <button class="btn btn-sm btn-outline-secondary" title="Taşı">→</button>
+        </form>
         <img src="$src" alt="$alt_en" style="width:120px;height:90px;object-fit:contain;background:#f8f9fa;border-radius:6px">
         <div class="flex-grow-1" style="min-width:0">
           <div class="fw-semibold small mb-1">$alt_en</div>
