@@ -93,7 +93,7 @@ function render_navbar(string $lang, string $page_type, string $slug = ''): stri
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand" href="' . $navBase . 'index.html">
-        <img src="/assets/img/logo.webp" alt="MT Messe Stand" width="140" height="27">
+        <img src="/assets/img/logo.webp" alt="MT Messe Stand" width="100" height="42">
         <span class="brand-text">MT Messe Stand</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-label="Toggle navigation">

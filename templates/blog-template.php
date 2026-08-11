@@ -53,8 +53,8 @@ function render_blog(array $meta, string $content_html, string $lang): string {
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="$canonical">
   $hreflang_html
-  <link rel="icon" type="image/png" href="{$asset_prefix}img/favicon.webp">
-  <link rel="apple-touch-icon" href="{$asset_prefix}img/favicon.webp">
+  <link rel="icon" type="image/png" href="{$asset_prefix}img/favicon.png">
+  <link rel="apple-touch-icon" href="{$asset_prefix}img/favicon.png">
   <meta property="og:title" content="$full_title">
   <meta property="og:description" content="$meta_desc">
   <meta property="og:image" content="$image_url">
@@ -129,7 +129,7 @@ $navbar_html
       $hero_img
       <div class="article-intro">$content_html</div>
       <div class="author-box">
-        <img src="{$asset_prefix}img/logo.webp" alt="MT Messe Stand" width="56" height="56" loading="lazy">
+        <img src="{$asset_prefix}img/logo-author.webp" alt="MT Messe Stand" width="44" height="41" loading="lazy">
         <div><div class="author-name fw-bold">$author_name</div><p class="m-0 small text-muted">$author_desc</p></div>
       </div>
     </article>

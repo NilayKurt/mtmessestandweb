@@ -24,8 +24,8 @@ function render_page(array $meta, string $content_html, string $lang, string $pa
   <meta name="author" content="MT Messe Stand">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="$canonical">
-  <link rel="icon" type="image/png" href="{$asset_prefix}img/favicon.webp">
-  <link rel="apple-touch-icon" href="{$asset_prefix}img/favicon.webp">
+  <link rel="icon" type="image/png" href="{$asset_prefix}img/favicon.png">
+  <link rel="apple-touch-icon" href="{$asset_prefix}img/favicon.png">
 
   <meta property="og:title" content="$full_title">
   <meta property="og:description" content="$meta_desc">

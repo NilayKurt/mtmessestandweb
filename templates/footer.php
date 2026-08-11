@@ -121,7 +121,7 @@ function render_footer(string $lang, int $depth, string $page_type): string {
   <div class="container">
     <div class="row g-4">
       <div class="col-lg-4">
-        <img src="' . $ap . 'img/logo.webp" alt="MT Messe Stand" width="186" height="36" class="mb-3">
+        <img src="' . $ap . 'img/logo.webp" alt="MT Messe Stand" width="100" height="42" class="mb-3">
         <p>' . $ft['tagline'] . '</p>
         <p class="small">' . $ft['standards'] . ' <a href="https://www.auma.de/en" target="_blank" rel="noopener">AUMA</a> · <a href="https://www.dguv.de" target="_blank" rel="noopener">DGUV</a></p>
         <div class="social-links mt-3">
