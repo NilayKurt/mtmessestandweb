@@ -47,9 +47,5 @@ try {
     exit;
 }
 
-if (file_exists(__DIR__ . '/../../build.php')) {
-    include __DIR__ . '/../../build.php';
-}
-
 ob_end_clean();
 header('Location: ../editor-page.php?page=' . urlencode($page) . '&saved=1');
