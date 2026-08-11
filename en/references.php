@@ -31,7 +31,7 @@ foreach ($refs as $ref) {
     if (empty($src)) continue;
     $imgIdx++;
     $cards .= <<<HTML
-      <div class="masonry-item" role="listitem">
+      <div class="col-lg-3 col-md-4 col-6" role="listitem">
         <a href="{$src}" class="glightbox portfolio-item d-block" data-gallery="references" data-glightbox="width:80vw;" aria-label="View enlarged reference image">
           <img src="{$src}" alt="{$alt}" class="img-fluid rounded-3 shadow-sm" loading="lazy">
         </a>
@@ -124,13 +124,9 @@ $schema_json = json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
   <link href="../assets/css/style.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <style>
-    .masonry-item { width: calc(25% - 0.75rem); }
-    .portfolio-item { overflow: hidden; border-radius: 0.5rem; transition: transform 0.3s ease; display: block; }
-    .portfolio-item:hover { transform: scale(1.02); }
+    .portfolio-item { overflow: hidden; border-radius: 0.5rem; transition: transform 0.3s ease; }
+    .portfolio-item:hover { transform: scale(1.03); }
     .portfolio-item img { display: block; width: 100%; object-fit: contain; background: #f8f9fa; }
-    @media (max-width: 992px) { .masonry-item { width: calc(33.33% - 0.67rem); } }
-    @media (max-width: 768px) { .masonry-item { width: calc(50% - 0.5rem); } }
-    @media (max-width: 480px) { .masonry-item { width: 100%; } }
   </style>
 </head>
 <body>
@@ -155,7 +151,7 @@ $schema_json = json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
       </div>
     </div>
 
-    <div class="masonry-grid" data-aos="fade-up">
+    <div class="row g-4" data-aos="fade-up">
       <?= $cards ?>
     </div>
 
@@ -166,10 +162,8 @@ $schema_json = json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
 <?= $footer ?>
 <script src="../assets/vendor/bootstrap.bundle.min.js" defer></script>
 <script src="../assets/vendor/glightbox.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    new Masonry('.masonry-grid', { itemSelector: '.masonry-item', percentPosition: true, gutter: 24 });
     GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
   });
 </script>
