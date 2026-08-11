@@ -6,3 +6,5 @@
 [2026-08-10 14:51:19] [127.0.0.1] ERROR: delete_media: file not found /assets/img/blog/nonexistent.webp
 [2026-08-11 11:16:54] [127.0.0.1] ERROR: Upload reference: Call to undefined function imagecreatefromjpeg()
 [2026-08-11 11:19:32] [127.0.0.1] ERROR: Call to undefined function mb_substr() in /home/nilay/projects/mtmesse/admin/editor-references.php:36
+[2026-08-11 13:22:23] [172.26.80.1] ERROR: Call to undefined function mb_substr() in /home/nilay/projects/mtmesse/admin/editor-references.php:36
+[2026-08-11 13:23:08] [172.26.80.1] ERROR: Call to undefined function mb_substr() in /home/nilay/projects/mtmesse/admin/editor-references.php:36
