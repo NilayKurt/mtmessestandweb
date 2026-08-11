@@ -12,13 +12,11 @@ function render_page(array $meta, string $content_html, string $lang, string $pa
     $navbar_html = render_navbar($lang, $page_type);
     $footer_html = render_footer($lang, 1, $page_type);
 
-    // About image (rendered by template, not in JSON content)
-    $about_image = '';
+    // About image: inject into content's row, next to text
     if ($page_type === 'about') {
-        $about_image = '
-    <div class="row mt-5"><div class="col-lg-6"></div><div class="col-lg-6 ps-lg-4 text-end">
-      <img src="' . $asset_prefix . 'img/about.webp" alt="MT Messe Stand" class="img-fluid rounded-4 shadow" width="400" height="204" loading="lazy">
-    </div></div>';
+        $img_html = '<div class="col-lg-6 ps-lg-4 text-end"><img src="' . $asset_prefix . 'img/about.webp" alt="MT Messe Stand" class="img-fluid rounded-4 shadow" width="400" height="204" loading="lazy"></div>';
+        // Insert image col before the closing </div> of the row
+        $content_html = preg_replace('~(</ul>\s*</div>)\s*(</div>)~', '$1' . $img_html . '$2', $content_html, 1);
     }
 
     $html = <<<HTML
@@ -62,7 +60,6 @@ $navbar_html
   <div class="container">
     <h1 class="mb-4">$title_esc</h1>
     <div class="page-content">$content_html</div>
-    $about_image
   </div>
 </section>
 </main>
