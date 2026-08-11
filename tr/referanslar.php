@@ -29,9 +29,9 @@ foreach ($refs as $ref) {
     if (empty($src)) continue;
     $imgIdx++;
     $cards .= <<<HTML
-      <div class="col-lg-3 col-md-4 col-6" role="listitem">
+      <div class="masonry-item" role="listitem">
         <a href="{$src}" class="glightbox portfolio-item d-block" data-gallery="references" data-glightbox="width:80vw;" aria-label="Büyütülmüş referans görseli">
-          <img src="{$src}" alt="{$alt}" class="img-fluid rounded-3 shadow-sm" width="400" height="300" loading="lazy">
+          <img src="{$src}" alt="{$alt}" class="img-fluid rounded-3 shadow-sm" loading="lazy">
         </a>
       </div>
 HTML;
@@ -119,9 +119,14 @@ $schema_json = json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
   <link href="../assets/css/style.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <style>
-    .portfolio-item { overflow: hidden; border-radius: 0.5rem; transition: transform 0.3s ease; }
-    .portfolio-item:hover { transform: scale(1.03); }
-    .portfolio-item img { display: block; width: 100%; height: 100%; object-fit: contain; background: #f8f9fa; }
+    .masonry-grid { column-count: 4; column-gap: 1rem; }
+    .masonry-item { break-inside: avoid; margin-bottom: 1rem; }
+    .portfolio-item { overflow: hidden; border-radius: 0.5rem; transition: transform 0.3s ease; display: block; }
+    .portfolio-item:hover { transform: scale(1.02); }
+    .portfolio-item img { display: block; width: 100%; object-fit: contain; background: #f8f9fa; }
+    @media (max-width: 992px) { .masonry-grid { column-count: 3; } }
+    @media (max-width: 768px) { .masonry-grid { column-count: 2; } }
+    @media (max-width: 480px) { .masonry-grid { column-count: 1; } }
   </style>
 </head>
 <body>
@@ -146,7 +151,7 @@ $schema_json = json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
       </div>
     </div>
 
-    <div class="row g-4" data-aos="fade-up">
+    <div class="masonry-grid" data-aos="fade-up">
       <?= $cards ?>
     </div>
 
