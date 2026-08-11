@@ -150,12 +150,12 @@ document.querySelectorAll('.ref-card form').forEach(form => {
     try {
       const resp = await fetch(this.action, { method: 'POST', body: fd });
       if (!resp.ok) { showToast('Hata oluştu', 'error'); return; }
-      // Reload page (positions changed, need fresh sort)
+      const refId = fd.get('id');
       if (this.action.includes('delete')) {
         this.closest('.ref-card').style.opacity = '0.3';
         showToast('Silindi', 'success');
       }
-      setTimeout(() => location.reload(), 400);
+      window.location = window.location.pathname + '?ok=1#ref-' + refId;
     } catch(err) {
       showToast('Bağlantı hatası', 'error');
     }
