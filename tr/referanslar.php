@@ -173,8 +173,10 @@ $schema_json = json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
 <?= $footer ?>
 <script src="../assets/vendor/bootstrap.bundle.min.js" defer></script>
 <script src="../assets/vendor/glightbox.min.js" defer></script>
-<script defer>
-  const lightbox = GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+  });
 </script>
 <script src="../assets/js/main.min.js" defer></script>
 </body>
