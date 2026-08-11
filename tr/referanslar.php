@@ -120,6 +120,9 @@ if (empty($cards)) {
 <?= $footer ?>
 <script src="../assets/vendor/bootstrap.bundle.min.js"></script>
 <script src="../assets/vendor/glightbox.min.js"></script>
+<script>
+  const lightbox = GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+</script>
 <script src="../assets/js/main.min.js"></script>
 </body>
 </html>
