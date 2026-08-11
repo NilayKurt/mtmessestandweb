@@ -89,6 +89,13 @@ try {
     $safe_name = strtolower($safe_name) ?: 'image';
     $filename = $safe_name . '.webp';
 
+    // Replace mode: overwrite specific image
+    $replace_path = $_POST['replace'] ?? '';
+    $replace_target = null;
+    if ($replace_path && strpos($replace_path, '/assets/img/') === 0 && strpos($replace_path, '..') === false) {
+        $replace_target = __DIR__ . '/../../' . ltrim($replace_path, '/');
+    }
+
     // Target directory
     $target_dir = $_POST['target'] ?? 'blog';
     if (!in_array($target_dir, ['blog', 'portfolio', 'about'])) {
@@ -97,14 +104,18 @@ try {
     $upload_dir = __DIR__ . '/../../assets/img/' . $target_dir;
     if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
 
-    // Prevent duplicate
-    $counter = 1;
-    $base = $safe_name;
-    while (file_exists("$upload_dir/$filename")) {
-        $filename = $base . '-' . $counter . '.webp';
-        $counter++;
+    // Prevent duplicate (skip for replace mode)
+    if ($replace_target) {
+        $target = $replace_target;
+    } else {
+        $counter = 1;
+        $base = $safe_name;
+        while (file_exists("$upload_dir/$filename")) {
+            $filename = $base . '-' . $counter . '.webp';
+            $counter++;
+        }
+        $target = "$upload_dir/$filename";
     }
-    $target = "$upload_dir/$filename";
 
     // Watermark
     $logo_path = __DIR__ . '/../../assets/img/logo.webp';

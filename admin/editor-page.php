@@ -39,6 +39,24 @@ $toast
   <input type="hidden" name="csrf_token" value="$token">
   <input type="hidden" name="page" value="$page">
   <div class="mb-3"><label class="form-label">Başlık</label><input type="text" name="title" class="form-control" value="$t_esc" required></div>
+HTML;
+if ($page === 'about') {
+    $content .= <<<HTML
+  <div class="mb-3 p-3 bg-light rounded-3">
+    <label class="form-label fw-semibold">🖼️ About Sayfa Görseli <small class="text-muted">(tüm dillerde ortak)</small></label>
+    <div class="d-flex align-items-center gap-3">
+      <img src="../assets/img/about.webp" alt="About image" style="width:200px;height:auto;border-radius:6px" id="aboutPreview">
+      <div>
+        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('aboutImgUpload').click()">Görsel Değiştir</button>
+        <input type="file" id="aboutImgUpload" accept="image/jpeg,image/png,image/webp" style="display:none" onchange="uploadAboutImg(this)">
+        <span id="aboutUploadStatus" class="text-muted small ms-2"></span>
+        <div class="text-muted small mt-1">JPG/PNG → WEBP, watermark, EXIF temizleme, XMP, steganografi otomatik</div>
+      </div>
+    </div>
+  </div>
+HTML;
+}
+$content .= <<<HTML
   <div class="mb-3">
     <label class="form-label">İçerik</label>
     <div class="mb-2">
@@ -75,6 +93,28 @@ async function uploadImage(input) {
       quill.insertEmbed(range.index, 'image', data.url);
       quill.setSelection(range.index + 1);
       status.textContent = '✓ Yüklendi';
+    } else {
+      status.textContent = '✗ Hata';
+    }
+  } catch(e) {
+    status.textContent = '✗ Bağlantı hatası';
+  }
+  input.value = '';
+}
+
+async function uploadAboutImg(input) {
+  if (!input.files[0]) return;
+  const status = document.getElementById('aboutUploadStatus');
+  status.textContent = 'Yükleniyor...';
+  const fd = new FormData();
+  fd.append('image', input.files[0]);
+  fd.append('csrf_token', '$token');
+  fd.append('replace', '/assets/img/about.webp');
+  try {
+    const resp = await fetch('actions/upload.php', { method: 'POST', body: fd });
+    if (resp.ok) {
+      document.getElementById('aboutPreview').src = '../assets/img/about.webp?' + Date.now();
+      status.textContent = '✓ Güncellendi (tüm diller)';
     } else {
       status.textContent = '✗ Hata';
     }
