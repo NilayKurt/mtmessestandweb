@@ -16,11 +16,11 @@ function render_navbar(string $lang, string $page_type, string $slug = ''): stri
     $allLangs = [
         ['code' => 'en', 'name' => 'EN', 'available' => true],
         ['code' => 'tr', 'name' => 'TR', 'available' => true],
-        ['code' => 'de', 'name' => 'DE', 'available' => false],
-        ['code' => 'fr', 'name' => 'FR', 'available' => false],
+        ['code' => 'de', 'name' => 'DE', 'available' => true],
+        ['code' => 'fr', 'name' => 'FR', 'available' => true],
         ['code' => 'es', 'name' => 'ES', 'available' => true],
-        ['code' => 'ar', 'name' => 'AR', 'available' => false],
-        ['code' => 'zh', 'name' => 'ZH', 'available' => false],
+        ['code' => 'ar', 'name' => 'AR', 'available' => true],
+        ['code' => 'zh', 'name' => 'ZH', 'available' => true],
     ];
 
     // === AUTO-BUILD blog slug map from JSON data files ===
