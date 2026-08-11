@@ -124,7 +124,7 @@ $schema_json = json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
   <link href="../assets/css/style.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <style>
-    .masonry-item { width: calc(25% - 0.75rem); margin-bottom: 1rem; }
+    .masonry-item { width: calc(25% - 0.75rem); }
     .portfolio-item { overflow: hidden; border-radius: 0.5rem; transition: transform 0.3s ease; display: block; }
     .portfolio-item:hover { transform: scale(1.02); }
     .portfolio-item img { display: block; width: 100%; object-fit: contain; background: #f8f9fa; }
@@ -169,7 +169,7 @@ $schema_json = json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    new Masonry('.masonry-grid', { itemSelector: '.masonry-item', percentPosition: true, gutter: 0 });
+    new Masonry('.masonry-grid', { itemSelector: '.masonry-item', percentPosition: true, gutter: 16 });
     GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
   });
 </script>
