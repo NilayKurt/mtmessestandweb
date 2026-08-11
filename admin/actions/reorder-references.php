@@ -41,7 +41,7 @@ try {
     rename($tmp_file, $json_file);
 
     log_action('reorder_reference', 'success', ['id' => $id, 'direction' => $direction]);
-    header('Location: ../editor-references.php?reordered=1');
+    header('Location: ../editor-references.php?reordered=1#ref-' . $id);
 
 } catch (Throwable $e) {
     log_error('Reorder reference: ' . $e->getMessage());

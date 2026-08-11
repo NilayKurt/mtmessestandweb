@@ -42,7 +42,7 @@ try {
     rename($tmp_file, $json_file);
 
     log_action('move_reference', 'success', ['id' => $id, 'to' => $new_pos]);
-    header('Location: ../editor-references.php?reordered=1');
+    header('Location: ../editor-references.php?reordered=1#ref-' . $id);
 
 } catch (Throwable $e) {
     log_error('Move reference: ' . $e->getMessage());

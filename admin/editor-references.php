@@ -40,7 +40,7 @@ foreach ($refs as $idx => $r) {
     $year = htmlspecialchars($r['year'] ?? '');
 
     $cards .= <<<HTML
-    <div class="ref-card col-12">
+    <div class="ref-card col-12" id="ref-{$idx}">
       <div class="d-flex align-items-start gap-3 p-3 bg-white rounded-3 shadow-sm">
         <form method="post" action="actions/move-reference.php" class="d-flex gap-1 align-items-start flex-shrink-0" style="width:80px">
           <input type="hidden" name="csrf_token" value="$csrf">
