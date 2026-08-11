@@ -16,7 +16,7 @@ function render_page(array $meta, string $content_html, string $lang, string $pa
     if ($page_type === 'about') {
         $img_html = '<div class="col-lg-6 ps-lg-4 text-end"><img src="' . $asset_prefix . 'img/about.webp" alt="MT Messe Stand" class="img-fluid rounded-4 shadow" width="400" height="204" loading="lazy"></div>';
         // Insert image col before the closing </div> of the row
-        $content_html = preg_replace('~(</ul>\s*</div>)\s*(</div>)~', '$1' . $img_html . '$2', $content_html, 1);
+        $content_html = preg_replace('~(</ul>.*?</div>)\s*(</div>)~s', '$1' . $img_html . '$2', $content_html, 1);
     }
 
     $html = <<<HTML
