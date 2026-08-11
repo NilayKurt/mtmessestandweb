@@ -44,3 +44,7 @@
 [2026-08-10 18:08:49] [127.0.0.1] login: success
 [2026-08-10 18:57:17] [127.0.0.1] login: success
 [2026-08-10 20:20:06] [127.0.0.1] login: success
+[2026-08-11 11:12:17] [127.0.0.1] login: success
+[2026-08-11 11:12:51] [127.0.0.1] login: success
+[2026-08-11 11:18:28] [127.0.0.1] login: success
+[2026-08-11 11:18:57] [127.0.0.1] upload_reference: success {"file":"e2e-final-pass.webp"}
