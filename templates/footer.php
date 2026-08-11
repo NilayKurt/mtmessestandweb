@@ -110,6 +110,9 @@ function render_footer(string $lang, int $depth, string $page_type): string {
             $bhref = '/' . $code . '/about.html';
         } elseif ($page_type === 'contact') {
             $bhref = '/' . $code . '/contact.html';
+        } elseif ($page_type === 'references') {
+            $refPages = ['en'=>'references.html','tr'=>'referanslar.html','de'=>'referenzen.html','fr'=>'references.html','es'=>'referencias.html','ar'=>'references.html','zh'=>'references.html'];
+            $bhref = '/' . $code . '/' . ($refPages[$code] ?? 'references.html');
         } else {
             $bhref = '/' . $code . '/';
         }
