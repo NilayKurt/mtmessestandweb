@@ -39,13 +39,50 @@ $toast
   <input type="hidden" name="csrf_token" value="$token">
   <input type="hidden" name="page" value="$page">
   <div class="mb-3"><label class="form-label">Başlık</label><input type="text" name="title" class="form-control" value="$t_esc" required></div>
-  <div class="mb-3"><label class="form-label">İçerik</label><div id="editor" style="min-height:400px">$c_raw</div></div>
+  <div class="mb-3">
+    <label class="form-label">İçerik</label>
+    <div class="mb-2">
+      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('imgUpload').click()">🖼️ Görsel Ekle</button>
+      <input type="file" id="imgUpload" accept="image/jpeg,image/png,image/webp" style="display:none" onchange="uploadImage(this)">
+      <span id="uploadStatus" class="text-muted small ms-2"></span>
+    </div>
+    <div id="editor" style="min-height:400px">$c_raw</div>
+  </div>
   <textarea name="content" id="ch" style="display:none"></textarea>
   <button type="submit" class="btn btn-accent">💾 Kaydet</button>
 </form>
 <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
 <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
-<script>new Quill("#editor",{theme:"snow",modules:{toolbar:[["bold","italic"],["blockquote"],[{header:[2,3,false]}],[{list:"ordered"},{list:"bullet"}],["link"],["clean"]]}});document.getElementById("pf").onsubmit=function(){document.getElementById("ch").value=quill.root.innerHTML}</script>
+<script>
+const quill = new Quill("#editor",{theme:"snow",modules:{toolbar:[["bold","italic"],["blockquote"],[{header:[2,3,false]}],[{list:"ordered"},{list:"bullet"}],["link"],["clean"]]}});
+document.getElementById("pf").onsubmit=function(){document.getElementById("ch").value=quill.root.innerHTML};
+
+async function uploadImage(input) {
+  if (!input.files[0]) return;
+  const status = document.getElementById('uploadStatus');
+  status.textContent = 'Yükleniyor...';
+  const fd = new FormData();
+  fd.append('image', input.files[0]);
+  fd.append('csrf_token', '$token');
+  fd.append('target', 'about');
+  fd.append('inline', '1');
+  try {
+    const resp = await fetch('actions/upload.php', { method: 'POST', body: fd });
+    const data = await resp.json();
+    if (data.success) {
+      const range = quill.getSelection(true);
+      quill.insertEmbed(range.index, 'image', data.url);
+      quill.setSelection(range.index + 1);
+      status.textContent = '✓ Yüklendi';
+    } else {
+      status.textContent = '✗ Hata';
+    }
+  } catch(e) {
+    status.textContent = '✗ Bağlantı hatası';
+  }
+  input.value = '';
+}
+</script>
 HTML;
 
 render_admin_layout(ucfirst($page) . ' — MT Messe Admin', $content, $page);
