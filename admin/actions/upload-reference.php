@@ -70,7 +70,13 @@ try {
 
     // ── 5. SEO filename ──
     $seo_input = $_POST['seo_name'] ?? pathinfo($file['name'], PATHINFO_FILENAME);
-    $seo_name = trim(preg_replace('/[^a-zA-Z0-9]+/', '-', $seo_input), '-');
+    // Convert Turkish characters to ASCII
+    $seo_name = str_replace(
+        ['ı','İ','ş','Ş','ğ','Ğ','ü','Ü','ö','Ö','ç','Ç'],
+        ['i','i','s','s','g','g','u','u','o','o','c','c'],
+        $seo_input
+    );
+    $seo_name = trim(preg_replace('/[^a-zA-Z0-9]+/', '-', $seo_name), '-');
     $seo_name = $seo_name ?: 'exhibition-stand';
     $seo_name = strtolower($seo_name);
     $filename = $seo_name . '.webp';
