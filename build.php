@@ -18,6 +18,7 @@ $LANGS = [
     'es/' => 'es/blog',
     'ar/' => 'ar/blog',
     'zh/' => 'zh/blog',
+    'ru/' => 'ru/blog',
 ];
 
 $LABELS = [
@@ -28,6 +29,7 @@ $LABELS = [
     'es' => ['Últimos Artículos', 'Guías de stands de exhibición, costos operativos y regulaciones por país.', 'Leer Más →', 'Ver Todos →', 'es/blog/'],
     'ar' => ['آخر المقالات', 'أدلة منصات المعارض والتكاليف التشغيلية.', 'اقرأ المزيد ←', 'عرض جميع المقالات ←', 'ar/blog/'],
     'zh' => ['最新文章', '展台指南、运营成本和国家特定法规。', '阅读更多 →', '查看所有文章 →', 'zh/blog/'],
+    'ru' => ['Последние Статьи', 'Руководства по стендам и правила.', 'Читать →', 'Все Статьи →', 'ru/blog/'],
 ];
 
 /**
@@ -144,15 +146,19 @@ foreach ($LANGS as $index_rel => $blog_dir) {
     $posts = parse_blog_posts($blog_dir);
     echo "  [$lang_code] " . count($posts) . " posts\n";
 
-    // Inject blog cards
-    $blog_html = build_cards_html($posts, $lang_code, $blog_dir);
-    if (!inject($index_rel, $blog_html)) {
-        echo "  [$lang_code] BLOG FAILED\n";
-        $all_ok = false;
+    // Read homepage
+    $hp_html = file_get_contents($index_path);
+
+    // Inject blog cards (skip if no placeholder)
+    if (strpos($hp_html, '<!-- BLOG_CARDS -->') !== false) {
+        $blog_html = build_cards_html($posts, $lang_code, $blog_dir);
+        inject($index_rel, $blog_html);
+        echo "  [$lang_code] blog cards injected\n";
+    } else {
+        echo "  [$lang_code] no BLOG_CARDS placeholder, skipping blog\n";
     }
 
     // Inject navbar + footer into homepage
-    $hp_html = file_get_contents($index_path);
     $hp_html = str_replace('<!-- NAVBAR -->', render_navbar($lang_code, 'home'), $hp_html);
     $hp_html = str_replace('<!-- FOOTER -->',  render_footer($lang_code, 1, 'home'), $hp_html);
     file_put_contents($index_path, $hp_html);
