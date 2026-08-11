@@ -57,6 +57,14 @@ $navbar_html
   <div class="container">
     <h1 class="mb-4">$title_esc</h1>
     <div class="page-content">$content_html</div>
+HTML;
+    if ($page_type === 'about') {
+        $html .= '
+    <div class="row mt-5"><div class="col-lg-6"></div><div class="col-lg-6 ps-lg-4 text-end">
+      <img src="' . $asset_prefix . 'img/about.webp" alt="MT Messe Stand" class="img-fluid rounded-4 shadow" width="400" height="204" loading="lazy">
+    </div></div>';
+    }
+    $html .= '
   </div>
 </section>
 </main>
