@@ -2,13 +2,13 @@
 function render_navbar(string $lang, string $page_type, string $slug = ''): string {
     // Menu labels per language
     $labels = [
-        'en' => ['Home', 'About', 'Blog', 'Contact'],
-        'tr' => ['Anasayfa', 'Hakkımızda', 'Blog', 'İletişim'],
-        'de' => ['Start', 'Über uns', 'Blog', 'Kontakt'],
-        'fr' => ['Accueil', 'À propos', 'Blog', 'Contact'],
-        'es' => ['Inicio', 'Nosotros', 'Blog', 'Contacto'],
-        'ar' => ['الرئيسية', 'من نحن', 'المدونة', 'اتصل بنا'],
-        'zh' => ['首页', '关于我们', '博客', '联系我们'],
+        'en' => ['Home', 'About', 'Blog', 'References', 'Contact'],
+        'tr' => ['Anasayfa', 'Hakkımızda', 'Blog', 'Referanslar', 'İletişim'],
+        'de' => ['Start', 'Über uns', 'Blog', 'Referenzen', 'Kontakt'],
+        'fr' => ['Accueil', 'À propos', 'Blog', 'Références', 'Contact'],
+        'es' => ['Inicio', 'Nosotros', 'Blog', 'Referencias', 'Contacto'],
+        'ar' => ['الرئيسية', 'من نحن', 'المدونة', 'مراجع', 'اتصل بنا'],
+        'zh' => ['首页', '关于我们', '博客', '参考', '联系我们'],
     ];
     $L = $labels[$lang] ?? $labels['en'];
 
@@ -50,6 +50,18 @@ function render_navbar(string $lang, string $page_type, string $slug = ''): stri
         $blogMap[$trSlug] = ($blogMap[$trSlug] ?? []) + ['en' => $enSlug, 'tr' => $trSlug];
     }
 
+    // References page name per language
+    $refPages = [
+        'en' => 'references.html',
+        'tr' => 'referanslar.html',
+        'de' => 'referenzen.html',
+        'fr' => 'references.html',
+        'es' => 'referencias.html',
+        'ar' => 'references.html',
+        'zh' => 'references.html',
+    ];
+    $refPage = $refPages[$lang] ?? 'references.html';
+
     // Active class helper
     $a = function($t) use ($page_type) {
         return $page_type === $t ? ' active' : '';
@@ -75,6 +87,8 @@ function render_navbar(string $lang, string $page_type, string $slug = ''): stri
             $targetSlug = '/about.html';
         } elseif ($page_type === 'contact') {
             $targetSlug = '/contact.html';
+        } elseif ($page_type === 'references') {
+            $targetSlug = '/' . ($refPages[$l['code']] ?? 'references.html');
         }
         $target = $l['available'] ? '/' . $l['code'] . $targetSlug : '#';
         $label = $l['name'] . ($l['available'] ? '' : ' (soon)');
@@ -104,7 +118,8 @@ function render_navbar(string $lang, string $page_type, string $slug = ''): stri
           <li class="nav-item"><a class="nav-link' . $a('home') . '" href="' . $navBase . 'index.html">' . $L[0] . '</a></li>
           <li class="nav-item"><a class="nav-link' . $a('about') . '" href="' . $navBase . 'about.html">' . $L[1] . '</a></li>
           <li class="nav-item"><a class="nav-link' . $a('blog_list') . $a('blog_post') . '" href="' . $blogHref . '">' . $L[2] . '</a></li>
-          <li class="nav-item"><a class="nav-link' . $a('contact') . '" href="' . $navBase . 'contact.html">' . $L[3] . '</a></li>
+          <li class="nav-item"><a class="nav-link' . $a('references') . '" href="' . $navBase . $refPage . '">' . $L[3] . '</a></li>
+          <li class="nav-item"><a class="nav-link' . $a('contact') . '" href="' . $navBase . 'contact.html">' . $L[4] . '</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">' . $currentLabel . '</a>
             <ul class="dropdown-menu">

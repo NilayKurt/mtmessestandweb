@@ -1,1 +1,5 @@
 ErrorDocument 404 /404.html
+
+# References pages served as PHP
+RewriteEngine On
+RewriteRule ^(en/references|tr/referanslar|de/referenzen|fr/references|es/referencias|ar/references|zh/references)\.html$ $1.php [L]
