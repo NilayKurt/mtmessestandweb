@@ -155,7 +155,8 @@ document.querySelectorAll('.ref-card form').forEach(form => {
         this.closest('.ref-card').style.opacity = '0.3';
         showToast('Silindi', 'success');
       }
-      window.location = window.location.pathname + '?ok=1#ref-' + refId;
+      const anchor = fd.get('new_pos') ? 'ref-' + (parseInt(fd.get('new_pos')) - 1) : '';
+      window.location = window.location.pathname + '?ok=1' + (anchor ? '#' + anchor : '');
     } catch(err) {
       showToast('Bağlantı hatası', 'error');
     }
